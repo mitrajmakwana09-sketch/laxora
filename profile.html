@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LUXORA | My Profile</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+
+    <style>
+
+        /* ========================================
+           RESET
+        ======================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+
+            font-family: "Inter", sans-serif;
+
+            color: #fff;
+
+            background:
+                radial-gradient(
+                    circle at 10% 10%,
+                    rgba(212, 175, 55, 0.12),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 90% 85%,
+                    rgba(212, 175, 55, 0.09),
+                    transparent 30%
+                ),
+                #050505;
+
+            overflow-x: hidden;
+        }
+
+
+        /* ========================================
+           BACKGROUND ANIMATION
+        ======================================== */
+
+        .bg-glow {
+            position: fixed;
+            inset: 0;
+
+            pointer-events: none;
+
+            overflow: hidden;
+
+            z-index: 0;
+        }
+
+        .glow {
+            position: absolute;
+
+            width: 260px;
+            height: 260px;
+
+            border-radius: 50%;
+
+            background: #d4af37;
+
+            filter: blur(110px);
+
+            opacity: 0.08;
+
+            animation: floatingGlow 9s ease-in-out infinite;
+        }
+
+        .glow-1 {
+            top: -100px;
+            left: -80px;
+        }
+
+        .glow-2 {
+            right: -100px;
+            bottom: -80px;
+
+            animation-delay: 3s;
+        }
+
+        @keyframes floatingGlow {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(45px, -35px);
+            }
+        }
+
+
+        /* ========================================
+           NAVBAR
+        ======================================== */
+
+        .navbar {
+
+            height: 74px;
+
+            padding: 0 6%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 20;
+
+            background: rgba(5, 5, 5, 0.78);
+
+            backdrop-filter: blur(20px);
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+
+        .logo {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+            color: white;
+
+            text-decoration: none;
+        }
+
+
+        .logo-icon {
+
+            width: 39px;
+            height: 39px;
+
+            border: 1px solid #d4af37;
+
+            border-radius: 11px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: #d4af37;
+
+            box-shadow:
+                0 0 18px rgba(212, 175, 55, 0.14);
+        }
+
+
+        .logo-text {
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 24px;
+
+            letter-spacing: 4px;
+        }
+
+
+        .logo-text span {
+            color: #d4af37;
+        }
+
+
+        .nav-actions {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+
+        .nav-link {
+
+            color: #aaa;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            padding: 9px 13px;
+
+            border-radius: 8px;
+
+            transition: 0.3s;
+        }
+
+
+        .nav-link:hover {
+
+            color: #d4af37;
+
+            background: rgba(212, 175, 55, 0.06);
+        }
+
+
+        .logout-nav {
+
+            border: 1px solid rgba(212, 175, 55, 0.25);
+
+            color: #d4af37;
+        }
+
+
+        /* ========================================
+           MAIN
+        ======================================== */
+
+        .page {
+
+            width: min(1150px, 92%);
+
+            margin: auto;
+
+            padding: 55px 0 70px;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .page-heading {
+
+            margin-bottom: 30px;
+
+            animation: fadeDown 0.7s ease;
+        }
+
+
+        .small-title {
+
+            color: #d4af37;
+
+            font-size: 11px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 4px;
+
+            font-weight: 700;
+
+            margin-bottom: 9px;
+        }
+
+
+        .page-heading h1 {
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 42px;
+
+            font-weight: 600;
+
+            margin-bottom: 7px;
+        }
+
+
+        .page-heading p {
+
+            color: #858585;
+
+            font-size: 13px;
+        }
+
+
+        @keyframes fadeDown {
+
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        /* ========================================
+           PROFILE GRID
+        ======================================== */
+
+        .profile-grid {
+
+            display: grid;
+
+            grid-template-columns: 310px 1fr;
+
+            gap: 22px;
+        }
+
+
+        /* ========================================
+           PROFILE CARD
+        ======================================== */
+
+        .profile-card {
+
+            padding: 35px 25px;
+
+            text-align: center;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255, 255, 255, 0.055),
+                    rgba(255, 255, 255, 0.018)
+                );
+
+            border: 1px solid rgba(255, 255, 255, 0.08);
+
+            box-shadow:
+                0 25px 60px rgba(0, 0, 0, 0.35);
+
+            backdrop-filter: blur(18px);
+
+            animation: cardLeft 0.8s ease;
+        }
+
+
+        @keyframes cardLeft {
+
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+
+        /* ========================================
+           AVATAR
+        ======================================== */
+
+        .avatar-wrapper {
+
+            position: relative;
+
+            width: 120px;
+            height: 120px;
+
+            margin: 0 auto 18px;
+        }
+
+
+        .avatar {
+
+            width: 120px;
+            height: 120px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 42px;
+
+            color: #050505;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #a97b0a,
+                    #d4af37,
+                    #f5dc85
+                );
+
+            border: 5px solid #111;
+
+            outline: 1px solid rgba(212, 175, 55, 0.5);
+
+            box-shadow:
+                0 0 35px rgba(212, 175, 55, 0.16);
+
+            animation: avatarPulse 4s ease-in-out infinite;
+        }
+
+
+        @keyframes avatarPulse {
+
+            0%,
+            100% {
+                box-shadow:
+                    0 0 25px rgba(212, 175, 55, 0.12);
+            }
+
+            50% {
+                box-shadow:
+                    0 0 45px rgba(212, 175, 55, 0.27);
+            }
+        }
+
+
+        .online-dot {
+
+            position: absolute;
+
+            width: 17px;
+            height: 17px;
+
+            right: 7px;
+            bottom: 8px;
+
+            background: #38d477;
+
+            border-radius: 50%;
+
+            border: 3px solid #111;
+
+            box-shadow:
+                0 0 12px rgba(56, 212, 119, 0.6);
+        }
+
+
+        .profile-name {
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 25px;
+
+            margin-bottom: 6px;
+        }
+
+
+        .member-label {
+
+            color: #d4af37;
+
+            font-size: 10px;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+            font-weight: 700;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* ========================================
+           PROFILE STATS
+        ======================================== */
+
+        .profile-stats {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+
+            padding-top: 22px;
+        }
+
+
+        .stat {
+
+            text-align: center;
+        }
+
+
+        .stat:first-child {
+
+            border-right: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+
+        .stat strong {
+
+            display: block;
+
+            color: #fff;
+
+            font-size: 21px;
+
+            margin-bottom: 4px;
+        }
+
+
+        .stat span {
+
+            color: #666;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* ========================================
+           RIGHT CONTENT
+        ======================================== */
+
+        .content {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 20px;
+
+            animation: cardRight 0.8s ease;
+        }
+
+
+        @keyframes cardRight {
+
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+
+        .section-card {
+
+            padding: 28px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255, 255, 255, 0.045),
+                    rgba(255, 255, 255, 0.015)
+                );
+
+            border: 1px solid rgba(255, 255, 255, 0.075);
+
+            transition: 0.35s;
+
+            backdrop-filter: blur(16px);
+        }
+
+
+        .section-card:hover {
+
+            border-color: rgba(212, 175, 55, 0.25);
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, 0.25);
+        }
+
+
+        .section-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .section-title i {
+
+            width: 36px;
+            height: 36px;
+
+            border-radius: 9px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: #d4af37;
+
+            background: rgba(212, 175, 55, 0.08);
+
+            border: 1px solid rgba(212, 175, 55, 0.13);
+        }
+
+
+        .section-title h2 {
+
+            font-family: "Playfair Display", serif;
+
+            font-size: 20px;
+
+            font-weight: 600;
+        }
+
+
+        /* ========================================
+           INFORMATION
+        ======================================== */
+
+        .info-grid {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 17px;
+        }
+
+
+        .info-box {
+
+            padding: 16px;
+
+            background: rgba(0, 0, 0, 0.25);
+
+            border: 1px solid rgba(255, 255, 255, 0.055);
+
+            border-radius: 12px;
+
+            transition: 0.3s;
+        }
+
+
+        .info-box:hover {
+
+            border-color: rgba(212, 175, 55, 0.2);
+
+            transform: translateY(-2px);
+        }
+
+
+        .info-label {
+
+            display: block;
+
+            color: #666;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .info-value {
+
+            color: #eee;
+
+            font-size: 13px;
+
+            word-break: break-word;
+        }
+
+
+        .info-value i {
+
+            color: #d4af37;
+
+            margin-right: 7px;
+        }
+
+
+        /* ========================================
+           QUICK ACTIONS
+        ======================================== */
+
+        .actions {
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 12px;
+        }
+
+
+        .action {
+
+            min-height: 85px;
+
+            padding: 16px;
+
+            border-radius: 13px;
+
+            background: rgba(0, 0, 0, 0.25);
+
+            border: 1px solid rgba(255, 255, 255, 0.055);
+
+            color: white;
+
+            text-decoration: none;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            gap: 9px;
+
+            transition: 0.3s;
+        }
+
+
+        .action i {
+
+            color: #d4af37;
+
+            font-size: 18px;
+        }
+
+
+        .action span {
+
+            font-size: 12px;
+
+            color: #aaa;
+        }
+
+
+        .action:hover {
+
+            transform: translateY(-4px);
+
+            border-color: rgba(212, 175, 55, 0.3);
+
+            background: rgba(212, 175, 55, 0.05);
+
+            box-shadow:
+                0 10px 25px rgba(0, 0, 0, 0.25);
+        }
+
+
+        /* ========================================
+           LOGOUT
+        ======================================== */
+
+        .logout-btn {
+
+            width: 100%;
+
+            height: 47px;
+
+            border: 1px solid rgba(255, 70, 70, 0.2);
+
+            border-radius: 10px;
+
+            background: rgba(255, 60, 60, 0.035);
+
+            color: #ff8585;
+
+            cursor: pointer;
+
+            font-family: inherit;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+
+        .logout-btn:hover {
+
+            background: rgba(255, 60, 60, 0.09);
+
+            border-color: rgba(255, 70, 70, 0.4);
+
+            transform: translateY(-2px);
+        }
+
+
+        /* ========================================
+           TOAST
+        ======================================== */
+
+        .toast {
+
+            position: fixed;
+
+            right: 25px;
+            bottom: 25px;
+
+            padding: 13px 18px;
+
+            border-radius: 10px;
+
+            background: #161616;
+
+            border: 1px solid rgba(212, 175, 55, 0.25);
+
+            color: #ddd;
+
+            font-size: 12px;
+
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, 0.4);
+
+            transform: translateY(100px);
+
+            opacity: 0;
+
+            transition: 0.4s;
+
+            z-index: 100;
+        }
+
+
+        .toast.show {
+
+            transform: translateY(0);
+
+            opacity: 1;
+        }
+
+
+        /* ========================================
+           RESPONSIVE
+        ======================================== */
+
+        @media (max-width: 850px) {
+
+            .profile-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+            .profile-card {
+
+                max-width: 500px;
+
+                width: 100%;
+
+                margin: auto;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .navbar {
+
+                padding: 0 18px;
+            }
+
+            .logo-text {
+
+                font-size: 21px;
+
+                letter-spacing: 3px;
+            }
+
+            .nav-link {
+
+                display: none;
+            }
+
+            .page {
+
+                width: 92%;
+
+                padding-top: 35px;
+            }
+
+            .page-heading h1 {
+
+                font-size: 34px;
+            }
+
+            .section-card {
+
+                padding: 21px;
+            }
+
+            .info-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+            .actions {
+
+                grid-template-columns: 1fr;
+            }
+
+            .profile-card {
+
+                padding: 30px 20px;
+            }
+
+            .toast {
+
+                left: 15px;
+
+                right: 15px;
+
+                bottom: 15px;
+
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- BACKGROUND -->
+
+    <div class="bg-glow">
+
+        <div class="glow glow-1"></div>
+
+        <div class="glow glow-2"></div>
+
+    </div>
+
+
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <a href="index.html" class="logo">
+
+            <div class="logo-icon">
+                <i class="fa-solid fa-car-side"></i>
+            </div>
+
+            <div class="logo-text">
+                LUX<span>ORA</span>
+            </div>
+
+        </a>
+
+
+        <div class="nav-actions">
+
+            <a href="cars.html" class="nav-link">
+                Cars
+            </a>
+
+            <a href="my-bookings.html" class="nav-link">
+                My Bookings
+            </a>
+
+            <a href="index.html" class="nav-link">
+                Home
+            </a>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- MAIN -->
+
+    <main class="page">
+
+
+        <!-- HEADING -->
+
+        <div class="page-heading">
+
+            <div class="small-title">
+                LUXORA MEMBER
+            </div>
+
+            <h1>
+                My Profile
+            </h1>
+
+            <p>
+                Manage your personal information and LUXORA account.
+            </p>
+
+        </div>
+
+
+
+        <!-- PROFILE GRID -->
+
+        <div class="profile-grid">
+
+
+            <!-- LEFT PROFILE CARD -->
+
+            <aside class="profile-card">
+
+
+                <div class="avatar-wrapper">
+
+                    <div class="avatar" id="avatar">
+                        U
+                    </div>
+
+                    <div class="online-dot"></div>
+
+                </div>
+
+
+                <h2
+                    class="profile-name"
+                    id="profileName"
+                >
+                    User
+                </h2>
+
+
+                <div class="member-label">
+                    LUXORA MEMBER
+                </div>
+
+
+                <div class="profile-stats">
+
+                    <div class="stat">
+
+                        <strong id="bookingCount">
+                            0
+                        </strong>
+
+                        <span>
+                            Bookings
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        <strong>
+                            VIP
+                        </strong>
+
+                        <span>
+                            Status
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </aside>
+
+
+
+            <!-- RIGHT CONTENT -->
+
+            <section class="content">
+
+
+                <!-- PERSONAL INFORMATION -->
+
+                <div class="section-card">
+
+                    <div class="section-title">
+
+                        <i class="fa-regular fa-user"></i>
+
+                        <h2>
+                            Personal Information
+                        </h2>
+
+                    </div>
+
+
+                    <div class="info-grid">
+
+
+                        <div class="info-box">
+
+                            <span class="info-label">
+                                Full Name
+                            </span>
+
+                            <div
+                                class="info-value"
+                                id="displayName"
+                            >
+                                —
+                            </div>
+
+                        </div>
+
+
+                        <div class="info-box">
+
+                            <span class="info-label">
+                                Email Address
+                            </span>
+
+                            <div
+                                class="info-value"
+                                id="displayEmail"
+                            >
+                                —
+                            </div>
+
+                        </div>
+
+
+                        <div class="info-box">
+
+                            <span class="info-label">
+                                Phone Number
+                            </span>
+
+                            <div
+                                class="info-value"
+                                id="displayPhone"
+                            >
+                                —
+                            </div>
+
+                        </div>
+
+
+                        <div class="info-box">
+
+                            <span class="info-label">
+                                Account Status
+                            </span>
+
+                            <div class="info-value">
+
+                                <i class="fa-solid fa-circle-check"></i>
+
+                                Active
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- QUICK ACTIONS -->
+
+                <div class="section-card">
+
+                    <div class="section-title">
+
+                        <i class="fa-solid fa-bolt"></i>
+
+                        <h2>
+                            Quick Actions
+                        </h2>
+
+                    </div>
+
+
+                    <div class="actions">
+
+
+                        <a
+                            href="cars.html"
+                            class="action"
+                        >
+
+                            <i class="fa-solid fa-car"></i>
+
+                            <span>
+                                Browse Luxury Cars
+                            </span>
+
+                        </a>
+
+
+                        <a
+                            href="my-bookings.html"
+                            class="action"
+                        >
+
+                            <i class="fa-solid fa-calendar-check"></i>
+
+                            <span>
+                                My Bookings
+                            </span>
+
+                        </a>
+
+
+                        <a
+                            href="index.html"
+                            class="action"
+                        >
+
+                            <i class="fa-solid fa-house"></i>
+
+                            <span>
+                                Back to Home
+                            </span>
+
+                        </a>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ACCOUNT -->
+
+                <div class="section-card">
+
+                    <div class="section-title">
+
+                        <i class="fa-solid fa-shield-halved"></i>
+
+                        <h2>
+                            Account
+                        </h2>
+
+                    </div>
+
+
+                    <button
+                        class="logout-btn"
+                        id="logoutBtn"
+                    >
+
+                        <i class="fa-solid fa-right-from-bracket"></i>
+
+                        &nbsp; Logout from LUXORA
+
+                    </button>
+
+                </div>
+
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- TOAST -->
+
+    <div
+        class="toast"
+        id="toast"
+    ></div>
+
+
+
+    <script>
+
+        /* ========================================
+           LOAD USER
+        ======================================== */
+
+        const storedUser =
+            localStorage.getItem("luxoraUser");
+
+
+        if (storedUser) {
+
+            try {
+
+                const user =
+                    JSON.parse(storedUser);
+
+
+                const name =
+                    user.name || "LUXORA User";
+
+                const email =
+                    user.email || "Not available";
+
+                const phone =
+                    user.phone || "Not available";
+
+
+                document.getElementById(
+                    "profileName"
+                ).textContent = name;
+
+
+                document.getElementById(
+                    "displayName"
+                ).textContent = name;
+
+
+                document.getElementById(
+                    "displayEmail"
+                ).innerHTML =
+                    '<i class="fa-regular fa-envelope"></i>' +
+                    email;
+
+
+                document.getElementById(
+                    "displayPhone"
+                ).innerHTML =
+                    '<i class="fa-solid fa-phone"></i>' +
+                    phone;
+
+
+                /* FIRST LETTER AVATAR */
+
+                const firstLetter =
+                    name.trim().charAt(0).toUpperCase();
+
+
+                document.getElementById(
+                    "avatar"
+                ).textContent = firstLetter;
+
+
+            } catch (error) {
+
+                console.log(
+                    "Unable to read LUXORA user data."
+                );
+
+            }
+
+        }
+
+
+
+        /* ========================================
+           BOOKING COUNT
+        ======================================== */
+
+        function updateBookingCount() {
+
+            const bookings =
+                JSON.parse(
+                    localStorage.getItem("luxoraBookings") || "[]"
+                );
+
+
+            document.getElementById(
+                "bookingCount"
+            ).textContent = bookings.length;
+
+        }
+
+
+        updateBookingCount();
+
+
+
+        /* ========================================
+           LOGOUT
+        ======================================== */
+
+        document.getElementById(
+            "logoutBtn"
+        ).addEventListener(
+            "click",
+            function () {
+
+
+                localStorage.removeItem(
+                    "luxoraLoggedIn"
+                );
+
+
+                showToast(
+                    "You have been logged out."
+                );
+
+
+                setTimeout(function () {
+
+                    window.location.href =
+                        "login.html";
+
+                }, 1000);
+
+            }
+        );
+
+
+
+        /* ========================================
+           TOAST
+        ======================================== */
+
+        function showToast(text) {
+
+            const toast =
+                document.getElementById("toast");
+
+
+            toast.textContent = text;
+
+            toast.classList.add("show");
+
+
+            setTimeout(function () {
+
+                toast.classList.remove("show");
+
+            }, 2500);
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

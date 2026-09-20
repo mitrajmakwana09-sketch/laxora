@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "name": "Rajkot Airport",
+    "city": "Rajkot",
+    "state": "Gujarat",
+    "type": "Airport",
+    "address": "Rajkot International Airport, Hirasar, Rajkot, Gujarat",
+    "available": true
+  },
+  {
+    "id": 2,
+    "name": "Rajkot Railway Station",
+    "city": "Rajkot",
+    "state": "Gujarat",
+    "type": "Railway Station",
+    "address": "Rajkot Railway Station, Rajkot, Gujarat",
+    "available": true
+  },
+  {
+    "id": 3,
+    "name": "Rajkot City Center",
+    "city": "Rajkot",
+    "state": "Gujarat",
+    "type": "City",
+    "address": "Central Rajkot, Gujarat",
+    "available": true
+  },
+  {
+    "id": 4,
+    "name": "Ahmedabad Airport",
+    "city": "Ahmedabad",
+    "state": "Gujarat",
+    "type": "Airport",
+    "address": "Sardar Vallabhbhai Patel International Airport, Ahmedabad, Gujarat",
+    "available": true
+  },
+  {
+    "id": 5,
+    "name": "Ahmedabad Railway Station",
+    "city": "Ahmedabad",
+    "state": "Gujarat",
+    "type": "Railway Station",
+    "address": "Ahmedabad Junction, Ahmedabad, Gujarat",
+    "available": true
+  },
+  {
+    "id": 6,
+    "name": "Ahmedabad City Center",
+    "city": "Ahmedabad",
+    "state": "Gujarat",
+    "type": "City",
+    "address": "Central Ahmedabad, Gujarat",
+    "available": true
+  },
+  {
+    "id": 7,
+    "name": "Vadodara Airport",
+    "city": "Vadodara",
+    "state": "Gujarat",
+    "type": "Airport",
+    "address": "Vadodara Airport, Harni, Vadodara, Gujarat",
+    "available": true
+  },
+  {
+    "id": 8,
+    "name": "Vadodara Railway Station",
+    "city": "Vadodara",
+    "state": "Gujarat",
+    "type": "Railway Station",
+    "address": "Vadodara Junction, Vadodara, Gujarat",
+    "available": true
+  },
+  {
+    "id": 9,
+    "name": "Vadodara City Center",
+    "city": "Vadodara",
+    "state": "Gujarat",
+    "type": "City",
+    "address": "Central Vadodara, Gujarat",
+    "available": true
+  },
+  {
+    "id": 10,
+    "name": "Surat Airport",
+    "city": "Surat",
+    "state": "Gujarat",
+    "type": "Airport",
+    "address": "Surat International Airport, Surat, Gujarat",
+    "available": true
+  },
+  {
+    "id": 11,
+    "name": "Surat Railway Station",
+    "city": "Surat",
+    "state": "Gujarat",
+    "type": "Railway Station",
+    "address": "Surat Railway Station, Surat, Gujarat",
+    "available": true
+  },
+  {
+    "id": 12,
+    "name": "Surat City Center",
+    "city": "Surat",
+    "state": "Gujarat",
+    "type": "City",
+    "address": "Central Surat, Gujarat",
+    "available": true
+  },
+  {
+    "id": 13,
+    "name": "Mumbai Airport",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "type": "Airport",
+    "address": "Chhatrapati Shivaji Maharaj International Airport, Mumbai",
+    "available": true
+  },
+  {
+    "id": 14,
+    "name": "Mumbai City Center",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "type": "City",
+    "address": "Central Mumbai, Maharashtra",
+    "available": true
+  },
+  {
+    "id": 15,
+    "name": "Pune Airport",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "type": "Airport",
+    "address": "Pune International Airport, Pune, Maharashtra",
+    "available": true
+  },
+  {
+    "id": 16,
+    "name": "Pune City Center",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "type": "City",
+    "address": "Central Pune, Maharashtra",
+    "available": true
+  },
+  {
+    "id": 17,
+    "name": "Delhi Airport",
+    "city": "New Delhi",
+    "state": "Delhi",
+    "type": "Airport",
+    "address": "Indira Gandhi International Airport, New Delhi",
+    "available": true
+  },
+  {
+    "id": 18,
+    "name": "New Delhi City Center",
+    "city": "New Delhi",
+    "state": "Delhi",
+    "type": "City",
+    "address": "Central New Delhi, Delhi",
+    "available": true
+  },
+  {
+    "id": 19,
+    "name": "Bengaluru Airport",
+    "city": "Bengaluru",
+    "state": "Karnataka",
+    "type": "Airport",
+    "address": "Kempegowda International Airport, Bengaluru",
+    "available": true
+  },
+  {
+    "id": 20,
+    "name": "Bengaluru City Center",
+    "city": "Bengaluru",
+    "state": "Karnataka",
+    "type": "City",
+    "address": "Central Bengaluru, Karnataka",
+    "available": true
+  }
+]

@@ -1,0 +1,2565 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>LUXORA | Luxury Cars</title>
+
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+
+<meta name="theme-color" content="#050505">
+
+<!-- Favicon -->
+<link rel="icon" href="images/logo/luxora-logo.png">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+<style>
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:"Inter",sans-serif;
+
+    background:#070707;
+
+    color:#fff;
+
+    overflow-x:hidden;
+}
+
+
+/* GOLD */
+
+:root{
+
+    --gold:#d4af37;
+
+    --gold-light:#f4d77b;
+
+    --black:#070707;
+
+    --dark:#101010;
+
+    --gray:#a6a6a6;
+
+}
+
+
+/* =====================================================
+   PAGE LOADER
+===================================================== */
+
+.page-loader{
+
+    position:fixed;
+
+    inset:0;
+
+    background:#050505;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    flex-direction:column;
+
+    z-index:9999;
+
+    animation:loaderHide 1s ease 2.4s forwards;
+}
+
+
+.loader-logo{
+
+    font-family:"Playfair Display",serif;
+
+    font-size:42px;
+
+    letter-spacing:10px;
+
+    color:var(--gold);
+
+    animation:logoPulse 1.5s infinite;
+}
+
+
+.loader-line{
+
+    width:180px;
+
+    height:2px;
+
+    background:#222;
+
+    margin-top:25px;
+
+    overflow:hidden;
+}
+
+
+.loader-line span{
+
+    display:block;
+
+    height:100%;
+
+    width:0;
+
+    background:var(--gold);
+
+    animation:loadingLine 2s ease forwards;
+}
+
+
+@keyframes loadingLine{
+
+    to{
+        width:100%;
+    }
+
+}
+
+
+@keyframes logoPulse{
+
+    0%,100%{
+        opacity:.4;
+        transform:scale(.96);
+    }
+
+    50%{
+        opacity:1;
+        transform:scale(1);
+    }
+
+}
+
+
+@keyframes loaderHide{
+
+    to{
+        opacity:0;
+        visibility:hidden;
+        pointer-events:none;
+    }
+
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    height:78px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 6%;
+
+    background:rgba(5,5,5,.92);
+
+    backdrop-filter:blur(15px);
+
+    border-bottom:1px solid rgba(212,175,55,.18);
+
+    animation:navDown 1s ease;
+}
+
+
+@keyframes navDown{
+
+    from{
+        transform:translateY(-100%);
+        opacity:0;
+    }
+
+    to{
+        transform:translateY(0);
+        opacity:1;
+    }
+
+}
+
+
+/* LOGO */
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    text-decoration:none;
+
+    color:white;
+
+    font-family:"Playfair Display",serif;
+
+    font-size:27px;
+
+    font-weight:700;
+
+    letter-spacing:3px;
+}
+
+
+.logo i{
+
+    color:var(--gold);
+
+    font-size:23px;
+
+    animation:crownFloat 2s ease-in-out infinite;
+}
+
+
+@keyframes crownFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-4px);
+    }
+
+}
+
+
+/* NAV LINKS */
+
+.nav-links{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:35px;
+}
+
+
+.nav-links a{
+
+    position:relative;
+
+    color:#ccc;
+
+    text-decoration:none;
+
+    font-size:14px;
+
+    transition:.3s;
+}
+
+
+.nav-links a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-8px;
+
+    width:0;
+
+    height:2px;
+
+    background:var(--gold);
+
+    transition:.3s;
+}
+
+
+.nav-links a:hover,
+.nav-links a.active{
+
+    color:var(--gold-light);
+}
+
+
+.nav-links a:hover::after,
+.nav-links a.active::after{
+
+    width:100%;
+}
+
+
+/* MOBILE MENU */
+
+.menu-btn{
+
+    display:none;
+
+    color:white;
+
+    font-size:23px;
+
+    cursor:pointer;
+}
+
+
+/* =====================================================
+   PAGE HEADER
+===================================================== */
+
+.page-header{
+
+    min-height:340px;
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    overflow:hidden;
+
+    background:
+
+    linear-gradient(
+        rgba(0,0,0,.72),
+        rgba(0,0,0,.88)
+    ),
+
+    url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1800&q=90");
+
+    background-size:cover;
+
+    background-position:center;
+
+}
+
+
+.page-header::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:500px;
+
+    height:500px;
+
+    border-radius:50%;
+
+    background:rgba(212,175,55,.08);
+
+    filter:blur(80px);
+
+    animation:headerGlow 5s ease-in-out infinite;
+}
+
+
+@keyframes headerGlow{
+
+    0%,100%{
+        transform:scale(.8);
+        opacity:.5;
+    }
+
+    50%{
+        transform:scale(1.2);
+        opacity:1;
+    }
+
+}
+
+
+.header-content{
+
+    position:relative;
+
+    z-index:2;
+
+    animation:headerText 1.2s ease;
+}
+
+
+@keyframes headerText{
+
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+
+.header-content span{
+
+    color:var(--gold);
+
+    text-transform:uppercase;
+
+    letter-spacing:5px;
+
+    font-size:12px;
+
+    font-weight:600;
+}
+
+
+.header-content h1{
+
+    margin:15px 0;
+
+    font-family:"Playfair Display",serif;
+
+    font-size:58px;
+
+    letter-spacing:2px;
+}
+
+
+.header-content p{
+
+    color:#bbb;
+
+    max-width:600px;
+
+    margin:auto;
+
+    line-height:1.7;
+}
+
+
+/* =====================================================
+   FILTER SECTION
+===================================================== */
+
+.filter-wrapper{
+
+    width:90%;
+
+    max-width:1250px;
+
+    margin:-45px auto 60px;
+
+    position:relative;
+
+    z-index:10;
+
+}
+
+
+.filters{
+
+    background:rgba(20,20,20,.95);
+
+    border:1px solid rgba(212,175,55,.22);
+
+    border-radius:18px;
+
+    padding:25px;
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr 1fr 1fr 1fr;
+
+    gap:15px;
+
+    box-shadow:
+
+    0 25px 60px rgba(0,0,0,.5);
+
+    backdrop-filter:blur(20px);
+
+    animation:filterUp 1s ease .5s both;
+}
+
+
+@keyframes filterUp{
+
+    from{
+        opacity:0;
+        transform:translateY(50px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+
+.search-box{
+
+    position:relative;
+}
+
+
+.search-box i{
+
+    position:absolute;
+
+    left:16px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:var(--gold);
+}
+
+
+.filters input,
+.filters select{
+
+    width:100%;
+
+    height:50px;
+
+    padding:0 15px;
+
+    border-radius:10px;
+
+    border:1px solid #333;
+
+    background:#0b0b0b;
+
+    color:white;
+
+    outline:none;
+
+    transition:.3s;
+}
+
+
+.search-box input{
+
+    padding-left:45px;
+}
+
+
+.filters input:focus,
+.filters select:focus{
+
+    border-color:var(--gold);
+
+    box-shadow:0 0 15px rgba(212,175,55,.15);
+}
+
+
+.filters select option{
+
+    background:#111;
+
+    color:white;
+}
+
+
+/* =====================================================
+   CARS SECTION
+===================================================== */
+
+.cars-section{
+
+    width:90%;
+
+    max-width:1250px;
+
+    margin:auto;
+
+    padding-bottom:100px;
+}
+
+
+.section-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:end;
+
+    margin-bottom:35px;
+}
+
+
+.section-title span{
+
+    color:var(--gold);
+
+    font-size:12px;
+
+    text-transform:uppercase;
+
+    letter-spacing:4px;
+}
+
+
+.section-title h2{
+
+    font-family:"Playfair Display",serif;
+
+    font-size:38px;
+
+    margin-top:8px;
+}
+
+
+.car-count{
+
+    color:#999;
+
+    font-size:14px;
+}
+
+
+/* GRID */
+
+.cars-grid{
+
+    display:grid;
+
+    grid-template-columns:
+
+    repeat(3,1fr);
+
+    gap:25px;
+}
+
+
+/* =====================================================
+   CAR CARD
+===================================================== */
+
+.car-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:linear-gradient(
+        145deg,
+        #151515,
+        #0c0c0c
+    );
+
+    border:1px solid #242424;
+
+    border-radius:18px;
+
+    transition:
+
+    transform .45s ease,
+
+    border-color .45s ease,
+
+    box-shadow .45s ease;
+
+    animation:cardReveal .8s ease both;
+}
+
+
+.car-card:nth-child(1){
+    animation-delay:.1s;
+}
+
+.car-card:nth-child(2){
+    animation-delay:.2s;
+}
+
+.car-card:nth-child(3){
+    animation-delay:.3s;
+}
+
+.car-card:nth-child(4){
+    animation-delay:.4s;
+}
+
+.car-card:nth-child(5){
+    animation-delay:.5s;
+}
+
+.car-card:nth-child(6){
+    animation-delay:.6s;
+}
+
+
+@keyframes cardReveal{
+
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+
+.car-card:hover{
+
+    transform:translateY(-12px);
+
+    border-color:rgba(212,175,55,.6);
+
+    box-shadow:
+
+    0 20px 50px rgba(0,0,0,.6),
+
+    0 0 30px rgba(212,175,55,.08);
+}
+
+
+/* IMAGE */
+
+.car-image{
+
+    height:230px;
+
+    overflow:hidden;
+
+    position:relative;
+
+    background:#111;
+}
+
+
+.car-image img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    transition:transform .7s ease;
+}
+
+
+.car-card:hover .car-image img{
+
+    transform:scale(1.08);
+}
+
+
+/* IMAGE OVERLAY */
+
+.car-image::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+    linear-gradient(
+        to top,
+        rgba(0,0,0,.6),
+        transparent 60%
+    );
+}
+
+
+/* BADGE */
+
+.status{
+
+    position:absolute;
+
+    top:15px;
+
+    left:15px;
+
+    z-index:2;
+
+    padding:7px 12px;
+
+    border-radius:20px;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    background:rgba(0,0,0,.75);
+
+    backdrop-filter:blur(8px);
+
+    color:#8df0a8;
+
+    border:1px solid rgba(141,240,168,.25);
+}
+
+
+.status.unavailable{
+
+    color:#ff7474;
+
+    border-color:rgba(255,116,116,.25);
+}
+
+
+/* WISHLIST */
+
+.wishlist{
+
+    position:absolute;
+
+    right:15px;
+
+    top:15px;
+
+    z-index:3;
+
+    width:40px;
+
+    height:40px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(255,255,255,.15);
+
+    background:rgba(0,0,0,.55);
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+
+.wishlist:hover{
+
+    background:var(--gold);
+
+    color:#000;
+
+    transform:rotate(10deg) scale(1.1);
+}
+
+
+/* CARD CONTENT */
+
+.car-info{
+
+    padding:22px;
+}
+
+
+.brand{
+
+    color:var(--gold);
+
+    text-transform:uppercase;
+
+    font-size:11px;
+
+    letter-spacing:3px;
+
+    font-weight:600;
+}
+
+
+.car-info h3{
+
+    font-family:"Playfair Display",serif;
+
+    font-size:25px;
+
+    margin:7px 0 15px;
+}
+
+
+.specs{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:10px;
+
+    padding-bottom:18px;
+
+    border-bottom:1px solid #252525;
+}
+
+
+.spec{
+
+    color:#999;
+
+    font-size:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+}
+
+
+.spec i{
+
+    color:var(--gold);
+
+    width:15px;
+}
+
+
+.bottom{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:18px;
+}
+
+
+.price{
+
+    font-size:22px;
+
+    font-weight:700;
+}
+
+
+.price small{
+
+    color:#888;
+
+    font-size:11px;
+
+    font-weight:400;
+}
+
+
+/* BUTTONS */
+
+.card-actions{
+
+    display:flex;
+
+    gap:8px;
+}
+
+
+.btn{
+
+    border:none;
+
+    text-decoration:none;
+
+    cursor:pointer;
+
+    padding:10px 15px;
+
+    border-radius:8px;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    transition:.3s;
+}
+
+
+.details-btn{
+
+    color:white;
+
+    background:#202020;
+
+    border:1px solid #333;
+}
+
+
+.details-btn:hover{
+
+    border-color:var(--gold);
+
+    color:var(--gold);
+}
+
+
+.book-btn{
+
+    color:#050505;
+
+    background:linear-gradient(
+        135deg,
+        var(--gold-light),
+        var(--gold)
+    );
+
+    box-shadow:0 5px 15px rgba(212,175,55,.15);
+}
+
+
+.book-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+
+    0 8px 25px rgba(212,175,55,.3);
+}
+
+
+/* =====================================================
+   NO RESULT
+===================================================== */
+
+.no-result{
+
+    display:none;
+
+    text-align:center;
+
+    padding:80px 20px;
+
+    color:#888;
+}
+
+
+.no-result i{
+
+    font-size:45px;
+
+    color:var(--gold);
+
+    margin-bottom:20px;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+
+    background:#030303;
+
+    border-top:1px solid #1d1d1d;
+
+    padding:45px 6%;
+
+    text-align:center;
+}
+
+
+.footer-logo{
+
+    font-family:"Playfair Display",serif;
+
+    font-size:27px;
+
+    color:var(--gold);
+
+    letter-spacing:4px;
+}
+
+
+footer p{
+
+    color:#777;
+
+    margin-top:12px;
+
+    font-size:13px;
+}
+
+
+.socials{
+
+    margin-top:20px;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+}
+
+
+.socials a{
+
+    width:38px;
+
+    height:38px;
+
+    border:1px solid #333;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#aaa;
+
+    text-decoration:none;
+
+    transition:.3s;
+}
+
+
+.socials a:hover{
+
+    color:#000;
+
+    background:var(--gold);
+
+    border-color:var(--gold);
+
+    transform:translateY(-4px);
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:1050px){
+
+    .filters{
+
+        grid-template-columns:
+
+        repeat(3,1fr);
+    }
+
+    .cars-grid{
+
+        grid-template-columns:
+
+        repeat(2,1fr);
+    }
+
+}
+
+
+@media(max-width:750px){
+
+    .navbar{
+
+        height:70px;
+
+        padding:0 5%;
+    }
+
+
+    .menu-btn{
+
+        display:block;
+    }
+
+
+    .nav-links{
+
+        position:absolute;
+
+        top:70px;
+
+        left:0;
+
+        width:100%;
+
+        background:#090909;
+
+        border-bottom:1px solid #252525;
+
+        flex-direction:column;
+
+        gap:0;
+
+        max-height:0;
+
+        overflow:hidden;
+
+        transition:.4s;
+    }
+
+
+    .nav-links.show{
+
+        max-height:400px;
+
+        padding:10px 0;
+    }
+
+
+    .nav-links a{
+
+        width:100%;
+
+        text-align:center;
+
+        padding:16px;
+    }
+
+
+    .header-content h1{
+
+        font-size:42px;
+    }
+
+
+    .page-header{
+
+        min-height:300px;
+    }
+
+
+    .filter-wrapper{
+
+        margin-top:-30px;
+    }
+
+
+    .filters{
+
+        grid-template-columns:1fr;
+
+        padding:18px;
+    }
+
+
+    .section-top{
+
+        align-items:flex-start;
+
+        flex-direction:column;
+
+        gap:10px;
+    }
+
+
+    .section-title h2{
+
+        font-size:32px;
+    }
+
+
+    .cars-grid{
+
+        grid-template-columns:1fr;
+    }
+
+
+    .car-image{
+
+        height:240px;
+    }
+
+}
+
+
+@media(max-width:450px){
+
+    .logo{
+
+        font-size:22px;
+
+        letter-spacing:2px;
+    }
+
+
+    .header-content h1{
+
+        font-size:34px;
+    }
+
+
+    .header-content p{
+
+        padding:0 20px;
+
+        font-size:13px;
+    }
+
+
+    .cars-section{
+
+        width:92%;
+    }
+
+
+    .car-info h3{
+
+        font-size:22px;
+    }
+
+
+    .bottom{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:15px;
+    }
+
+
+    .card-actions{
+
+        width:100%;
+    }
+
+
+    .btn{
+
+        flex:1;
+
+        text-align:center;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     PAGE LOADER
+===================================================== -->
+
+<div class="page-loader">
+
+    <div class="loader-logo">
+        LUXORA
+    </div>
+
+    <div class="loader-line">
+        <span></span>
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar">
+
+    <a href="index.html" class="logo">
+
+        <i class="fa-solid fa-crown"></i>
+
+        LUXORA
+
+    </a>
+
+
+    <div class="nav-links" id="navLinks">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="cars.html" class="active">
+            Cars
+        </a>
+
+        <a href="my-bookings.html">
+            My Bookings
+        </a>
+
+        <a href="profile.html">
+            Profile
+        </a>
+
+        <a href="login.html">
+            Login
+        </a>
+
+    </div>
+
+
+    <div class="menu-btn" id="menuBtn">
+
+        <i class="fa-solid fa-bars"></i>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<section class="page-header">
+
+    <div class="header-content">
+
+        <span>THE LUXORA COLLECTION</span>
+
+        <h1>Choose Your Drive</h1>
+
+        <p>
+            Discover an exclusive collection of premium
+            vehicles designed for unforgettable journeys.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FILTERS
+===================================================== -->
+
+<div class="filter-wrapper">
+
+    <div class="filters">
+
+
+        <!-- SEARCH -->
+
+        <div class="search-box">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search car or brand..."
+            >
+
+        </div>
+
+
+        <!-- BRAND -->
+
+        <select id="brandFilter">
+
+            <option value="all">
+                All Brands
+            </option>
+
+            <option value="BMW">
+                BMW
+            </option>
+
+            <option value="Mercedes">
+                Mercedes
+            </option>
+
+            <option value="Porsche">
+                Porsche
+            </option>
+
+            <option value="Audi">
+                Audi
+            </option>
+
+            <option value="Range Rover">
+                Range Rover
+            </option>
+
+        </select>
+
+
+        <!-- TRANSMISSION -->
+
+        <select id="transmissionFilter">
+
+            <option value="all">
+                Transmission
+            </option>
+
+            <option value="Automatic">
+                Automatic
+            </option>
+
+            <option value="Manual">
+                Manual
+            </option>
+
+        </select>
+
+
+        <!-- FUEL -->
+
+        <select id="fuelFilter">
+
+            <option value="all">
+                Fuel Type
+            </option>
+
+            <option value="Petrol">
+                Petrol
+            </option>
+
+            <option value="Diesel">
+                Diesel
+            </option>
+
+            <option value="Hybrid">
+                Hybrid
+            </option>
+
+            <option value="Electric">
+                Electric
+            </option>
+
+        </select>
+
+
+        <!-- PRICE -->
+
+        <select id="priceFilter">
+
+            <option value="all">
+                Price Range
+            </option>
+
+            <option value="15000">
+                Under ₹15,000
+            </option>
+
+            <option value="25000">
+                Under ₹25,000
+            </option>
+
+            <option value="50000">
+                Under ₹50,000
+            </option>
+
+        </select>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     CARS
+===================================================== -->
+
+<section class="cars-section">
+
+
+    <div class="section-top">
+
+        <div class="section-title">
+
+            <span>Premium Collection</span>
+
+            <h2>Luxury Vehicles</h2>
+
+        </div>
+
+        <div class="car-count">
+
+            <span id="carCount">
+                6
+            </span>
+            Cars Available
+
+        </div>
+
+    </div>
+
+
+
+    <div class="cars-grid" id="carsGrid">
+
+
+        <!-- BMW -->
+
+        <div class="car-card"
+             data-brand="BMW"
+             data-price="15000"
+             data-transmission="Automatic"
+             data-fuel="Petrol"
+             data-name="BMW 7 Series">
+
+            <div class="car-image">
+
+                <span class="status">
+                    Available
+                </span>
+
+                <button class="wishlist">
+
+                    <i class="fa-regular fa-heart"></i>
+
+                </button>
+
+                <img
+                    src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1200&q=90"
+                    alt="BMW 7 Series"
+                >
+
+            </div>
+
+
+            <div class="car-info">
+
+                <span class="brand">
+                    BMW
+                </span>
+
+                <h3>
+                    7 Series
+                </h3>
+
+
+                <div class="specs">
+
+                    <div class="spec">
+                        <i class="fa-solid fa-user-group"></i>
+                        5 Seats
+                    </div>
+
+                    <div class="spec">
+                        <i class="fa-solid fa-gears"></i>
+                        Automatic
+                    </div>
+
+                    <div class="spec">
+                        <i class="fa-solid fa-gas-pump"></i>
+                        Petrol
+                    </div>
+
+                    <div class="spec">
+                        <i class="fa-regular fa-calendar"></i>
+                        2026
+                    </div>
+
+                </div>
+
+
+                <div class="bottom">
+
+                    <div class="price">
+
+                        ₹15,000
+
+                        <small>
+                            / day
+                        </small>
+
+                    </div>
+
+
+                    <div class="card-actions">
+
+                        <a
+                            href="car-details.html"
+                            class="btn details-btn">
+                            Details
+                        </a>
+
+                        <a
+                            href="booking.html"
+                            class="btn book-btn">
+                            Book Now
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- MERCEDES -->
+
+        <div class="car-card"
+             data-brand="Mercedes"
+             data-price="18000"
+             data-transmission="Automatic"
+             data-fuel="Petrol"
+             data-name="Mercedes S-Class">
+
+            <div class="car-image">
+
+                <span class="status">
+                    Available
+                </span>
+
+                <button class="wishlist">
+
+                    <i class="fa-regular fa-heart"></i>
+
+                </button>
+
+                <img
+                    src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1200&q=90"
+                    alt="Mercedes S-Class"
+                >
+
+            </div>
+
+
+            <div class="car-info">
+
+                <span class="brand">
+                    Mercedes
+                </span>
+
+                <h3>
+                    S-Class
+                </h3>
+
+
+                <div class="specs">
+
+                    <div class="spec">
+                        <i class="fa-solid fa-user-group"></i>
+                        5 Seats
+                    </div>
+
+                    <div class="spec">
+                        <i class="fa-solid fa-gears"></i>
+                        Automatic
+                    </div>
+
+                    <div class="spec">
+                        <i class="fa-solid fa-gas-pump"></i>
+                        Petrol
+                    </div>
+
+                    <div class="spec">
+                        <i class="fa-regular fa-calendar"></i>
+                        2026
+                    </div>
+
+                </div>
+
+
+                <div class="bottom">
+
+                    <div class="price">
+
+                        ₹18,000
+
+                        <small>/ day</small>
+
+                    </div>
+
+
+                    <div class="card-actions">
+
+                        <a href="car-details.html"
+                           class="btn details-btn">
+                            Details
+                        </a>
+
+                        <a href="booking.html"
+                           class="btn book-btn">
+                            Book Now
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PORSCHE -->
+
+        <div class="car-card"
+             data-brand="Porsche"
+             data-price="22000"
+             data-transmission="Automatic"
+             data-fuel="Petrol"
+             data-name="Porsche 911">
+
+            <div class="car-image">
+
+                <span class="status">
+                    Available
+                </span>
+
+                <button class="wishlist">
+
+                    <i class="fa-regular fa-heart"></i>
+
+                </button>
+
+                <img
+                    src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1200&q=90"
+                    alt="Porsche 911"
+                >
+
+            </div>
+
+
+            <div class="car-info">
+
+                <span class="brand">
+                    Porsche
+                </span>
+
+                <h3>
+                    911 Carrera
+                </h3>
+
+
+                <div class="specs">
+
+                    <div class="spec">
+                        <i class="fa-solid fa-user-group"></i>
+                        2 Seats
+                    </div>
+
+                    <div class="spec">
+                        <i class="fa-solid fa-gears"></i>
+                        Automatic
+                    </div>
+
+                    <div class="spec">
+                        <i class="fa-solid fa-gas-pump"></i>
+                        Petrol
+                    </div>
+
+                    <div class="spec">
+                        <i class="fa-regular fa-calendar"></i>
+                        2026
+                    </div>
+
+                </div>
+
+
+                <div class="bottom">
+
+                    <div class="price">
+
+                        ₹22,000
+
+                        <small>/ day</small>
+
+                    </div>
+
+
+                    <div class="card-actions">
+
+                        <a href="car-details.html"
+                           class="btn details-btn">
+                            Details
+                        </a>
+
+                        <a href="booking.html"
+                           class="btn book-btn">
+                            Book Now
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- AUDI -->
+
+        <div class="car-card"
+             data-brand="Audi"
+             data-price="14000"
+             data-transmission="Automatic"
+             data-fuel="Petrol"
+             data-name="Audi A8">
+
+            <div class="car-image">
+
+                <span class="status">
+                    Available
+                </span>
+
+                <button class="wishlist">
+
+                    <i class="fa-regular fa-heart"></i>
+
+                </button>
+
+                <img
+                    src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1200&q=90"
+                    alt="Audi A8"
+                >
+
+            </div>
+
+
+            <div class="car-info">
+
+                <span class="brand">
+                    Audi
+                </span>
+
+                <h3>
+                    A8 L
+                </h3>
+
+
+                <div class="specs">
+
+                    <div class="spec">
+                        <i class="fa-solid fa-user-group"></i>
+                        5 Seats
+                    </div>
+
+                    <div class="spec">
+                        <i class="fa-solid fa-gears"></i>
+                        Automatic
+                    </div>
+
+                    <div class="spec">
+                        <i class="fa-solid fa-gas-pump"></i>
+                        Petrol
+                    </div>
+
+                    <div class="spec">
+                        <i class="fa-regular fa-calendar"></i>
+                        2026
+                    </div>
+
+                </div>
+
+
+                <div class="bottom">
+
+                    <div class="price">
+
+                        ₹14,000
+
+                        <small>/ day</small>
+
+                    </div>
+
+
+                    <div class="card-actions">
+
+                        <a href="car-details.html"
+                           class="btn details-btn">
+                            Details
+                        </a>
+
+                        <a href="booking.html"
+                           class="btn book-btn">
+                            Book Now
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RANGE ROVER -->
+
+        <div class="car-card"
+             data-brand="Range Rover"
+             data-price="25000"
+             data-transmission="Automatic"
+             data-fuel="Diesel"
+             data-name="Range Rover Autobiography">
+
+            <div class="car-image">
+
+                <span class="status">
+                    Available
+                </span>
+
+                <button class="wishlist">
+
+                    <i class="fa-regular fa-heart"></i>
+
+                </button>
+
+                <img
+                    src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1200&q=90"
+                    alt="Range Rover"
+                >
+
+            </div>
+
+
+            <div class="car-info">
+
+                <span class="brand">
+                    Range Rover
+                </span>
+
+                <h3>
+                    Autobiography
+                </h3>
+
+
+                <div class="specs">
+
+                    <div class="spec">
+                        <i class="fa-solid fa-user-group"></i>
+                        5 Seats
+                    </div>
+
+                    <div class="spec">
+                        <i class="fa-solid fa-gears"></i>
+                        Automatic
+                    </div>
+
+                    <div class="spec">
+                        <i class="fa-solid fa-gas-pump"></i>
+                        Diesel
+                    </div>
+
+                    <div class="spec">
+                        <i class="fa-regular fa-calendar"></i>
+                        2026
+                    </div>
+
+                </div>
+
+
+                <div class="bottom">
+
+                    <div class="price">
+
+                        ₹25,000
+
+                        <small>/ day</small>
+
+                    </div>
+
+
+                    <div class="card-actions">
+
+                        <a href="car-details.html"
+                           class="btn details-btn">
+                            Details
+                        </a>
+
+                        <a href="booking.html"
+                           class="btn book-btn">
+                            Book Now
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- BMW X7 -->
+
+        <div class="car-card"
+             data-brand="BMW"
+             data-price="20000"
+             data-transmission="Automatic"
+             data-fuel="Petrol"
+             data-name="BMW X7">
+
+            <div class="car-image">
+
+                <span class="status">
+                    Available
+                </span>
+
+                <button class="wishlist">
+
+                    <i class="fa-regular fa-heart"></i>
+
+                </button>
+
+                <img
+                    src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1200&q=90"
+                    alt="BMW X7"
+                >
+
+            </div>
+
+
+            <div class="car-info">
+
+                <span class="brand">
+                    BMW
+                </span>
+
+                <h3>
+                    X7 M Sport
+                </h3>
+
+
+                <div class="specs">
+
+                    <div class="spec">
+                        <i class="fa-solid fa-user-group"></i>
+                        7 Seats
+                    </div>
+
+                    <div class="spec">
+                        <i class="fa-solid fa-gears"></i>
+                        Automatic
+                    </div>
+
+                    <div class="spec">
+                        <i class="fa-solid fa-gas-pump"></i>
+                        Petrol
+                    </div>
+
+                    <div class="spec">
+                        <i class="fa-regular fa-calendar"></i>
+                        2026
+                    </div>
+
+                </div>
+
+
+                <div class="bottom">
+
+                    <div class="price">
+
+                        ₹20,000
+
+                        <small>/ day</small>
+
+                    </div>
+
+
+                    <div class="card-actions">
+
+                        <a href="car-details.html"
+                           class="btn details-btn">
+                            Details
+                        </a>
+
+                        <a href="booking.html"
+                           class="btn book-btn">
+                            Book Now
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- NO RESULT -->
+
+    <div class="no-result" id="noResult">
+
+        <i class="fa-solid fa-car-side"></i>
+
+        <h3>
+            No vehicles found
+        </h3>
+
+        <p>
+            Try changing your search or filters.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="footer-logo">
+        LUXORA
+    </div>
+
+    <p>
+        Luxury. Freedom. Drive.
+    </p>
+
+    <div class="socials">
+
+        <a href="#">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+
+        <a href="#">
+            <i class="fa-brands fa-facebook"></i>
+        </a>
+
+        <a href="#">
+            <i class="fa-brands fa-x-twitter"></i>
+        </a>
+
+    </div>
+
+    <p style="margin-top:25px;">
+        © 2026 LUXORA. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+const menuBtn =
+document.getElementById("menuBtn");
+
+const navLinks =
+document.getElementById("navLinks");
+
+
+menuBtn.addEventListener("click",()=>{
+
+    navLinks.classList.toggle("show");
+
+    const icon =
+    menuBtn.querySelector("i");
+
+    if(navLinks.classList.contains("show")){
+
+        icon.classList.remove("fa-bars");
+
+        icon.classList.add("fa-xmark");
+
+    }else{
+
+        icon.classList.remove("fa-xmark");
+
+        icon.classList.add("fa-bars");
+
+    }
+
+});
+
+
+/* =====================================================
+   FILTER SYSTEM
+===================================================== */
+
+const searchInput =
+document.getElementById("searchInput");
+
+const brandFilter =
+document.getElementById("brandFilter");
+
+const transmissionFilter =
+document.getElementById("transmissionFilter");
+
+const fuelFilter =
+document.getElementById("fuelFilter");
+
+const priceFilter =
+document.getElementById("priceFilter");
+
+const cards =
+document.querySelectorAll(".car-card");
+
+const carCount =
+document.getElementById("carCount");
+
+const noResult =
+document.getElementById("noResult");
+
+
+function filterCars(){
+
+    const search =
+    searchInput.value
+    .toLowerCase()
+    .trim();
+
+    const brand =
+    brandFilter.value;
+
+    const transmission =
+    transmissionFilter.value;
+
+    const fuel =
+    fuelFilter.value;
+
+    const maxPrice =
+    priceFilter.value;
+
+
+    let visible = 0;
+
+
+    cards.forEach(card=>{
+
+        const name =
+        card.dataset.name.toLowerCase();
+
+        const cardBrand =
+        card.dataset.brand;
+
+        const cardTransmission =
+        card.dataset.transmission;
+
+        const cardFuel =
+        card.dataset.fuel;
+
+        const cardPrice =
+        Number(card.dataset.price);
+
+
+        const searchMatch =
+        name.includes(search) ||
+        cardBrand.toLowerCase().includes(search);
+
+
+        const brandMatch =
+        brand === "all" ||
+        cardBrand === brand;
+
+
+        const transmissionMatch =
+        transmission === "all" ||
+        cardTransmission === transmission;
+
+
+        const fuelMatch =
+        fuel === "all" ||
+        cardFuel === fuel;
+
+
+        const priceMatch =
+        maxPrice === "all" ||
+        cardPrice <= Number(maxPrice);
+
+
+        if(
+            searchMatch &&
+            brandMatch &&
+            transmissionMatch &&
+            fuelMatch &&
+            priceMatch
+        ){
+
+            card.style.display="block";
+
+            visible++;
+
+        }else{
+
+            card.style.display="none";
+
+        }
+
+    });
+
+
+    carCount.textContent =
+    visible;
+
+
+    if(visible === 0){
+
+        noResult.style.display="block";
+
+    }else{
+
+        noResult.style.display="none";
+
+    }
+
+}
+
+
+searchInput.addEventListener(
+    "input",
+    filterCars
+);
+
+brandFilter.addEventListener(
+    "change",
+    filterCars
+);
+
+transmissionFilter.addEventListener(
+    "change",
+    filterCars
+);
+
+fuelFilter.addEventListener(
+    "change",
+    filterCars
+);
+
+priceFilter.addEventListener(
+    "change",
+    filterCars
+);
+
+
+/* =====================================================
+   WISHLIST
+===================================================== */
+
+document.querySelectorAll(".wishlist")
+.forEach(button=>{
+
+    button.addEventListener("click",()=>{
+
+        const icon =
+        button.querySelector("i");
+
+        icon.classList.toggle(
+            "fa-regular"
+        );
+
+        icon.classList.toggle(
+            "fa-solid"
+        );
+
+        if(icon.classList.contains("fa-solid")){
+
+            button.style.background="#d4af37";
+
+            button.style.color="#000";
+
+        }else{
+
+            button.style.background=
+            "rgba(0,0,0,.55)";
+
+            button.style.color="#fff";
+
+        }
+
+    });
+
+});
+
+
+/* =====================================================
+   SERVICE WORKER
+===================================================== */
+
+if("serviceWorker" in navigator){
+
+    window.addEventListener(
+        "load",
+        ()=>{
+            navigator.serviceWorker
+            .register("service-worker.js")
+            .catch(error=>{
+                console.log(
+                    "Service Worker Error:",
+                    error
+                );
+            });
+        }
+    );
+
+}
+
+</script>
+
+
+</body>
+
+</html>

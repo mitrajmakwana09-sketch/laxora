@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Login | LUXORA</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+          rel="stylesheet">
+
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:"Inter", sans-serif;
+            min-height:100vh;
+            background:#050505;
+            color:#fff;
+            overflow:hidden;
+        }
+
+        /* =========================
+           BACKGROUND
+        ========================= */
+
+        .page{
+            min-height:100vh;
+            display:flex;
+            position:relative;
+            overflow:hidden;
+        }
+
+        .background{
+            position:absolute;
+            inset:0;
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(0,0,0,.96) 0%,
+                    rgba(0,0,0,.82) 42%,
+                    rgba(0,0,0,.52) 100%
+                ),
+                url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2200&q=90")
+                center/cover no-repeat;
+            transform:scale(1.08);
+            animation:backgroundZoom 12s ease-out forwards;
+        }
+
+        @keyframes backgroundZoom{
+
+            from{
+                transform:scale(1.08);
+            }
+
+            to{
+                transform:scale(1);
+            }
+
+        }
+
+
+        /* =========================
+           GOLD LIGHT
+        ========================= */
+
+        .gold-light{
+            position:absolute;
+            width:500px;
+            height:500px;
+            right:-180px;
+            top:-150px;
+
+            background:radial-gradient(
+                circle,
+                rgba(212,175,55,.22),
+                transparent 68%
+            );
+
+            filter:blur(20px);
+
+            animation:lightPulse 5s ease-in-out infinite;
+        }
+
+        @keyframes lightPulse{
+
+            0%,100%{
+                opacity:.55;
+                transform:scale(1);
+            }
+
+            50%{
+                opacity:1;
+                transform:scale(1.12);
+            }
+
+        }
+
+
+        /* =========================
+           FLOATING PARTICLES
+        ========================= */
+
+        .particles span{
+            position:absolute;
+            width:4px;
+            height:4px;
+            border-radius:50%;
+            background:#d4af37;
+            opacity:.5;
+
+            animation:particleFloat 7s linear infinite;
+        }
+
+        .particles span:nth-child(1){
+            left:12%;
+            bottom:-20px;
+            animation-delay:0s;
+        }
+
+        .particles span:nth-child(2){
+            left:25%;
+            bottom:-30px;
+            animation-delay:2s;
+        }
+
+        .particles span:nth-child(3){
+            left:42%;
+            bottom:-20px;
+            animation-delay:4s;
+        }
+
+        .particles span:nth-child(4){
+            left:65%;
+            bottom:-30px;
+            animation-delay:1s;
+        }
+
+        .particles span:nth-child(5){
+            left:82%;
+            bottom:-20px;
+            animation-delay:3s;
+        }
+
+        @keyframes particleFloat{
+
+            0%{
+                transform:translateY(0);
+                opacity:0;
+            }
+
+            20%{
+                opacity:.6;
+            }
+
+            100%{
+                transform:translateY(-105vh);
+                opacity:0;
+            }
+
+        }
+
+
+        /* =========================
+           LEFT BRAND AREA
+        ========================= */
+
+        .brand-area{
+            position:relative;
+            z-index:2;
+
+            width:55%;
+            min-height:100vh;
+
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+
+            padding:70px 8%;
+        }
+
+        .brand-content{
+            max-width:620px;
+            animation:brandReveal 1s ease forwards;
+        }
+
+        @keyframes brandReveal{
+
+            from{
+                opacity:0;
+                transform:translateX(-45px);
+            }
+
+            to{
+                opacity:1;
+                transform:translateX(0);
+            }
+
+        }
+
+
+        .logo{
+            display:flex;
+            align-items:center;
+            gap:14px;
+            margin-bottom:30px;
+        }
+
+        .logo-icon{
+            width:55px;
+            height:55px;
+
+            border:1px solid #d4af37;
+            border-radius:50%;
+
+            display:flex;
+            align-items:center;
+            justify-content:center;
+
+            color:#d4af37;
+            font-size:23px;
+
+            box-shadow:
+                0 0 25px rgba(212,175,55,.16);
+        }
+
+        .logo-text h1{
+            font-family:"Playfair Display",serif;
+            color:#d4af37;
+            font-size:34px;
+            letter-spacing:5px;
+        }
+
+        .logo-text span{
+            display:block;
+            font-size:10px;
+            letter-spacing:4px;
+            color:#aaa;
+            margin-top:3px;
+        }
+
+
+        .brand-content h2{
+            font-family:"Playfair Display",serif;
+            font-size:52px;
+            line-height:1.12;
+            font-weight:600;
+            margin-bottom:20px;
+        }
+
+        .brand-content h2 span{
+            color:#d4af37;
+        }
+
+        .brand-content p{
+            max-width:500px;
+            color:#b5b5b5;
+            font-size:14px;
+            line-height:1.8;
+        }
+
+
+        .luxury-line{
+            width:80px;
+            height:2px;
+            background:#d4af37;
+            margin:25px 0;
+        }
+
+
+        .security-info{
+            margin-top:40px;
+
+            display:flex;
+            align-items:center;
+            gap:12px;
+
+            color:#929292;
+            font-size:12px;
+        }
+
+        .security-info i{
+            color:#d4af37;
+            font-size:16px;
+        }
+
+
+        /* =========================
+           LOGIN SIDE
+        ========================= */
+
+        .login-area{
+            position:relative;
+            z-index:5;
+
+            width:45%;
+            min-height:100vh;
+
+            display:flex;
+            align-items:center;
+            justify-content:center;
+
+            padding:30px;
+        }
+
+
+        .login-card{
+
+            width:100%;
+            max-width:430px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(27,27,27,.94),
+                    rgba(10,10,10,.96)
+                );
+
+            border:1px solid rgba(212,175,55,.28);
+
+            border-radius:18px;
+
+            padding:42px;
+
+            box-shadow:
+                0 30px 80px rgba(0,0,0,.65),
+                inset 0 1px 0 rgba(255,255,255,.05);
+
+            backdrop-filter:blur(18px);
+
+            animation:cardReveal 1s .25s ease both;
+        }
+
+        @keyframes cardReveal{
+
+            from{
+                opacity:0;
+                transform:translateY(40px) scale(.97);
+            }
+
+            to{
+                opacity:1;
+                transform:translateY(0) scale(1);
+            }
+
+        }
+
+
+        .login-header{
+            text-align:center;
+            margin-bottom:30px;
+        }
+
+        .admin-icon{
+            width:65px;
+            height:65px;
+
+            margin:0 auto 17px;
+
+            border-radius:50%;
+
+            display:flex;
+            align-items:center;
+            justify-content:center;
+
+            color:#d4af37;
+            font-size:25px;
+
+            border:1px solid rgba(212,175,55,.5);
+
+            background:rgba(212,175,55,.07);
+
+            animation:iconFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat{
+
+            0%,100%{
+                transform:translateY(0);
+            }
+
+            50%{
+                transform:translateY(-6px);
+            }
+
+        }
+
+
+        .login-header h2{
+            font-family:"Playfair Display",serif;
+            font-size:29px;
+            margin-bottom:7px;
+        }
+
+        .login-header p{
+            color:#8f8f8f;
+            font-size:12px;
+        }
+
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-group{
+            margin-bottom:20px;
+        }
+
+        .form-group label{
+            display:block;
+            color:#c7c7c7;
+            font-size:12px;
+            font-weight:600;
+            margin-bottom:8px;
+        }
+
+        .input-box{
+            position:relative;
+        }
+
+        .input-box > i{
+            position:absolute;
+            left:15px;
+            top:50%;
+            transform:translateY(-50%);
+
+            color:#777;
+
+            transition:.25s;
+        }
+
+        .input-box input{
+
+            width:100%;
+
+            padding:14px 45px;
+
+            border-radius:8px;
+
+            border:1px solid #333;
+
+            background:#111;
+
+            color:#fff;
+
+            outline:none;
+
+            font-size:13px;
+
+            transition:.25s;
+        }
+
+        .input-box input::placeholder{
+            color:#666;
+        }
+
+        .input-box input:focus{
+
+            border-color:#d4af37;
+
+            box-shadow:
+                0 0 0 3px rgba(212,175,55,.08);
+        }
+
+        .input-box input:focus + i{
+            color:#d4af37;
+        }
+
+
+        .password-toggle{
+            position:absolute;
+            right:15px;
+            top:50%;
+            transform:translateY(-50%);
+
+            color:#777;
+            cursor:pointer;
+
+            transition:.2s;
+        }
+
+        .password-toggle:hover{
+            color:#d4af37;
+        }
+
+
+        /* =========================
+           OPTIONS
+        ========================= */
+
+        .options{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+
+            margin:4px 0 25px;
+
+            font-size:11px;
+        }
+
+        .remember{
+            display:flex;
+            align-items:center;
+            gap:7px;
+            color:#888;
+        }
+
+        .remember input{
+            accent-color:#d4af37;
+        }
+
+        .forgot{
+            color:#d4af37;
+            cursor:pointer;
+        }
+
+        .forgot:hover{
+            text-decoration:underline;
+        }
+
+
+        /* =========================
+           LOGIN BUTTON
+        ========================= */
+
+        .login-btn{
+
+            width:100%;
+
+            border:none;
+            border-radius:8px;
+
+            padding:14px;
+
+            background:#d4af37;
+
+            color:#0a0a0a;
+
+            font-weight:700;
+            font-size:13px;
+
+            cursor:pointer;
+
+            position:relative;
+            overflow:hidden;
+
+            transition:.3s;
+        }
+
+        .login-btn::before{
+
+            content:"";
+
+            position:absolute;
+
+            top:0;
+            left:-100%;
+
+            width:100%;
+            height:100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255,255,255,.35),
+                    transparent
+                );
+
+            transition:.5s;
+        }
+
+        .login-btn:hover::before{
+            left:100%;
+        }
+
+        .login-btn:hover{
+
+            background:#e2bf4d;
+
+            transform:translateY(-2px);
+
+            box-shadow:
+                0 10px 25px rgba(212,175,55,.2);
+        }
+
+        .login-btn.loading{
+            pointer-events:none;
+            opacity:.8;
+        }
+
+        .btn-content{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:10px;
+        }
+
+        .spinner{
+            width:16px;
+            height:16px;
+
+            border:2px solid rgba(0,0,0,.25);
+            border-top-color:#111;
+
+            border-radius:50%;
+
+            display:none;
+
+            animation:spin .7s linear infinite;
+        }
+
+        @keyframes spin{
+
+            to{
+                transform:rotate(360deg);
+            }
+
+        }
+
+
+        /* =========================
+           DIVIDER
+        ========================= */
+
+        .divider{
+
+            display:flex;
+            align-items:center;
+            gap:12px;
+
+            margin:27px 0;
+
+            color:#555;
+            font-size:10px;
+        }
+
+        .divider::before,
+        .divider::after{
+
+            content:"";
+
+            height:1px;
+            flex:1;
+
+            background:#292929;
+        }
+
+
+        .back-site{
+
+            width:100%;
+
+            border:1px solid #333;
+
+            border-radius:8px;
+
+            padding:12px;
+
+            display:flex;
+
+            justify-content:center;
+
+            align-items:center;
+
+            gap:8px;
+
+            color:#999;
+
+            font-size:12px;
+
+            transition:.25s;
+        }
+
+        .back-site:hover{
+
+            border-color:#d4af37;
+            color:#d4af37;
+        }
+
+
+        .login-footer{
+
+            text-align:center;
+
+            margin-top:24px;
+
+            font-size:10px;
+
+            color:#555;
+
+        }
+
+
+        /* =========================
+           ERROR
+        ========================= */
+
+        .error-message{
+
+            display:none;
+
+            background:rgba(180,40,40,.12);
+
+            border:1px solid rgba(220,70,70,.3);
+
+            color:#ef8585;
+
+            padding:10px 12px;
+
+            border-radius:7px;
+
+            font-size:11px;
+
+            margin-bottom:16px;
+
+        }
+
+        .error-message.show{
+
+            display:flex;
+
+            align-items:center;
+
+            gap:8px;
+
+            animation:errorShake .35s ease;
+        }
+
+        @keyframes errorShake{
+
+            0%,100%{
+                transform:translateX(0);
+            }
+
+            25%{
+                transform:translateX(-6px);
+            }
+
+            75%{
+                transform:translateX(6px);
+            }
+
+        }
+
+
+        /* =========================
+           SUCCESS OVERLAY
+        ========================= */
+
+        .success-overlay{
+
+            position:fixed;
+
+            inset:0;
+
+            background:rgba(0,0,0,.82);
+
+            backdrop-filter:blur(8px);
+
+            display:flex;
+
+            align-items:center;
+            justify-content:center;
+
+            z-index:9999;
+
+            opacity:0;
+            visibility:hidden;
+
+            transition:.3s;
+        }
+
+        .success-overlay.show{
+
+            opacity:1;
+            visibility:visible;
+        }
+
+        .success-box{
+
+            width:330px;
+
+            text-align:center;
+
+            background:#111;
+
+            border:1px solid rgba(212,175,55,.35);
+
+            border-radius:15px;
+
+            padding:35px;
+
+            transform:scale(.8);
+
+            transition:.35s;
+        }
+
+        .success-overlay.show .success-box{
+
+            transform:scale(1);
+        }
+
+        .success-icon{
+
+            width:65px;
+            height:65px;
+
+            margin:0 auto 18px;
+
+            border-radius:50%;
+
+            display:flex;
+            align-items:center;
+            justify-content:center;
+
+            color:#111;
+
+            background:#d4af37;
+
+            font-size:25px;
+
+            animation:successPop .5s ease;
+        }
+
+        @keyframes successPop{
+
+            0%{
+                transform:scale(0);
+            }
+
+            70%{
+                transform:scale(1.15);
+            }
+
+            100%{
+                transform:scale(1);
+            }
+
+        }
+
+        .success-box h3{
+
+            font-family:"Playfair Display",serif;
+
+            font-size:23px;
+
+            margin-bottom:7px;
+        }
+
+        .success-box p{
+
+            color:#888;
+
+            font-size:12px;
+
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media(max-width:900px){
+
+            body{
+                overflow:auto;
+            }
+
+            .page{
+                display:block;
+                min-height:100vh;
+            }
+
+            .brand-area{
+                width:100%;
+                min-height:auto;
+                padding:45px 25px 25px;
+            }
+
+            .brand-content{
+                text-align:center;
+                margin:auto;
+            }
+
+            .logo{
+                justify-content:center;
+            }
+
+            .brand-content h2{
+                font-size:36px;
+            }
+
+            .brand-content p{
+                margin:auto;
+            }
+
+            .luxury-line{
+                margin:20px auto;
+            }
+
+            .security-info{
+                justify-content:center;
+                margin-top:22px;
+            }
+
+            .login-area{
+                width:100%;
+                min-height:auto;
+                padding:20px 20px 45px;
+            }
+
+            .background{
+                position:fixed;
+            }
+
+        }
+
+
+        @media(max-width:500px){
+
+            .brand-area{
+                padding:35px 18px 15px;
+            }
+
+            .logo-text h1{
+                font-size:27px;
+            }
+
+            .logo-icon{
+                width:48px;
+                height:48px;
+            }
+
+            .brand-content h2{
+                font-size:30px;
+            }
+
+            .brand-content p{
+                font-size:12px;
+            }
+
+            .login-area{
+                padding:15px;
+            }
+
+            .login-card{
+                padding:28px 22px;
+                border-radius:14px;
+            }
+
+            .login-header h2{
+                font-size:25px;
+            }
+
+            .options{
+                font-size:10px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="page">
+
+
+    <!-- BACKGROUND -->
+
+    <div class="background"></div>
+
+    <div class="gold-light"></div>
+
+
+    <!-- PARTICLES -->
+
+    <div class="particles">
+
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </div>
+
+
+    <!-- =========================
+         BRAND SECTION
+    ========================= -->
+
+    <section class="brand-area">
+
+        <div class="brand-content">
+
+
+            <div class="logo">
+
+                <div class="logo-icon">
+
+                    <i class="fa-solid fa-crown"></i>
+
+                </div>
+
+                <div class="logo-text">
+
+                    <h1>LUXORA</h1>
+
+                    <span>LUXURY CAR RENTAL</span>
+
+                </div>
+
+            </div>
+
+
+            <h2>
+
+                Welcome to the
+                <span>Control Center.</span>
+
+            </h2>
+
+
+            <div class="luxury-line"></div>
+
+
+            <p>
+
+                Manage your premium vehicle fleet, bookings,
+                customers and rental operations from one
+                powerful administration panel.
+
+            </p>
+
+
+            <div class="security-info">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <span>
+                    Secure administrator access
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         LOGIN SECTION
+    ========================= -->
+
+    <section class="login-area">
+
+
+        <div class="login-card">
+
+
+            <div class="login-header">
+
+                <div class="admin-icon">
+
+                    <i class="fa-solid fa-user-shield"></i>
+
+                </div>
+
+                <h2>Admin Login</h2>
+
+                <p>
+                    Sign in to manage your LUXORA platform
+                </p>
+
+            </div>
+
+
+            <!-- ERROR -->
+
+            <div class="error-message" id="errorMessage">
+
+                <i class="fa-solid fa-circle-exclamation"></i>
+
+                <span id="errorText">
+                    Invalid administrator credentials.
+                </span>
+
+            </div>
+
+
+            <!-- FORM -->
+
+            <form id="adminLoginForm">
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label>
+                        Administrator Email
+                    </label>
+
+                    <div class="input-box">
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="admin@luxora.com"
+                            autocomplete="email"
+                            required>
+
+                        <i class="fa-solid fa-envelope"></i>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label>
+                        Password
+                    </label>
+
+                    <div class="input-box">
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required>
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <span
+                            class="password-toggle"
+                            id="togglePassword">
+
+                            <i class="fa-solid fa-eye"></i>
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- OPTIONS -->
+
+                <div class="options">
+
+                    <label class="remember">
+
+                        <input
+                            type="checkbox"
+                            id="remember">
+
+                        Remember me
+
+                    </label>
+
+
+                    <span
+                        class="forgot"
+                        onclick="forgotPassword()">
+
+                        Forgot password?
+
+                    </span>
+
+                </div>
+
+
+                <!-- LOGIN BUTTON -->
+
+                <button
+                    type="submit"
+                    class="login-btn"
+                    id="loginButton">
+
+                    <span class="btn-content">
+
+                        <span id="buttonText">
+                            Sign In to Dashboard
+                        </span>
+
+                        <span
+                            class="spinner"
+                            id="spinner">
+                        </span>
+
+                    </span>
+
+                </button>
+
+
+            </form>
+
+
+            <!-- DIVIDER -->
+
+            <div class="divider">
+                LUXORA ADMINISTRATION
+            </div>
+
+
+            <!-- BACK TO WEBSITE -->
+
+            <a
+                href="../index.html"
+                class="back-site">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Back to LUXORA Website
+
+            </a>
+
+
+            <div class="login-footer">
+
+                © 2026 LUXORA Luxury Car Rental.
+                All rights reserved.
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+</div>
+
+
+<!-- =========================
+     SUCCESS OVERLAY
+========================= -->
+
+<div class="success-overlay" id="successOverlay">
+
+    <div class="success-box">
+
+        <div class="success-icon">
+
+            <i class="fa-solid fa-check"></i>
+
+        </div>
+
+        <h3>
+            Login Successful
+        </h3>
+
+        <p>
+            Opening LUXORA Admin Dashboard...
+        </p>
+
+    </div>
+
+</div>
+
+
+<script>
+
+
+    /* =========================
+       PASSWORD SHOW / HIDE
+    ========================= */
+
+    const passwordInput =
+        document.getElementById("password");
+
+    const togglePassword =
+        document.getElementById("togglePassword");
+
+
+    togglePassword.addEventListener("click", function(){
+
+        const icon =
+            this.querySelector("i");
+
+        if(passwordInput.type === "password"){
+
+            passwordInput.type = "text";
+
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+
+        }else{
+
+            passwordInput.type = "password";
+
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+
+        }
+
+    });
+
+
+    /* =========================
+       FORGOT PASSWORD
+    ========================= */
+
+    function forgotPassword(){
+
+        alert(
+            "For demo purposes, please contact the LUXORA system administrator to reset your password."
+        );
+
+    }
+
+
+    /* =========================
+       ADMIN LOGIN
+    ========================= */
+
+    const loginForm =
+        document.getElementById("adminLoginForm");
+
+    const loginButton =
+        document.getElementById("loginButton");
+
+    const buttonText =
+        document.getElementById("buttonText");
+
+    const spinner =
+        document.getElementById("spinner");
+
+    const errorMessage =
+        document.getElementById("errorMessage");
+
+    const errorText =
+        document.getElementById("errorText");
+
+    const successOverlay =
+        document.getElementById("successOverlay");
+
+
+    loginForm.addEventListener("submit", function(e){
+
+        e.preventDefault();
+
+
+        const email =
+            document.getElementById("email").value.trim();
+
+        const password =
+            document.getElementById("password").value;
+
+
+        errorMessage.classList.remove("show");
+
+
+        /*
+            DEMO ADMIN CREDENTIALS
+
+            Email:
+            admin@luxora.com
+
+            Password:
+            Admin@123
+        */
+
+
+        if(
+            email !== "admin@luxora.com" ||
+            password !== "Admin@123"
+        ){
+
+            errorText.textContent =
+                "Invalid email or password.";
+
+            errorMessage.classList.add("show");
+
+            return;
+
+        }
+
+
+        /* Loading */
+
+        loginButton.classList.add("loading");
+
+        buttonText.textContent =
+            "Authenticating...";
+
+        spinner.style.display =
+            "block";
+
+
+        /* Save login */
+
+        localStorage.setItem(
+            "luxoraAdminLoggedIn",
+            "true"
+        );
+
+        localStorage.setItem(
+            "luxoraAdminEmail",
+            email
+        );
+
+
+        /* Remember */
+
+        const remember =
+            document.getElementById("remember").checked;
+
+        localStorage.setItem(
+            "luxoraRememberAdmin",
+            remember ? "true" : "false"
+        );
+
+
+        /* Success */
+
+        setTimeout(function(){
+
+            successOverlay.classList.add("show");
+
+        }, 900);
+
+
+        /* Redirect */
+
+        setTimeout(function(){
+
+            window.location.href =
+                "dashboard.html";
+
+        }, 1900);
+
+    });
+
+
+    /* =========================
+       REMEMBERED EMAIL
+    ========================= */
+
+    window.addEventListener("DOMContentLoaded", function(){
+
+        const remembered =
+            localStorage.getItem("luxoraAdminEmail");
+
+        const shouldRemember =
+            localStorage.getItem("luxoraRememberAdmin");
+
+
+        if(
+            remembered &&
+            shouldRemember === "true"
+        ){
+
+            document.getElementById("email").value =
+                remembered;
+
+            document.getElementById("remember").checked =
+                true;
+
+        }
+
+    });
+
+
+</script>
+
+
+</body>
+</html>

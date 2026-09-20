@@ -1,0 +1,1932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bookings | LUXORA Admin</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+          rel="stylesheet">
+
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:"Inter",sans-serif;
+            background:#f5f5f3;
+            color:#202020;
+        }
+
+        a{
+            text-decoration:none;
+            color:inherit;
+        }
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar{
+            position:fixed;
+            left:0;
+            top:0;
+            width:260px;
+            height:100vh;
+            background:#080808;
+            color:#fff;
+            padding:28px 18px;
+            z-index:100;
+        }
+
+        .brand{
+            display:flex;
+            align-items:center;
+            gap:12px;
+            padding:0 12px 30px;
+            border-bottom:1px solid #292929;
+        }
+
+        .brand-icon{
+            width:42px;
+            height:42px;
+            border:1px solid #d4af37;
+            border-radius:50%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:#d4af37;
+            font-size:18px;
+        }
+
+        .brand-text h2{
+            font-family:"Playfair Display",serif;
+            color:#d4af37;
+            font-size:23px;
+            letter-spacing:2px;
+        }
+
+        .brand-text span{
+            display:block;
+            color:#777;
+            font-size:9px;
+            letter-spacing:2px;
+            margin-top:3px;
+        }
+
+        .menu-title{
+            color:#686868;
+            font-size:10px;
+            text-transform:uppercase;
+            letter-spacing:1.5px;
+            margin:28px 12px 12px;
+        }
+
+        .menu a{
+            display:flex;
+            align-items:center;
+            gap:13px;
+            padding:13px 14px;
+            margin:5px 0;
+            border-radius:7px;
+            color:#aaa;
+            font-size:13px;
+        }
+
+        .menu a i{
+            width:20px;
+            text-align:center;
+        }
+
+        .menu a:hover{
+            background:#151515;
+            color:#fff;
+        }
+
+        .menu a.active{
+            background:#d4af37;
+            color:#080808;
+            font-weight:700;
+        }
+
+        .admin-profile{
+            position:absolute;
+            left:18px;
+            right:18px;
+            bottom:20px;
+            padding:17px 8px 0;
+            border-top:1px solid #292929;
+            display:flex;
+            align-items:center;
+            gap:11px;
+        }
+
+        .admin-avatar{
+            width:38px;
+            height:38px;
+            border-radius:50%;
+            background:#d4af37;
+            color:#111;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-weight:700;
+        }
+
+        .admin-info strong{
+            display:block;
+            font-size:12px;
+        }
+
+        .admin-info small{
+            color:#777;
+            font-size:10px;
+        }
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .main{
+            margin-left:260px;
+            min-height:100vh;
+        }
+
+        /* =========================
+           TOPBAR
+        ========================= */
+
+        .topbar{
+            height:76px;
+            background:#fff;
+            border-bottom:1px solid #e5e5e5;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding:0 38px;
+        }
+
+        .page-title h1{
+            font-family:"Playfair Display",serif;
+            font-size:26px;
+            color:#181818;
+        }
+
+        .page-title p{
+            color:#888;
+            font-size:11px;
+            margin-top:5px;
+        }
+
+        .top-actions{
+            display:flex;
+            align-items:center;
+            gap:14px;
+        }
+
+        .notification{
+            width:38px;
+            height:38px;
+            border:1px solid #ddd;
+            border-radius:7px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:#555;
+            position:relative;
+        }
+
+        .notification-dot{
+            position:absolute;
+            top:7px;
+            right:7px;
+            width:6px;
+            height:6px;
+            background:#d4af37;
+            border-radius:50%;
+        }
+
+        .add-booking-btn{
+            background:#d4af37;
+            color:#111;
+            padding:11px 16px;
+            border-radius:6px;
+            border:none;
+            font-size:12px;
+            font-weight:700;
+            cursor:pointer;
+        }
+
+        .add-booking-btn:hover{
+            background:#b9931e;
+        }
+
+        /* =========================
+           CONTENT
+        ========================= */
+
+        .content{
+            padding:32px 38px 50px;
+        }
+
+        .breadcrumb{
+            display:flex;
+            align-items:center;
+            gap:8px;
+            color:#929292;
+            font-size:11px;
+            margin-bottom:25px;
+        }
+
+        .breadcrumb a{
+            color:#987817;
+        }
+
+        /* =========================
+           STAT CARDS
+        ========================= */
+
+        .stats{
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+            gap:18px;
+            margin-bottom:25px;
+        }
+
+        .stat-card{
+            background:#fff;
+            border:1px solid #e4e4e4;
+            border-radius:9px;
+            padding:20px;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+        }
+
+        .stat-info span{
+            display:block;
+            color:#888;
+            font-size:11px;
+            margin-bottom:8px;
+        }
+
+        .stat-info strong{
+            font-size:25px;
+            color:#1b1b1b;
+        }
+
+        .stat-icon{
+            width:44px;
+            height:44px;
+            border-radius:8px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            background:#f7f0d9;
+            color:#aa8517;
+            font-size:17px;
+        }
+
+        /* =========================
+           BOOKINGS CARD
+        ========================= */
+
+        .booking-card{
+            background:#fff;
+            border:1px solid #e4e4e4;
+            border-radius:10px;
+            overflow:hidden;
+        }
+
+        .booking-header{
+            padding:21px 24px;
+            border-bottom:1px solid #e8e8e8;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+        }
+
+        .booking-header h2{
+            font-size:16px;
+        }
+
+        .booking-header p{
+            color:#888;
+            font-size:11px;
+            margin-top:5px;
+        }
+
+        .export-btn{
+            border:1px solid #d8d8d8;
+            background:#fff;
+            color:#555;
+            padding:9px 13px;
+            border-radius:6px;
+            font-size:11px;
+            cursor:pointer;
+        }
+
+        .export-btn:hover{
+            border-color:#c9a227;
+            color:#987817;
+        }
+
+        /* =========================
+           FILTER BAR
+        ========================= */
+
+        .filters{
+            padding:18px 24px;
+            background:#fafafa;
+            border-bottom:1px solid #e8e8e8;
+            display:grid;
+            grid-template-columns:1.5fr 1fr 1fr 1fr auto;
+            gap:12px;
+        }
+
+        .filter-box{
+            position:relative;
+        }
+
+        .filter-box i{
+            position:absolute;
+            left:12px;
+            top:50%;
+            transform:translateY(-50%);
+            color:#999;
+            font-size:12px;
+        }
+
+        .filters input,
+        .filters select{
+            width:100%;
+            height:38px;
+            border:1px solid #ddd;
+            border-radius:6px;
+            background:#fff;
+            outline:none;
+            padding:0 12px;
+            font-size:11px;
+            color:#444;
+        }
+
+        .filter-box input{
+            padding-left:34px;
+        }
+
+        .filters input:focus,
+        .filters select:focus{
+            border-color:#c9a227;
+        }
+
+        .filter-btn{
+            height:38px;
+            padding:0 16px;
+            background:#171717;
+            color:#fff;
+            border:none;
+            border-radius:6px;
+            font-size:11px;
+            cursor:pointer;
+        }
+
+        .filter-btn:hover{
+            background:#333;
+        }
+
+        /* =========================
+           TABLE
+        ========================= */
+
+        .table-wrapper{
+            overflow-x:auto;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            min-width:1000px;
+        }
+
+        thead{
+            background:#fafafa;
+        }
+
+        th{
+            text-align:left;
+            padding:14px 15px;
+            border-bottom:1px solid #e5e5e5;
+            color:#777;
+            font-size:10px;
+            text-transform:uppercase;
+            letter-spacing:.6px;
+            white-space:nowrap;
+        }
+
+        td{
+            padding:15px;
+            border-bottom:1px solid #eeeeee;
+            font-size:11px;
+            color:#444;
+            vertical-align:middle;
+        }
+
+        tbody tr:hover{
+            background:#fcfcfa;
+        }
+
+        /* CUSTOMER */
+
+        .customer{
+            display:flex;
+            align-items:center;
+            gap:10px;
+        }
+
+        .customer-avatar{
+            width:34px;
+            height:34px;
+            border-radius:50%;
+            background:#eee;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-weight:700;
+            color:#555;
+            font-size:11px;
+        }
+
+        .customer-info strong{
+            display:block;
+            color:#292929;
+            font-size:11px;
+        }
+
+        .customer-info span{
+            color:#999;
+            font-size:9px;
+        }
+
+        /* CAR */
+
+        .car-info{
+            display:flex;
+            align-items:center;
+            gap:10px;
+        }
+
+        .car-image{
+            width:55px;
+            height:38px;
+            border-radius:5px;
+            object-fit:cover;
+            background:#eee;
+        }
+
+        .car-details strong{
+            display:block;
+            color:#222;
+            font-size:11px;
+        }
+
+        .car-details span{
+            color:#999;
+            font-size:9px;
+        }
+
+        /* BOOKING ID */
+
+        .booking-id{
+            color:#8b6d12;
+            font-weight:700;
+            font-size:10px;
+        }
+
+        /* STATUS */
+
+        .status{
+            display:inline-flex;
+            align-items:center;
+            gap:6px;
+            padding:5px 9px;
+            border-radius:20px;
+            font-size:9px;
+            font-weight:700;
+        }
+
+        .status::before{
+            content:"";
+            width:6px;
+            height:6px;
+            border-radius:50%;
+        }
+
+        .status.confirmed{
+            background:#eaf7ef;
+            color:#25804a;
+        }
+
+        .status.confirmed::before{
+            background:#2da65d;
+        }
+
+        .status.pending{
+            background:#fff6df;
+            color:#a57913;
+        }
+
+        .status.pending::before{
+            background:#d4a62b;
+        }
+
+        .status.completed{
+            background:#edf1f5;
+            color:#586673;
+        }
+
+        .status.completed::before{
+            background:#71808c;
+        }
+
+        .status.cancelled{
+            background:#fcecec;
+            color:#b84444;
+        }
+
+        .status.cancelled::before{
+            background:#d55757;
+        }
+
+        /* PAYMENT */
+
+        .payment-paid{
+            color:#25804a;
+            font-weight:700;
+        }
+
+        .payment-pending{
+            color:#b17c13;
+            font-weight:700;
+        }
+
+        /* ACTION */
+
+        .action-buttons{
+            display:flex;
+            gap:6px;
+        }
+
+        .action-btn{
+            width:30px;
+            height:30px;
+            border:1px solid #ddd;
+            border-radius:5px;
+            background:#fff;
+            color:#666;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            cursor:pointer;
+        }
+
+        .action-btn:hover{
+            border-color:#c9a227;
+            color:#a17d12;
+        }
+
+        .action-btn.delete:hover{
+            border-color:#d75b5b;
+            color:#c13e3e;
+        }
+
+        /* =========================
+           PAGINATION
+        ========================= */
+
+        .table-footer{
+            padding:18px 24px;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            border-top:1px solid #eee;
+        }
+
+        .showing{
+            color:#888;
+            font-size:10px;
+        }
+
+        .pagination{
+            display:flex;
+            gap:5px;
+        }
+
+        .page-btn{
+            width:30px;
+            height:30px;
+            border:1px solid #ddd;
+            background:#fff;
+            border-radius:5px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:10px;
+            color:#555;
+            cursor:pointer;
+        }
+
+        .page-btn:hover{
+            border-color:#c9a227;
+            color:#987817;
+        }
+
+        .page-btn.active{
+            background:#d4af37;
+            border-color:#d4af37;
+            color:#111;
+            font-weight:700;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        .mobile-header{
+            display:none;
+        }
+
+        @media(max-width:1150px){
+
+            .stats{
+                grid-template-columns:repeat(2,1fr);
+            }
+
+            .filters{
+                grid-template-columns:repeat(2,1fr);
+            }
+
+            .filter-btn{
+                width:100%;
+            }
+
+        }
+
+        @media(max-width:850px){
+
+            .sidebar{
+                display:none;
+            }
+
+            .main{
+                margin-left:0;
+            }
+
+            .mobile-header{
+                display:flex;
+                height:64px;
+                padding:0 18px;
+                background:#080808;
+                align-items:center;
+                justify-content:space-between;
+                color:#fff;
+            }
+
+            .mobile-brand{
+                font-family:"Playfair Display",serif;
+                color:#d4af37;
+                font-size:21px;
+                letter-spacing:2px;
+            }
+
+            .mobile-menu{
+                font-size:19px;
+            }
+
+            .topbar{
+                padding:18px;
+                height:auto;
+            }
+
+            .top-actions .notification{
+                display:none;
+            }
+
+            .content{
+                padding:22px 15px 35px;
+            }
+
+        }
+
+        @media(max-width:600px){
+
+            .stats{
+                grid-template-columns:1fr;
+            }
+
+            .filters{
+                grid-template-columns:1fr;
+                padding:15px;
+            }
+
+            .booking-header{
+                padding:18px;
+                align-items:flex-start;
+                gap:12px;
+                flex-direction:column;
+            }
+
+            .table-footer{
+                flex-direction:column;
+                gap:15px;
+                align-items:flex-start;
+            }
+
+            .add-booking-btn{
+                padding:9px 11px;
+                font-size:10px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     MOBILE HEADER
+========================= -->
+
+<div class="mobile-header">
+
+    <div class="mobile-brand">
+        LUXORA
+    </div>
+
+    <div class="mobile-menu">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+
+</div>
+
+
+<!-- =========================
+     SIDEBAR
+========================= -->
+
+<aside class="sidebar">
+
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            <i class="fa-solid fa-crown"></i>
+        </div>
+
+        <div class="brand-text">
+
+            <h2>LUXORA</h2>
+
+            <span>
+                ADMIN PANEL
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="menu-title">
+        Main Menu
+    </div>
+
+
+    <nav class="menu">
+
+        <a href="dashboard.html">
+            <i class="fa-solid fa-chart-pie"></i>
+            Dashboard
+        </a>
+
+        <a href="cars.html">
+            <i class="fa-solid fa-car"></i>
+            Manage Cars
+        </a>
+
+        <a href="add-car.html">
+            <i class="fa-solid fa-plus"></i>
+            Add New Car
+        </a>
+
+        <a href="bookings.html" class="active">
+            <i class="fa-solid fa-calendar-check"></i>
+            Bookings
+        </a>
+
+        <a href="customers.html">
+            <i class="fa-solid fa-users"></i>
+            Customers
+        </a>
+
+        <a href="reports.html">
+            <i class="fa-solid fa-chart-column"></i>
+            Reports
+        </a>
+
+    </nav>
+
+
+    <div class="menu-title">
+        System
+    </div>
+
+
+    <nav class="menu">
+
+        <a href="../index.html">
+            <i class="fa-solid fa-globe"></i>
+            View Website
+        </a>
+
+        <a href="admin-login.html">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+        </a>
+
+    </nav>
+
+
+    <div class="admin-profile">
+
+        <div class="admin-avatar">
+            A
+        </div>
+
+        <div class="admin-info">
+
+            <strong>
+                Administrator
+            </strong>
+
+            <small>
+                LUXORA Admin
+            </small>
+
+        </div>
+
+    </div>
+
+
+</aside>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="main">
+
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <div class="page-title">
+
+            <h1>
+                Bookings
+            </h1>
+
+            <p>
+                Manage and monitor all luxury car reservations
+            </p>
+
+        </div>
+
+
+        <div class="top-actions">
+
+            <div class="notification">
+
+                <i class="fa-regular fa-bell"></i>
+
+                <span class="notification-dot"></span>
+
+            </div>
+
+
+            <button class="add-booking-btn">
+
+                <i class="fa-solid fa-plus"></i>
+
+                New Booking
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- CONTENT -->
+
+    <section class="content">
+
+
+        <!-- BREADCRUMB -->
+
+        <div class="breadcrumb">
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+            <i class="fa-solid fa-chevron-right"></i>
+
+            <span>
+                Bookings
+            </span>
+
+        </div>
+
+
+        <!-- =========================
+             STATISTICS
+        ========================= -->
+
+        <div class="stats">
+
+
+            <div class="stat-card">
+
+                <div class="stat-info">
+
+                    <span>
+                        Total Bookings
+                    </span>
+
+                    <strong>
+                        248
+                    </strong>
+
+                </div>
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-calendar-check"></i>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-info">
+
+                    <span>
+                        Confirmed
+                    </span>
+
+                    <strong>
+                        186
+                    </strong>
+
+                </div>
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-info">
+
+                    <span>
+                        Pending
+                    </span>
+
+                    <strong>
+                        32
+                    </strong>
+
+                </div>
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-info">
+
+                    <span>
+                        Revenue
+                    </span>
+
+                    <strong>
+                        ₹38.4L
+                    </strong>
+
+                </div>
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-indian-rupee-sign"></i>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =========================
+             BOOKINGS TABLE
+        ========================= -->
+
+        <div class="booking-card">
+
+
+            <div class="booking-header">
+
+                <div>
+
+                    <h2>
+                        All Bookings
+                    </h2>
+
+                    <p>
+                        View, manage and track customer reservations.
+                    </p>
+
+                </div>
+
+
+                <button class="export-btn">
+
+                    <i class="fa-solid fa-download"></i>
+
+                    Export
+
+                </button>
+
+            </div>
+
+
+            <!-- FILTERS -->
+
+            <div class="filters">
+
+
+                <div class="filter-box">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="text"
+                        placeholder="Search booking or customer">
+
+                </div>
+
+
+                <select>
+
+                    <option>
+                        All Status
+                    </option>
+
+                    <option>
+                        Confirmed
+                    </option>
+
+                    <option>
+                        Pending
+                    </option>
+
+                    <option>
+                        Completed
+                    </option>
+
+                    <option>
+                        Cancelled
+                    </option>
+
+                </select>
+
+
+                <select>
+
+                    <option>
+                        All Vehicles
+                    </option>
+
+                    <option>
+                        BMW 7 Series
+                    </option>
+
+                    <option>
+                        Mercedes S-Class
+                    </option>
+
+                    <option>
+                        Porsche 911
+                    </option>
+
+                    <option>
+                        Range Rover
+                    </option>
+
+                </select>
+
+
+                <select>
+
+                    <option>
+                        All Dates
+                    </option>
+
+                    <option>
+                        Today
+                    </option>
+
+                    <option>
+                        This Week
+                    </option>
+
+                    <option>
+                        This Month
+                    </option>
+
+                </select>
+
+
+                <button class="filter-btn">
+
+                    <i class="fa-solid fa-filter"></i>
+
+                    Filter
+
+                </button>
+
+
+            </div>
+
+
+            <!-- TABLE -->
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Booking ID
+                            </th>
+
+                            <th>
+                                Customer
+                            </th>
+
+                            <th>
+                                Vehicle
+                            </th>
+
+                            <th>
+                                Pickup
+                            </th>
+
+                            <th>
+                                Return
+                            </th>
+
+                            <th>
+                                Amount
+                            </th>
+
+                            <th>
+                                Payment
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                        <!-- BOOKING 1 -->
+
+                        <tr>
+
+                            <td>
+                                <span class="booking-id">
+                                    #LX-10248
+                                </span>
+                            </td>
+
+
+                            <td>
+
+                                <div class="customer">
+
+                                    <div class="customer-avatar">
+                                        MR
+                                    </div>
+
+                                    <div class="customer-info">
+
+                                        <strong>
+                                            Meet Raj
+                                        </strong>
+
+                                        <span>
+                                            meet@example.com
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="car-info">
+
+                                    <img
+                                        class="car-image"
+                                        src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=300&q=80"
+                                        alt="BMW">
+
+                                    <div class="car-details">
+
+                                        <strong>
+                                            BMW 7 Series
+                                        </strong>
+
+                                        <span>
+                                            BMW
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+                                20 Sep 2026
+                                <br>
+                                <small>10:00 AM</small>
+                            </td>
+
+
+                            <td>
+                                23 Sep 2026
+                                <br>
+                                <small>10:00 AM</small>
+                            </td>
+
+
+                            <td>
+                                <strong>
+                                    ₹45,500
+                                </strong>
+                            </td>
+
+
+                            <td>
+                                <span class="payment-paid">
+                                    Paid
+                                </span>
+                            </td>
+
+
+                            <td>
+
+                                <span class="status confirmed">
+                                    Confirmed
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="action-buttons">
+
+                                    <button class="action-btn"
+                                            title="View">
+
+                                        <i class="fa-regular fa-eye"></i>
+
+                                    </button>
+
+                                    <button class="action-btn"
+                                            title="Edit">
+
+                                        <i class="fa-regular fa-pen-to-square"></i>
+
+                                    </button>
+
+                                    <button class="action-btn delete"
+                                            title="Delete">
+
+                                        <i class="fa-regular fa-trash-can"></i>
+
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+                        <!-- BOOKING 2 -->
+
+                        <tr>
+
+                            <td>
+                                <span class="booking-id">
+                                    #LX-10247
+                                </span>
+                            </td>
+
+
+                            <td>
+
+                                <div class="customer">
+
+                                    <div class="customer-avatar">
+                                        AK
+                                    </div>
+
+                                    <div class="customer-info">
+
+                                        <strong>
+                                            Arjun Kumar
+                                        </strong>
+
+                                        <span>
+                                            arjun@example.com
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="car-info">
+
+                                    <img
+                                        class="car-image"
+                                        src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=300&q=80"
+                                        alt="Mercedes">
+
+                                    <div class="car-details">
+
+                                        <strong>
+                                            Mercedes S-Class
+                                        </strong>
+
+                                        <span>
+                                            Mercedes-Benz
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+                                21 Sep 2026
+                                <br>
+                                <small>09:00 AM</small>
+                            </td>
+
+
+                            <td>
+                                24 Sep 2026
+                                <br>
+                                <small>09:00 AM</small>
+                            </td>
+
+
+                            <td>
+                                <strong>
+                                    ₹54,000
+                                </strong>
+                            </td>
+
+
+                            <td>
+                                <span class="payment-paid">
+                                    Paid
+                                </span>
+                            </td>
+
+
+                            <td>
+
+                                <span class="status confirmed">
+                                    Confirmed
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="action-buttons">
+
+                                    <button class="action-btn">
+                                        <i class="fa-regular fa-eye"></i>
+                                    </button>
+
+                                    <button class="action-btn">
+                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    </button>
+
+                                    <button class="action-btn delete">
+                                        <i class="fa-regular fa-trash-can"></i>
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+                        <!-- BOOKING 3 -->
+
+                        <tr>
+
+                            <td>
+                                <span class="booking-id">
+                                    #LX-10246
+                                </span>
+                            </td>
+
+
+                            <td>
+
+                                <div class="customer">
+
+                                    <div class="customer-avatar">
+                                        RS
+                                    </div>
+
+                                    <div class="customer-info">
+
+                                        <strong>
+                                            Rahul Shah
+                                        </strong>
+
+                                        <span>
+                                            rahul@example.com
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="car-info">
+
+                                    <img
+                                        class="car-image"
+                                        src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=300&q=80"
+                                        alt="Porsche">
+
+                                    <div class="car-details">
+
+                                        <strong>
+                                            Porsche 911
+                                        </strong>
+
+                                        <span>
+                                            Porsche
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+                                22 Sep 2026
+                                <br>
+                                <small>11:30 AM</small>
+                            </td>
+
+
+                            <td>
+                                24 Sep 2026
+                                <br>
+                                <small>11:30 AM</small>
+                            </td>
+
+
+                            <td>
+                                <strong>
+                                    ₹44,000
+                                </strong>
+                            </td>
+
+
+                            <td>
+                                <span class="payment-pending">
+                                    Pending
+                                </span>
+                            </td>
+
+
+                            <td>
+
+                                <span class="status pending">
+                                    Pending
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="action-buttons">
+
+                                    <button class="action-btn">
+                                        <i class="fa-regular fa-eye"></i>
+                                    </button>
+
+                                    <button class="action-btn">
+                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    </button>
+
+                                    <button class="action-btn delete">
+                                        <i class="fa-regular fa-trash-can"></i>
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+                        <!-- BOOKING 4 -->
+
+                        <tr>
+
+                            <td>
+                                <span class="booking-id">
+                                    #LX-10245
+                                </span>
+                            </td>
+
+
+                            <td>
+
+                                <div class="customer">
+
+                                    <div class="customer-avatar">
+                                        NP
+                                    </div>
+
+                                    <div class="customer-info">
+
+                                        <strong>
+                                            Neel Patel
+                                        </strong>
+
+                                        <span>
+                                            neel@example.com
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="car-info">
+
+                                    <img
+                                        class="car-image"
+                                        src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=300&q=80"
+                                        alt="Range Rover">
+
+                                    <div class="car-details">
+
+                                        <strong>
+                                            Range Rover
+                                        </strong>
+
+                                        <span>
+                                            Range Rover
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+                                18 Sep 2026
+                                <br>
+                                <small>08:00 AM</small>
+                            </td>
+
+
+                            <td>
+                                20 Sep 2026
+                                <br>
+                                <small>08:00 AM</small>
+                            </td>
+
+
+                            <td>
+                                <strong>
+                                    ₹50,000
+                                </strong>
+                            </td>
+
+
+                            <td>
+                                <span class="payment-paid">
+                                    Paid
+                                </span>
+                            </td>
+
+
+                            <td>
+
+                                <span class="status completed">
+                                    Completed
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="action-buttons">
+
+                                    <button class="action-btn">
+                                        <i class="fa-regular fa-eye"></i>
+                                    </button>
+
+                                    <button class="action-btn">
+                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    </button>
+
+                                    <button class="action-btn delete">
+                                        <i class="fa-regular fa-trash-can"></i>
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+                        <!-- BOOKING 5 -->
+
+                        <tr>
+
+                            <td>
+                                <span class="booking-id">
+                                    #LX-10244
+                                </span>
+                            </td>
+
+
+                            <td>
+
+                                <div class="customer">
+
+                                    <div class="customer-avatar">
+                                        VP
+                                    </div>
+
+                                    <div class="customer-info">
+
+                                        <strong>
+                                            Vikram Patel
+                                        </strong>
+
+                                        <span>
+                                            vikram@example.com
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="car-info">
+
+                                    <img
+                                        class="car-image"
+                                        src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=300&q=80"
+                                        alt="Audi">
+
+                                    <div class="car-details">
+
+                                        <strong>
+                                            Audi A8
+                                        </strong>
+
+                                        <span>
+                                            Audi
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+                                17 Sep 2026
+                                <br>
+                                <small>10:30 AM</small>
+                            </td>
+
+
+                            <td>
+                                19 Sep 2026
+                                <br>
+                                <small>10:30 AM</small>
+                            </td>
+
+
+                            <td>
+                                <strong>
+                                    ₹28,000
+                                </strong>
+                            </td>
+
+
+                            <td>
+                                <span class="payment-paid">
+                                    Paid
+                                </span>
+                            </td>
+
+
+                            <td>
+
+                                <span class="status cancelled">
+                                    Cancelled
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="action-buttons">
+
+                                    <button class="action-btn">
+                                        <i class="fa-regular fa-eye"></i>
+                                    </button>
+
+                                    <button class="action-btn">
+                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    </button>
+
+                                    <button class="action-btn delete">
+                                        <i class="fa-regular fa-trash-can"></i>
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <!-- TABLE FOOTER -->
+
+            <div class="table-footer">
+
+                <div class="showing">
+
+                    Showing 1–5 of 248 bookings
+
+                </div>
+
+
+                <div class="pagination">
+
+                    <button class="page-btn">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+
+                    <button class="page-btn active">
+                        1
+                    </button>
+
+                    <button class="page-btn">
+                        2
+                    </button>
+
+                    <button class="page-btn">
+                        3
+                    </button>
+
+                    <button class="page-btn">
+                        4
+                    </button>
+
+                    <button class="page-btn">
+                        5
+                    </button>
+
+                    <button class="page-btn">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+</main>
+
+
+</body>
+</html>

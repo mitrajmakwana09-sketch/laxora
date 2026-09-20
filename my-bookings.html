@@ -1,0 +1,2121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Bookings | LUXORA</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+          rel="stylesheet">
+
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+
+    font-family: "Inter", sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(212,175,55,0.10),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 90% 90%,
+            rgba(212,175,55,0.08),
+            transparent 30%
+        ),
+
+        #050505;
+
+    color: #fff;
+
+    min-height: 100vh;
+
+    overflow-x: hidden;
+}
+
+
+/* =====================================================
+   BACKGROUND GLOW
+===================================================== */
+
+.bg-glow {
+
+    position: fixed;
+
+    width: 450px;
+    height: 450px;
+
+    border-radius: 50%;
+
+    background: rgba(212,175,55,0.06);
+
+    filter: blur(100px);
+
+    pointer-events: none;
+
+    z-index: -1;
+}
+
+
+.glow-1 {
+
+    top: -200px;
+    left: -200px;
+}
+
+
+.glow-2 {
+
+    right: -200px;
+    bottom: -200px;
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar {
+
+    height: 76px;
+
+    padding: 0 7%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    background:
+        rgba(5,5,5,0.85);
+
+    backdrop-filter: blur(20px);
+
+    border-bottom:
+        1px solid rgba(255,255,255,0.08);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+}
+
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.logo-icon {
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff1a8,
+            #d4af37,
+            #8d6815
+        );
+
+    color: #050505;
+
+    box-shadow:
+        0 0 25px
+        rgba(212,175,55,0.30);
+}
+
+
+.logo-text {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 25px;
+
+    letter-spacing: 4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #d4af37,
+            #fff
+        );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+
+
+.nav-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+
+.nav-link {
+
+    color: #aaa;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    transition: 0.3s;
+}
+
+
+.nav-link:hover {
+
+    color: #d4af37;
+}
+
+
+.profile-btn {
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    color: #d4af37;
+
+    border:
+        1px solid
+        rgba(212,175,55,0.35);
+
+    background:
+        rgba(212,175,55,0.08);
+
+    text-decoration: none;
+
+    transition: 0.3s;
+}
+
+
+.profile-btn:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 25px
+        rgba(212,175,55,0.20);
+}
+
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+.page {
+
+    max-width: 1250px;
+
+    margin: auto;
+
+    padding: 65px 25px 80px;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.page-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: end;
+
+    margin-bottom: 40px;
+
+    animation:
+        fadeDown 0.8s ease;
+}
+
+
+@keyframes fadeDown {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(-25px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+.page-header h1 {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(34px,5vw,52px);
+
+    margin-bottom: 8px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #d4af37,
+            #fff
+        );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+
+
+.page-header p {
+
+    color: #888;
+
+    font-size: 14px;
+}
+
+
+.booking-count {
+
+    padding: 11px 18px;
+
+    border-radius: 30px;
+
+    color: #d4af37;
+
+    background:
+        rgba(212,175,55,0.08);
+
+    border:
+        1px solid
+        rgba(212,175,55,0.22);
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+/* =====================================================
+   FILTER BAR
+===================================================== */
+
+.filters {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-bottom: 30px;
+
+    flex-wrap: wrap;
+}
+
+
+.filter-btn {
+
+    padding: 11px 18px;
+
+    border-radius: 10px;
+
+    background:
+        rgba(255,255,255,0.04);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.10);
+
+    color: #999;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    font-family: inherit;
+
+    font-size: 12px;
+}
+
+
+.filter-btn:hover,
+.filter-btn.active {
+
+    color: #080808;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f4dc72,
+            #d4af37
+        );
+
+    border-color: #d4af37;
+}
+
+
+/* =====================================================
+   BOOKING GRID
+===================================================== */
+
+.bookings-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0,1fr));
+
+    gap: 24px;
+}
+
+
+/* =====================================================
+   BOOKING CARD
+===================================================== */
+
+.booking-card {
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.075),
+            rgba(255,255,255,0.025)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 25px 60px
+        rgba(0,0,0,0.45);
+
+    transition:
+        transform 0.4s ease,
+        border 0.4s ease,
+        box-shadow 0.4s ease;
+
+    animation:
+        cardReveal 0.7s ease both;
+}
+
+
+.booking-card:nth-child(2) {
+
+    animation-delay: 0.12s;
+}
+
+
+.booking-card:nth-child(3) {
+
+    animation-delay: 0.24s;
+}
+
+
+.booking-card:nth-child(4) {
+
+    animation-delay: 0.36s;
+}
+
+
+@keyframes cardReveal {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(35px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+.booking-card:hover {
+
+    transform:
+        translateY(-8px);
+
+    border-color:
+        rgba(212,175,55,0.35);
+
+    box-shadow:
+        0 35px 80px
+        rgba(0,0,0,0.65);
+}
+
+
+/* =====================================================
+   CAR IMAGE
+===================================================== */
+
+.car-image {
+
+    height: 235px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background: #111;
+}
+
+
+.car-image img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.7s ease;
+}
+
+
+.booking-card:hover
+.car-image img {
+
+    transform:
+        scale(1.08);
+}
+
+
+.image-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,0.8),
+            transparent 60%
+        );
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.status {
+
+    position: absolute;
+
+    top: 16px;
+    right: 16px;
+
+    padding: 8px 13px;
+
+    border-radius: 30px;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    backdrop-filter: blur(12px);
+}
+
+
+.status.confirmed {
+
+    color: #d4af37;
+
+    background:
+        rgba(212,175,55,0.14);
+
+    border:
+        1px solid
+        rgba(212,175,55,0.35);
+}
+
+
+.status.completed {
+
+    color: #8fd694;
+
+    background:
+        rgba(76,175,80,0.10);
+
+    border:
+        1px solid
+        rgba(76,175,80,0.25);
+}
+
+
+.status.cancelled {
+
+    color: #ff8b8b;
+
+    background:
+        rgba(255,70,70,0.10);
+
+    border:
+        1px solid
+        rgba(255,70,70,0.25);
+}
+
+
+.status-dot {
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: currentColor;
+
+    animation:
+        statusPulse 1.5s infinite;
+}
+
+
+@keyframes statusPulse {
+
+    0%,100% {
+
+        opacity: 1;
+
+        transform: scale(1);
+    }
+
+    50% {
+
+        opacity: 0.4;
+
+        transform: scale(0.7);
+    }
+}
+
+
+/* =====================================================
+   IMAGE CAR NAME
+===================================================== */
+
+.car-title {
+
+    position: absolute;
+
+    left: 20px;
+    bottom: 18px;
+
+    right: 20px;
+}
+
+
+.car-title small {
+
+    color: #d4af37;
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.5px;
+}
+
+
+.car-title h2 {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 25px;
+
+    margin-top: 3px;
+}
+
+
+/* =====================================================
+   BOOKING CONTENT
+===================================================== */
+
+.booking-content {
+
+    padding: 22px;
+}
+
+
+.booking-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+
+.booking-number {
+
+    font-size: 11px;
+
+    color: #777;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+
+.booking-number strong {
+
+    display: block;
+
+    margin-top: 4px;
+
+    color: #d4af37;
+
+    font-size: 13px;
+
+    letter-spacing: 1px;
+}
+
+
+.price {
+
+    text-align: right;
+}
+
+
+.price small {
+
+    display: block;
+
+    color: #777;
+
+    font-size: 10px;
+}
+
+
+.price strong {
+
+    color: #fff;
+
+    font-size: 20px;
+}
+
+
+/* =====================================================
+   INFO
+===================================================== */
+
+.booking-info {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+
+.info {
+
+    padding: 13px;
+
+    border-radius: 12px;
+
+    background:
+        rgba(255,255,255,0.035);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.06);
+}
+
+
+.info i {
+
+    color: #d4af37;
+
+    font-size: 14px;
+
+    margin-right: 6px;
+}
+
+
+.info span {
+
+    color: #777;
+
+    font-size: 10px;
+
+    display: block;
+
+    margin-bottom: 4px;
+}
+
+
+.info strong {
+
+    color: #ddd;
+
+    font-size: 12px;
+}
+
+
+/* =====================================================
+   ACTIONS
+===================================================== */
+
+.booking-actions {
+
+    display: flex;
+
+    gap: 10px;
+}
+
+
+.action-btn {
+
+    flex: 1;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    transition: 0.3s;
+}
+
+
+.view-btn {
+
+    color: #080808;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f4dc72,
+            #d4af37
+        );
+}
+
+
+.view-btn:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(212,175,55,0.20);
+}
+
+
+.cancel-btn {
+
+    color: #aaa;
+
+    background:
+        rgba(255,255,255,0.04);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.10);
+
+    cursor: pointer;
+}
+
+
+.cancel-btn:hover {
+
+    color: #ff8b8b;
+
+    border-color:
+        rgba(255,100,100,0.35);
+}
+
+
+/* =====================================================
+   EMPTY STATE
+===================================================== */
+
+.empty-state {
+
+    display: none;
+
+    text-align: center;
+
+    padding: 90px 20px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.08);
+
+    border-radius: 25px;
+
+    background:
+        rgba(255,255,255,0.025);
+}
+
+
+.empty-state i {
+
+    font-size: 55px;
+
+    color: #d4af37;
+
+    margin-bottom: 20px;
+
+    animation:
+        emptyFloat 2.5s ease-in-out infinite;
+}
+
+
+@keyframes emptyFloat {
+
+    0%,100% {
+
+        transform:
+            translateY(0);
+    }
+
+    50% {
+
+        transform:
+            translateY(-10px);
+    }
+}
+
+
+.empty-state h2 {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    margin-bottom: 10px;
+}
+
+
+.empty-state p {
+
+    color: #777;
+
+    font-size: 13px;
+
+    margin-bottom: 25px;
+}
+
+
+.explore-btn {
+
+    display: inline-block;
+
+    padding: 13px 25px;
+
+    color: #080808;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f4dc72,
+            #d4af37
+        );
+
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    font-weight: 700;
+
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+.toast {
+
+    position: fixed;
+
+    right: 25px;
+    bottom: 25px;
+
+    padding: 15px 20px;
+
+    border-radius: 12px;
+
+    background:
+        rgba(20,20,20,0.95);
+
+    border:
+        1px solid
+        rgba(212,175,55,0.3);
+
+    color: #ddd;
+
+    box-shadow:
+        0 20px 50px
+        rgba(0,0,0,0.5);
+
+    transform:
+        translateY(100px);
+
+    opacity: 0;
+
+    transition: 0.4s;
+
+    z-index: 1000;
+
+    font-size: 13px;
+}
+
+
+.toast.show {
+
+    transform:
+        translateY(0);
+
+    opacity: 1;
+}
+
+
+.toast i {
+
+    color: #d4af37;
+
+    margin-right: 8px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width: 900px) {
+
+    .bookings-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media(max-width: 650px) {
+
+    .navbar {
+
+        height: 68px;
+
+        padding: 0 18px;
+    }
+
+
+    .logo-icon {
+
+        width: 36px;
+        height: 36px;
+    }
+
+
+    .logo-text {
+
+        font-size: 20px;
+
+        letter-spacing: 3px;
+    }
+
+
+    .nav-link {
+
+        display: none;
+    }
+
+
+    .page {
+
+        padding:
+            40px 15px 60px;
+    }
+
+
+    .page-header {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 18px;
+    }
+
+
+    .page-header h1 {
+
+        font-size: 36px;
+    }
+
+
+    .booking-count {
+
+        align-self: flex-start;
+    }
+
+
+    .car-image {
+
+        height: 210px;
+    }
+
+
+    .booking-info {
+
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media(max-width: 400px) {
+
+    .booking-actions {
+
+        flex-direction: column;
+    }
+
+
+    .car-image {
+
+        height: 190px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- BACKGROUND -->
+
+<div class="bg-glow glow-1"></div>
+<div class="bg-glow glow-2"></div>
+
+
+<!-- NAVBAR -->
+
+<header class="navbar">
+
+    <a href="index.html"
+       style="text-decoration:none;">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+
+                <i class="fa-solid fa-crown"></i>
+
+            </div>
+
+            <div class="logo-text">
+
+                LUXORA
+
+            </div>
+
+        </div>
+
+    </a>
+
+
+    <div class="nav-right">
+
+        <a href="cars.html"
+           class="nav-link">
+
+            Browse Cars
+
+        </a>
+
+        <a href="index.html"
+           class="nav-link">
+
+            Home
+
+        </a>
+
+        <a href="profile.html"
+           class="profile-btn">
+
+            <i class="fa-solid fa-user"></i>
+
+        </a>
+
+    </div>
+
+</header>
+
+
+<!-- PAGE -->
+
+<main class="page">
+
+
+    <!-- HEADER -->
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>
+                My Bookings
+            </h1>
+
+            <p>
+                Manage your luxury journeys and reservations.
+            </p>
+
+        </div>
+
+
+        <div class="booking-count">
+
+            <i class="fa-solid fa-calendar-check"></i>
+
+            <span id="bookingCount">
+                0 Bookings
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- FILTER -->
+
+    <div class="filters">
+
+        <button
+            class="filter-btn active"
+            data-filter="all">
+
+            All Bookings
+
+        </button>
+
+
+        <button
+            class="filter-btn"
+            data-filter="confirmed">
+
+            Confirmed
+
+        </button>
+
+
+        <button
+            class="filter-btn"
+            data-filter="completed">
+
+            Completed
+
+        </button>
+
+
+        <button
+            class="filter-btn"
+            data-filter="cancelled">
+
+            Cancelled
+
+        </button>
+
+    </div>
+
+
+    <!-- BOOKINGS -->
+
+    <div
+        class="bookings-grid"
+        id="bookingsGrid">
+
+
+        <!-- BOOKING 1 -->
+
+        <article
+            class="booking-card"
+            data-status="confirmed">
+
+
+            <div class="car-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1200&q=85"
+                    alt="BMW 7 Series">
+
+
+                <div class="image-overlay"></div>
+
+
+                <div class="status confirmed">
+
+                    <span class="status-dot"></span>
+
+                    Confirmed
+
+                </div>
+
+
+                <div class="car-title">
+
+                    <small>
+                        BMW
+                    </small>
+
+                    <h2>
+                        BMW 7 Series
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="booking-content">
+
+
+                <div class="booking-top">
+
+                    <div class="booking-number">
+
+                        Booking ID
+
+                        <strong>
+                            LUX-BMW7284
+                        </strong>
+
+                    </div>
+
+
+                    <div class="price">
+
+                        <small>
+                            Total
+                        </small>
+
+                        <strong>
+                            ₹45,000
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="booking-info">
+
+
+                    <div class="info">
+
+                        <span>
+                            <i class="fa-solid fa-calendar"></i>
+                            Pickup
+                        </span>
+
+                        <strong>
+                            22 Sep 2026
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info">
+
+                        <span>
+                            <i class="fa-solid fa-calendar-check"></i>
+                            Return
+                        </span>
+
+                        <strong>
+                            25 Sep 2026
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info">
+
+                        <span>
+                            <i class="fa-solid fa-location-dot"></i>
+                            Pickup Location
+                        </span>
+
+                        <strong>
+                            Rajkot
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info">
+
+                        <span>
+                            <i class="fa-solid fa-clock"></i>
+                            Duration
+                        </span>
+
+                        <strong>
+                            3 Days
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="booking-actions">
+
+                    <a
+                        href="car-details.html"
+                        class="action-btn view-btn">
+
+                        <i class="fa-solid fa-eye"></i>
+
+                        View Details
+
+                    </a>
+
+
+                    <button
+                        class="action-btn cancel-btn"
+                        onclick="cancelBooking(this)">
+
+                        <i class="fa-solid fa-xmark"></i>
+
+                        Cancel
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- BOOKING 2 -->
+
+        <article
+            class="booking-card"
+            data-status="completed">
+
+
+            <div class="car-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1200&q=85"
+                    alt="Mercedes S Class">
+
+
+                <div class="image-overlay"></div>
+
+
+                <div class="status completed">
+
+                    <span class="status-dot"></span>
+
+                    Completed
+
+                </div>
+
+
+                <div class="car-title">
+
+                    <small>
+                        Mercedes-Benz
+                    </small>
+
+                    <h2>
+                        S-Class
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="booking-content">
+
+
+                <div class="booking-top">
+
+                    <div class="booking-number">
+
+                        Booking ID
+
+                        <strong>
+                            LUX-MER5412
+                        </strong>
+
+                    </div>
+
+
+                    <div class="price">
+
+                        <small>
+                            Total
+                        </small>
+
+                        <strong>
+                            ₹30,000
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="booking-info">
+
+
+                    <div class="info">
+
+                        <span>
+                            <i class="fa-solid fa-calendar"></i>
+                            Pickup
+                        </span>
+
+                        <strong>
+                            10 Sep 2026
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info">
+
+                        <span>
+                            <i class="fa-solid fa-calendar-check"></i>
+                            Return
+                        </span>
+
+                        <strong>
+                            12 Sep 2026
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info">
+
+                        <span>
+                            <i class="fa-solid fa-location-dot"></i>
+                            Pickup Location
+                        </span>
+
+                        <strong>
+                            Ahmedabad
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info">
+
+                        <span>
+                            <i class="fa-solid fa-clock"></i>
+                            Duration
+                        </span>
+
+                        <strong>
+                            2 Days
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="booking-actions">
+
+                    <a
+                        href="car-details.html"
+                        class="action-btn view-btn">
+
+                        <i class="fa-solid fa-eye"></i>
+
+                        View Details
+
+                    </a>
+
+
+                    <button
+                        class="action-btn cancel-btn"
+                        disabled
+                        style="opacity:.35;cursor:not-allowed;">
+
+                        Completed
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- BOOKING 3 -->
+
+        <article
+            class="booking-card"
+            data-status="cancelled">
+
+
+            <div class="car-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=85"
+                    alt="Porsche 911">
+
+
+                <div class="image-overlay"></div>
+
+
+                <div class="status cancelled">
+
+                    <span class="status-dot"></span>
+
+                    Cancelled
+
+                </div>
+
+
+                <div class="car-title">
+
+                    <small>
+                        Porsche
+                    </small>
+
+                    <h2>
+                        Porsche 911
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="booking-content">
+
+
+                <div class="booking-top">
+
+                    <div class="booking-number">
+
+                        Booking ID
+
+                        <strong>
+                            LUX-POR3498
+                        </strong>
+
+                    </div>
+
+
+                    <div class="price">
+
+                        <small>
+                            Total
+                        </small>
+
+                        <strong>
+                            ₹36,000
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="booking-info">
+
+
+                    <div class="info">
+
+                        <span>
+                            <i class="fa-solid fa-calendar"></i>
+                            Pickup
+                        </span>
+
+                        <strong>
+                            05 Aug 2026
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info">
+
+                        <span>
+                            <i class="fa-solid fa-calendar-check"></i>
+                            Return
+                        </span>
+
+                        <strong>
+                            07 Aug 2026
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info">
+
+                        <span>
+                            <i class="fa-solid fa-location-dot"></i>
+                            Pickup Location
+                        </span>
+
+                        <strong>
+                            Surat
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info">
+
+                        <span>
+                            <i class="fa-solid fa-clock"></i>
+                            Duration
+                        </span>
+
+                        <strong>
+                            2 Days
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="booking-actions">
+
+                    <a
+                        href="cars.html"
+                        class="action-btn view-btn">
+
+                        <i class="fa-solid fa-car"></i>
+
+                        Book Again
+
+                    </a>
+
+
+                    <button
+                        class="action-btn cancel-btn"
+                        disabled
+                        style="opacity:.35;cursor:not-allowed;">
+
+                        Cancelled
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+    </div>
+
+
+    <!-- EMPTY STATE -->
+
+    <div
+        class="empty-state"
+        id="emptyState">
+
+        <i class="fa-solid fa-car-side"></i>
+
+        <h2>
+            No Bookings Found
+        </h2>
+
+        <p>
+            You don't have any bookings in this category yet.
+        </p>
+
+        <a
+            href="cars.html"
+            class="explore-btn">
+
+            Explore Luxury Cars
+
+        </a>
+
+    </div>
+
+
+</main>
+
+
+<!-- TOAST -->
+
+<div
+    class="toast"
+    id="toast">
+
+    <i class="fa-solid fa-circle-check"></i>
+
+    <span id="toastText">
+        Booking updated.
+    </span>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   FILTER SYSTEM
+===================================================== */
+
+const filterButtons =
+    document.querySelectorAll(".filter-btn");
+
+const bookingCards =
+    document.querySelectorAll(".booking-card");
+
+const emptyState =
+    document.getElementById("emptyState");
+
+
+filterButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+
+        /* Active button */
+
+        filterButtons.forEach(btn => {
+
+            btn.classList.remove("active");
+
+        });
+
+        button.classList.add("active");
+
+
+        const filter =
+            button.dataset.filter;
+
+
+        let visibleCount = 0;
+
+
+        bookingCards.forEach(card => {
+
+            const status =
+                card.dataset.status;
+
+
+            if (
+                filter === "all" ||
+                status === filter
+            ) {
+
+                card.style.display =
+                    "block";
+
+                visibleCount++;
+
+            }
+
+            else {
+
+                card.style.display =
+                    "none";
+
+            }
+
+        });
+
+
+        /* Empty state */
+
+        if (visibleCount === 0) {
+
+            emptyState.style.display =
+                "block";
+
+        }
+
+        else {
+
+            emptyState.style.display =
+                "none";
+
+        }
+
+    });
+
+});
+
+
+/* =====================================================
+   BOOKING COUNT
+===================================================== */
+
+function updateBookingCount() {
+
+    const count =
+        document.querySelectorAll(
+            ".booking-card"
+        ).length;
+
+
+    document.getElementById(
+        "bookingCount"
+    ).textContent =
+        count +
+        (count === 1
+            ? " Booking"
+            : " Bookings");
+}
+
+
+updateBookingCount();
+
+
+/* =====================================================
+   CANCEL BOOKING
+===================================================== */
+
+function cancelBooking(button) {
+
+    const card =
+        button.closest(".booking-card");
+
+
+    const confirmation =
+        confirm(
+            "Are you sure you want to cancel this booking?"
+        );
+
+
+    if (!confirmation) {
+
+        return;
+
+    }
+
+
+    /* Change status */
+
+    card.dataset.status =
+        "cancelled";
+
+
+    const status =
+        card.querySelector(".status");
+
+
+    status.className =
+        "status cancelled";
+
+
+    status.innerHTML =
+        `
+            <span class="status-dot"></span>
+            Cancelled
+        `;
+
+
+    /* Change button */
+
+    button.innerHTML =
+        `
+            Cancelled
+        `;
+
+
+    button.disabled = true;
+
+    button.style.opacity = "0.35";
+
+    button.style.cursor =
+        "not-allowed";
+
+
+    showToast(
+        "Booking cancelled successfully."
+    );
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+function showToast(message) {
+
+    const toast =
+        document.getElementById("toast");
+
+    const toastText =
+        document.getElementById("toastText");
+
+
+    toastText.textContent =
+        message;
+
+
+    toast.classList.add("show");
+
+
+    setTimeout(() => {
+
+        toast.classList.remove("show");
+
+    }, 3000);
+
+}
+
+
+/* =====================================================
+   LOAD LAST BOOKING FROM PAYMENT
+===================================================== */
+
+const lastBooking =
+    JSON.parse(
+        localStorage.getItem(
+            "luxoraLastBooking"
+        )
+    );
+
+
+if (lastBooking) {
+
+    console.log(
+        "Latest LUXORA booking:",
+        lastBooking
+    );
+
+}
+
+</script>
+
+
+</body>
+
+</html>

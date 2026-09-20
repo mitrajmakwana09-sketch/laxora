@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Customers | LUXORA Admin</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: #090909;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100vh;
+            background: #0d0d0d;
+            border-right: 1px solid #242424;
+            padding: 28px 18px;
+            z-index: 10;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0 12px 35px;
+            border-bottom: 1px solid #242424;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            border: 1px solid #c9a227;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #d8b54c;
+            font-size: 19px;
+        }
+
+        .logo h2 {
+            font-family: "Playfair Display", serif;
+            letter-spacing: 2px;
+            font-size: 21px;
+        }
+
+        .logo span {
+            display: block;
+            font-size: 8px;
+            letter-spacing: 3px;
+            color: #a78a31;
+            margin-top: 2px;
+        }
+
+        .menu-title {
+            color: #666;
+            font-size: 10px;
+            letter-spacing: 2px;
+            margin: 28px 12px 12px;
+            text-transform: uppercase;
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-bottom: 5px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #999;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 13px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu .active a {
+            background: #19160d;
+            color: #d8b54c;
+            border-left: 3px solid #d8b54c;
+        }
+
+        .nav-icon {
+            width: 20px;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        .admin-profile {
+            position: absolute;
+            bottom: 25px;
+            left: 18px;
+            right: 18px;
+            padding: 15px;
+            background: #141414;
+            border: 1px solid #262626;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .admin-avatar {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, #c9a227, #765d16);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-weight: 800;
+        }
+
+        .admin-profile h4 {
+            font-size: 12px;
+        }
+
+        .admin-profile p {
+            font-size: 10px;
+            color: #777;
+            margin-top: 3px;
+        }
+
+        /* ================= MAIN ================= */
+
+        .main {
+            margin-left: 250px;
+            min-height: 100vh;
+        }
+
+        /* ================= TOPBAR ================= */
+
+        .topbar {
+            height: 78px;
+            padding: 0 35px;
+            border-bottom: 1px solid #222;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #0b0b0b;
+        }
+
+        .page-title h1 {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .page-title p {
+            color: #666;
+            font-size: 11px;
+            margin-top: 5px;
+        }
+
+        .top-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .notification {
+            width: 38px;
+            height: 38px;
+            border: 1px solid #292929;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+        }
+
+        .gold-dot {
+            width: 6px;
+            height: 6px;
+            background: #d8b54c;
+            border-radius: 50%;
+            position: relative;
+            top: -10px;
+            left: -8px;
+        }
+
+        /* ================= CONTENT ================= */
+
+        .content {
+            padding: 32px 35px;
+        }
+
+        /* ================= STATS ================= */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 28px;
+        }
+
+        .stat-card {
+            background: #111111;
+            border: 1px solid #252525;
+            border-radius: 12px;
+            padding: 21px;
+        }
+
+        .stat-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stat-label {
+            color: #777;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stat-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
+            background: #1c180c;
+            color: #d8b54c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-card h2 {
+            margin-top: 14px;
+            font-size: 25px;
+        }
+
+        .stat-card small {
+            display: block;
+            color: #4fa66a;
+            font-size: 10px;
+            margin-top: 7px;
+        }
+
+        /* ================= TOOLBAR ================= */
+
+        .toolbar {
+            background: #111;
+            border: 1px solid #252525;
+            padding: 18px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            width: 320px;
+            position: relative;
+        }
+
+        .search-box span {
+            position: absolute;
+            left: 14px;
+            top: 12px;
+            color: #666;
+        }
+
+        .search-box input {
+            width: 100%;
+            height: 40px;
+            background: #0a0a0a;
+            border: 1px solid #292929;
+            border-radius: 7px;
+            padding: 0 15px 0 40px;
+            color: white;
+            outline: none;
+            font-size: 12px;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .filter {
+            height: 40px;
+            padding: 0 15px;
+            background: #0a0a0a;
+            border: 1px solid #292929;
+            color: #aaa;
+            border-radius: 7px;
+            font-size: 11px;
+        }
+
+        .add-btn {
+            height: 40px;
+            padding: 0 20px;
+            background: #d8b54c;
+            color: #090909;
+            border: none;
+            border-radius: 7px;
+            font-weight: 700;
+            font-size: 11px;
+        }
+
+        /* ================= CUSTOMER TABLE ================= */
+
+        .customer-container {
+            background: #111;
+            border: 1px solid #252525;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .table-header {
+            padding: 20px 22px;
+            border-bottom: 1px solid #252525;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .table-header h3 {
+            font-size: 15px;
+        }
+
+        .table-header span {
+            color: #666;
+            font-size: 10px;
+        }
+
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            min-width: 850px;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+            padding: 14px 20px;
+            color: #666;
+            font-size: 9px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            background: #0d0d0d;
+            border-bottom: 1px solid #252525;
+        }
+
+        td {
+            padding: 17px 20px;
+            border-bottom: 1px solid #202020;
+            font-size: 12px;
+            color: #bbb;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .customer {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .customer-avatar {
+            width: 39px;
+            height: 39px;
+            border-radius: 50%;
+            background: #222;
+            border: 1px solid #343434;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #d8b54c;
+            font-weight: 700;
+        }
+
+        .customer-info strong {
+            display: block;
+            color: white;
+            font-size: 12px;
+        }
+
+        .customer-info small {
+            color: #666;
+            font-size: 9px;
+            display: block;
+            margin-top: 3px;
+        }
+
+        .email {
+            color: #999;
+        }
+
+        .phone {
+            color: #aaa;
+        }
+
+        .date {
+            color: #888;
+        }
+
+        .booking-count {
+            color: #d8b54c;
+            font-weight: 600;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 9px;
+            font-weight: 600;
+        }
+
+        .active {
+            color: #63c77a;
+            background: #122319;
+        }
+
+        .inactive {
+            color: #999;
+            background: #202020;
+        }
+
+        .action-btn {
+            width: 32px;
+            height: 30px;
+            border: 1px solid #303030;
+            background: #151515;
+            color: #aaa;
+            border-radius: 6px;
+            margin-right: 4px;
+        }
+
+        .action-btn.edit {
+            color: #d8b54c;
+        }
+
+        /* ================= PAGINATION ================= */
+
+        .pagination {
+            padding: 18px 22px;
+            border-top: 1px solid #252525;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .pagination p {
+            color: #666;
+            font-size: 10px;
+        }
+
+        .pages {
+            display: flex;
+            gap: 5px;
+        }
+
+        .pages span {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #292929;
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #777;
+            font-size: 10px;
+        }
+
+        .pages .current {
+            background: #d8b54c;
+            color: #000;
+            border-color: #d8b54c;
+            font-weight: 700;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width:1100px) {
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .toolbar {
+                flex-wrap: wrap;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+        }
+
+        @media(max-width:800px) {
+
+            .sidebar {
+                width: 75px;
+                padding: 20px 10px;
+            }
+
+            .logo {
+                justify-content: center;
+                padding: 0 0 25px;
+            }
+
+            .logo h2,
+            .logo span,
+            .menu-title,
+            .nav-menu a span,
+            .admin-profile > div {
+                display: none;
+            }
+
+            .nav-menu a {
+                justify-content: center;
+                padding: 14px 5px;
+            }
+
+            .admin-profile {
+                justify-content: center;
+                padding: 8px;
+                left: 10px;
+                right: 10px;
+            }
+
+            .main {
+                margin-left: 75px;
+            }
+
+            .topbar {
+                padding: 0 20px;
+            }
+
+            .content {
+                padding: 22px 18px;
+            }
+
+        }
+
+        @media(max-width:600px) {
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .topbar {
+                height: 70px;
+            }
+
+            .page-title h1 {
+                font-size: 17px;
+            }
+
+            .page-title p {
+                display: none;
+            }
+
+            .top-actions {
+                gap: 8px;
+            }
+
+            .toolbar {
+                padding: 14px;
+            }
+
+            .filter-group {
+                width: 100%;
+                flex-wrap: wrap;
+            }
+
+            .filter {
+                flex: 1;
+            }
+
+            .add-btn {
+                width: 100%;
+            }
+
+            .pagination {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">♛</div>
+
+            <div>
+                <h2>LUXORA</h2>
+                <span>ADMIN PANEL</span>
+            </div>
+
+        </div>
+
+        <div class="menu-title">Main Menu</div>
+
+        <ul class="nav-menu">
+
+            <li>
+                <a href="dashboard.html">
+                    <div class="nav-icon">▦</div>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="cars.html">
+                    <div class="nav-icon">▰</div>
+                    <span>Cars</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="bookings.html">
+                    <div class="nav-icon">▤</div>
+                    <span>Bookings</span>
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="customers.html">
+                    <div class="nav-icon">♙</div>
+                    <span>Customers</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="reports.html">
+                    <div class="nav-icon">▥</div>
+                    <span>Reports</span>
+                </a>
+            </li>
+
+        </ul>
+
+        <div class="menu-title">Settings</div>
+
+        <ul class="nav-menu">
+
+            <li>
+                <a href="#">
+                    <div class="nav-icon">⚙</div>
+                    <span>Settings</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="../index.html">
+                    <div class="nav-icon">↩</div>
+                    <span>Back to Website</span>
+                </a>
+            </li>
+
+        </ul>
+
+        <div class="admin-profile">
+
+            <div class="admin-avatar">MR</div>
+
+            <div>
+                <h4>Meet Raj</h4>
+                <p>Administrator</p>
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div class="page-title">
+                <h1>Customers</h1>
+                <p>Manage LUXORA customers and accounts</p>
+            </div>
+
+            <div class="top-actions">
+
+                <div class="notification">
+                    ♢
+                    <div class="gold-dot"></div>
+                </div>
+
+                <div class="admin-avatar">MR</div>
+
+            </div>
+
+        </header>
+
+
+        <!-- CONTENT -->
+
+        <section class="content">
+
+
+            <!-- ================= STATS ================= -->
+
+            <div class="stats">
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <span class="stat-label">Total Customers</span>
+                        <div class="stat-icon">♙</div>
+                    </div>
+
+                    <h2>1,284</h2>
+
+                    <small>+12.8% this month</small>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <span class="stat-label">Active Customers</span>
+                        <div class="stat-icon">✓</div>
+                    </div>
+
+                    <h2>1,142</h2>
+
+                    <small>+8.4% this month</small>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <span class="stat-label">New Customers</span>
+                        <div class="stat-icon">+</div>
+                    </div>
+
+                    <h2>86</h2>
+
+                    <small>Last 30 days</small>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <span class="stat-label">Premium Members</span>
+                        <div class="stat-icon">♛</div>
+                    </div>
+
+                    <h2>326</h2>
+
+                    <small>25.4% of customers</small>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= TOOLBAR ================= -->
+
+            <div class="toolbar">
+
+                <div class="search-box">
+
+                    <span>⌕</span>
+
+                    <input
+                        type="text"
+                        placeholder="Search customers..."
+                    >
+
+                </div>
+
+
+                <div class="filter-group">
+
+                    <select class="filter">
+
+                        <option>All Customers</option>
+                        <option>Active</option>
+                        <option>Inactive</option>
+                        <option>Premium</option>
+
+                    </select>
+
+
+                    <select class="filter">
+
+                        <option>All Time</option>
+                        <option>This Month</option>
+                        <option>Last 3 Months</option>
+                        <option>This Year</option>
+
+                    </select>
+
+
+                    <button class="add-btn">
+                        + Add Customer
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= CUSTOMER TABLE ================= -->
+
+            <div class="customer-container">
+
+                <div class="table-header">
+
+                    <h3>Customer Directory</h3>
+
+                    <span>Showing 1–8 of 1,284 customers</span>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Customer</th>
+
+                                <th>Email</th>
+
+                                <th>Phone</th>
+
+                                <th>Joined</th>
+
+                                <th>Bookings</th>
+
+                                <th>Status</th>
+
+                                <th>Action</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+
+                            <tr>
+
+                                <td>
+
+                                    <div class="customer">
+
+                                        <div class="customer-avatar">
+                                            MR
+                                        </div>
+
+                                        <div class="customer-info">
+
+                                            <strong>Meet Raj</strong>
+
+                                            <small>#CUS-10284</small>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                                <td class="email">
+                                    meetraj@gmail.com
+                                </td>
+
+                                <td class="phone">
+                                    +91 98765 43210
+                                </td>
+
+                                <td class="date">
+                                    Sep 18, 2026
+                                </td>
+
+                                <td class="booking-count">
+                                    12
+                                </td>
+
+                                <td>
+                                    <span class="status active">
+                                        Active
+                                    </span>
+                                </td>
+
+                                <td>
+
+                                    <button class="action-btn edit">
+                                        ✎
+                                    </button>
+
+                                    <button class="action-btn">
+                                        ◉
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+
+                                    <div class="customer">
+
+                                        <div class="customer-avatar">
+                                            AK
+                                        </div>
+
+                                        <div class="customer-info">
+
+                                            <strong>Arjun Kumar</strong>
+
+                                            <small>#CUS-10283</small>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                                <td class="email">
+                                    arjun.kumar@gmail.com
+                                </td>
+
+                                <td class="phone">
+                                    +91 98251 32145
+                                </td>
+
+                                <td class="date">
+                                    Sep 15, 2026
+                                </td>
+
+                                <td class="booking-count">
+                                    8
+                                </td>
+
+                                <td>
+                                    <span class="status active">
+                                        Active
+                                    </span>
+                                </td>
+
+                                <td>
+
+                                    <button class="action-btn edit">
+                                        ✎
+                                    </button>
+
+                                    <button class="action-btn">
+                                        ◉
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+
+                                    <div class="customer">
+
+                                        <div class="customer-avatar">
+                                            RS
+                                        </div>
+
+                                        <div class="customer-info">
+
+                                            <strong>Rahul Shah</strong>
+
+                                            <small>#CUS-10282</small>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                                <td class="email">
+                                    rahul.shah@gmail.com
+                                </td>
+
+                                <td class="phone">
+                                    +91 98982 65432
+                                </td>
+
+                                <td class="date">
+                                    Sep 12, 2026
+                                </td>
+
+                                <td class="booking-count">
+                                    6
+                                </td>
+
+                                <td>
+                                    <span class="status active">
+                                        Active
+                                    </span>
+                                </td>
+
+                                <td>
+
+                                    <button class="action-btn edit">
+                                        ✎
+                                    </button>
+
+                                    <button class="action-btn">
+                                        ◉
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+
+                                    <div class="customer">
+
+                                        <div class="customer-avatar">
+                                            NP
+                                        </div>
+
+                                        <div class="customer-info">
+
+                                            <strong>Neel Patel</strong>
+
+                                            <small>#CUS-10281</small>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                                <td class="email">
+                                    neel.patel@gmail.com
+                                </td>
+
+                                <td class="phone">
+                                    +91 99045 78213
+                                </td>
+
+                                <td class="date">
+                                    Sep 09, 2026
+                                </td>
+
+                                <td class="booking-count">
+                                    15
+                                </td>
+
+                                <td>
+                                    <span class="status active">
+                                        Active
+                                    </span>
+                                </td>
+
+                                <td>
+
+                                    <button class="action-btn edit">
+                                        ✎
+                                    </button>
+
+                                    <button class="action-btn">
+                                        ◉
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+
+                                    <div class="customer">
+
+                                        <div class="customer-avatar">
+                                            VP
+                                        </div>
+
+                                        <div class="customer-info">
+
+                                            <strong>Vikram Patel</strong>
+
+                                            <small>#CUS-10280</small>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                                <td class="email">
+                                    vikram.patel@gmail.com
+                                </td>
+
+                                <td class="phone">
+                                    +91 97245 45678
+                                </td>
+
+                                <td class="date">
+                                    Sep 06, 2026
+                                </td>
+
+                                <td class="booking-count">
+                                    9
+                                </td>
+
+                                <td>
+                                    <span class="status active">
+                                        Active
+                                    </span>
+                                </td>
+
+                                <td>
+
+                                    <button class="action-btn edit">
+                                        ✎
+                                    </button>
+
+                                    <button class="action-btn">
+                                        ◉
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+
+                                    <div class="customer">
+
+                                        <div class="customer-avatar">
+                                            JS
+                                        </div>
+
+                                        <div class="customer-info">
+
+                                            <strong>Jay Shah</strong>
+
+                                            <small>#CUS-10279</small>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                                <td class="email">
+                                    jay.shah@gmail.com
+                                </td>
+
+                                <td class="phone">
+                                    +91 98123 67890
+                                </td>
+
+                                <td class="date">
+                                    Sep 02, 2026
+                                </td>
+
+                                <td class="booking-count">
+                                    4
+                                </td>
+
+                                <td>
+                                    <span class="status inactive">
+                                        Inactive
+                                    </span>
+                                </td>
+
+                                <td>
+
+                                    <button class="action-btn edit">
+                                        ✎
+                                    </button>
+
+                                    <button class="action-btn">
+                                        ◉
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+
+                                    <div class="customer">
+
+                                        <div class="customer-avatar">
+                                            AM
+                                        </div>
+
+                                        <div class="customer-info">
+
+                                            <strong>Aditya Mehta</strong>
+
+                                            <small>#CUS-10278</small>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                                <td class="email">
+                                    aditya.mehta@gmail.com
+                                </td>
+
+                                <td class="phone">
+                                    +91 98791 54321
+                                </td>
+
+                                <td class="date">
+                                    Aug 28, 2026
+                                </td>
+
+                                <td class="booking-count">
+                                    7
+                                </td>
+
+                                <td>
+                                    <span class="status active">
+                                        Active
+                                    </span>
+                                </td>
+
+                                <td>
+
+                                    <button class="action-btn edit">
+                                        ✎
+                                    </button>
+
+                                    <button class="action-btn">
+                                        ◉
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+
+                                    <div class="customer">
+
+                                        <div class="customer-avatar">
+                                            KP
+                                        </div>
+
+                                        <div class="customer-info">
+
+                                            <strong>Karan Patel</strong>
+
+                                            <small>#CUS-10277</small>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                                <td class="email">
+                                    karan.patel@gmail.com
+                                </td>
+
+                                <td class="phone">
+                                    +91 98980 11223
+                                </td>
+
+                                <td class="date">
+                                    Aug 25, 2026
+                                </td>
+
+                                <td class="booking-count">
+                                    11
+                                </td>
+
+                                <td>
+                                    <span class="status active">
+                                        Active
+                                    </span>
+                                </td>
+
+                                <td>
+
+                                    <button class="action-btn edit">
+                                        ✎
+                                    </button>
+
+                                    <button class="action-btn">
+                                        ◉
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- PAGINATION -->
+
+                <div class="pagination">
+
+                    <p>
+                        Showing 1 to 8 of 1,284 customers
+                    </p>
+
+                    <div class="pages">
+
+                        <span>‹</span>
+                        <span class="current">1</span>
+                        <span>2</span>
+                        <span>3</span>
+                        <span>4</span>
+                        <span>5</span>
+                        <span>›</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

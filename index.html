@@ -1,0 +1,2187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>LUXORA | Luxury Car Rental</title>
+
+    <link rel="manifest" href="manifest.json">
+
+    <meta name="theme-color" content="#050505">
+
+    <link rel="apple-touch-icon"
+          href="images/icons/icon-192.png">
+
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+          rel="stylesheet">
+
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    font-family: "Inter", sans-serif;
+
+    background: #050505;
+
+    color: #fff;
+
+    overflow-x: hidden;
+}
+
+
+/* =====================================================
+   LUXORA INTRO SCREEN
+===================================================== */
+
+#luxoraIntro {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 99999;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(212,175,55,0.10),
+            transparent 32%
+        ),
+        #050505;
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+}
+
+
+#luxoraIntro.hide {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+}
+
+
+/* Intro content */
+
+.intro-content {
+
+    width: 90%;
+
+    max-width: 500px;
+
+    text-align: center;
+
+    animation:
+        introContent 1s
+        cubic-bezier(.2,.8,.2,1)
+        forwards;
+}
+
+
+@keyframes introContent {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(.75)
+            translateY(20px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
+
+
+/* =====================================================
+   INTRO CROWN
+===================================================== */
+
+.intro-crown {
+
+    width: 92px;
+
+    height: 92px;
+
+    margin: 0 auto 28px;
+
+    border-radius: 26px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    position: relative;
+
+    color: #080808;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff4ad,
+            #d4af37,
+            #8c6714
+        );
+
+    box-shadow:
+        0 0 35px
+        rgba(212,175,55,.35);
+
+    animation:
+        crownFloat 2s ease-in-out infinite;
+}
+
+
+.intro-crown::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: -12px;
+
+    border-radius: 32px;
+
+    border:
+        1px solid
+        rgba(212,175,55,.35);
+
+    animation:
+        crownPulse 2s ease-out infinite;
+}
+
+
+.intro-crown i {
+
+    font-size: 40px;
+
+    animation:
+        crownRotate 1.2s
+        ease-out
+        .3s both;
+}
+
+
+@keyframes crownFloat {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+
+@keyframes crownPulse {
+
+    0% {
+
+        opacity: .8;
+
+        transform: scale(.85);
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform: scale(1.2);
+    }
+}
+
+
+@keyframes crownRotate {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(.3)
+            rotate(-30deg);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotate(0);
+    }
+}
+
+
+/* =====================================================
+   INTRO LOGO
+===================================================== */
+
+.intro-logo {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(48px, 10vw, 76px);
+
+    letter-spacing:
+        12px;
+
+    margin-left: 12px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #d4af37,
+            #fff2a2,
+            #ffffff
+        );
+
+    background-size:
+        250% auto;
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    animation:
+        logoReveal 1.5s ease forwards,
+        goldFlow 3s linear infinite 1.5s;
+}
+
+
+@keyframes logoReveal {
+
+    from {
+
+        opacity: 0;
+
+        letter-spacing:
+            28px;
+
+        filter:
+            blur(10px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        letter-spacing:
+            12px;
+
+        filter:
+            blur(0);
+    }
+}
+
+
+@keyframes goldFlow {
+
+    to {
+
+        background-position:
+            250% center;
+    }
+}
+
+
+/* =====================================================
+   TAGLINE
+===================================================== */
+
+.intro-tagline {
+
+    margin-top: 12px;
+
+    color: #777;
+
+    font-size: 11px;
+
+    letter-spacing: 5px;
+
+    text-transform: uppercase;
+
+    opacity: 0;
+
+    animation:
+        taglineIn .8s ease
+        1s forwards;
+}
+
+
+@keyframes taglineIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(10px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =====================================================
+   LOADING BAR
+===================================================== */
+
+.intro-loader {
+
+    width: 230px;
+
+    height: 2px;
+
+    margin:
+        35px auto 0;
+
+    background:
+        rgba(255,255,255,.10);
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    position: relative;
+}
+
+
+.intro-loader span {
+
+    position: absolute;
+
+    left: 0;
+
+    top: 0;
+
+    height: 100%;
+
+    width: 0%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #8b6815,
+            #d4af37,
+            #fff0a0
+        );
+
+    box-shadow:
+        0 0 15px
+        rgba(212,175,55,.8);
+
+    animation:
+        loaderProgress 2.5s
+        cubic-bezier(.6,0,.4,1)
+        forwards;
+}
+
+
+@keyframes loaderProgress {
+
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+
+.intro-loading {
+
+    margin-top: 13px;
+
+    color: #555;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    animation:
+        loadingBlink 1s infinite;
+}
+
+
+@keyframes loadingBlink {
+
+    50% {
+        opacity: .35;
+    }
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar {
+
+    height: 76px;
+
+    padding:
+        0 6%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+    background:
+        rgba(5,5,5,.82);
+
+    backdrop-filter:
+        blur(18px);
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.07);
+}
+
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    text-decoration: none;
+}
+
+
+.logo-icon {
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #050505;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff2a2,
+            #d4af37,
+            #8a6414
+        );
+
+    box-shadow:
+        0 0 22px
+        rgba(212,175,55,.25);
+}
+
+
+.logo-name {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 24px;
+
+    letter-spacing: 4px;
+
+    color: #fff;
+}
+
+
+.nav-links {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+}
+
+
+.nav-links a {
+
+    color: #999;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    transition: .3s;
+
+    position: relative;
+}
+
+
+.nav-links a::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    bottom: -8px;
+
+    width: 0;
+
+    height: 1px;
+
+    background: #d4af37;
+
+    transition: .3s;
+}
+
+
+.nav-links a:hover {
+
+    color: #fff;
+}
+
+
+.nav-links a:hover::after {
+
+    width: 100%;
+}
+
+
+.login-btn {
+
+    padding:
+        11px 20px;
+
+    border-radius: 10px;
+
+    color: #080808 !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f5df78,
+            #d4af37
+        );
+
+    font-weight: 700;
+
+    box-shadow:
+        0 8px 25px
+        rgba(212,175,55,.15);
+}
+
+
+.login-btn::after {
+
+    display: none !important;
+}
+
+
+.menu-btn {
+
+    display: none;
+
+    color: #d4af37;
+
+    background: none;
+
+    border: none;
+
+    font-size: 22px;
+
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+
+    min-height:
+        calc(100vh - 76px);
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.94) 0%,
+            rgba(0,0,0,.72) 45%,
+            rgba(0,0,0,.20) 100%
+        ),
+
+        url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2000&q=90")
+        center/cover no-repeat;
+}
+
+
+.hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 75% 50%,
+            rgba(212,175,55,.15),
+            transparent 30%
+        );
+}
+
+
+.hero-content {
+
+    max-width: 650px;
+
+    margin-left: 8%;
+
+    position: relative;
+
+    z-index: 2;
+
+    animation:
+        heroIn 1s
+        3s
+        both;
+}
+
+
+@keyframes heroIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(40px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+.hero-label {
+
+    color: #d4af37;
+
+    font-size: 12px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 18px;
+}
+
+
+.hero h1 {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(46px, 7vw, 82px);
+
+    line-height: 1.02;
+
+    margin-bottom: 20px;
+}
+
+
+.hero h1 span {
+
+    color: #d4af37;
+}
+
+
+.hero p {
+
+    color: #aaa;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+
+    max-width: 530px;
+
+    margin-bottom: 32px;
+}
+
+
+.hero-buttons {
+
+    display: flex;
+
+    gap: 13px;
+
+    flex-wrap: wrap;
+}
+
+
+.btn {
+
+    padding:
+        15px 24px;
+
+    border-radius: 11px;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    transition: .35s;
+}
+
+
+.btn-gold {
+
+    color: #080808;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f5df78,
+            #d4af37,
+            #a97c13
+        );
+
+    box-shadow:
+        0 15px 35px
+        rgba(212,175,55,.18);
+}
+
+
+.btn-gold:hover {
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 20px 45px
+        rgba(212,175,55,.3);
+}
+
+
+.btn-outline {
+
+    color: #fff;
+
+    border:
+        1px solid
+        rgba(255,255,255,.2);
+
+    background:
+        rgba(255,255,255,.04);
+}
+
+
+.btn-outline:hover {
+
+    border-color: #d4af37;
+
+    color: #d4af37;
+
+    transform:
+        translateY(-4px);
+}
+
+
+/* =====================================================
+   STATS
+===================================================== */
+
+.stats {
+
+    position: absolute;
+
+    bottom: 35px;
+
+    left: 8%;
+
+    display: flex;
+
+    gap: 45px;
+
+    z-index: 2;
+
+    animation:
+        statsIn 1s
+        3.3s
+        both;
+}
+
+
+@keyframes statsIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(20px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+.stat strong {
+
+    display: block;
+
+    color: #d4af37;
+
+    font-size: 21px;
+}
+
+
+.stat span {
+
+    color: #777;
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+
+/* =====================================================
+   FEATURED
+===================================================== */
+
+.section {
+
+    padding:
+        100px 7%;
+}
+
+
+.section-title {
+
+    text-align: center;
+
+    margin-bottom: 50px;
+}
+
+
+.section-title small {
+
+    color: #d4af37;
+
+    letter-spacing: 3px;
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+}
+
+
+.section-title h2 {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 42px;
+
+    margin-top: 10px;
+}
+
+
+.section-title p {
+
+    color: #777;
+
+    font-size: 13px;
+
+    margin-top: 10px;
+}
+
+
+.car-grid {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 22px;
+}
+
+
+.car-card {
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    transition: .4s;
+}
+
+
+.car-card:hover {
+
+    transform:
+        translateY(-8px);
+
+    border-color:
+        rgba(212,175,55,.3);
+}
+
+
+.car-img {
+
+    height: 220px;
+
+    overflow: hidden;
+}
+
+
+.car-img img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: .6s;
+}
+
+
+.car-card:hover
+.car-img img {
+
+    transform:
+        scale(1.08);
+}
+
+
+.car-info {
+
+    padding: 20px;
+}
+
+
+.car-info small {
+
+    color: #d4af37;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+}
+
+
+.car-info h3 {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 23px;
+
+    margin:
+        5px 0 12px;
+}
+
+
+.car-bottom {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+.car-price {
+
+    color: #fff;
+
+    font-weight: 700;
+}
+
+
+.car-price span {
+
+    color: #777;
+
+    font-size: 10px;
+
+    font-weight: 400;
+}
+
+
+.details-link {
+
+    color: #d4af37;
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+/* =====================================================
+   WHY LUXORA
+===================================================== */
+
+.why {
+
+    background:
+        #080808;
+}
+
+
+.why-grid {
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap: 18px;
+}
+
+
+.why-card {
+
+    padding: 30px 22px;
+
+    border-radius: 18px;
+
+    background:
+        rgba(255,255,255,.025);
+
+    border:
+        1px solid
+        rgba(255,255,255,.07);
+
+    transition: .35s;
+}
+
+
+.why-card:hover {
+
+    transform:
+        translateY(-7px);
+
+    border-color:
+        rgba(212,175,55,.3);
+}
+
+
+.why-card i {
+
+    font-size: 25px;
+
+    color: #d4af37;
+
+    margin-bottom: 18px;
+}
+
+
+.why-card h3 {
+
+    font-size: 15px;
+
+    margin-bottom: 9px;
+}
+
+
+.why-card p {
+
+    color: #777;
+
+    font-size: 11px;
+
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer {
+
+    padding:
+        35px 7%;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.07);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    color: #666;
+
+    font-size: 11px;
+}
+
+
+.footer strong {
+
+    color: #d4af37;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    letter-spacing: 2px;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:850px) {
+
+    .nav-links {
+
+        position: absolute;
+
+        top: 76px;
+
+        left: 0;
+
+        right: 0;
+
+        padding: 20px;
+
+        background:
+            rgba(5,5,5,.97);
+
+        display: none;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 15px;
+
+        border-bottom:
+            1px solid
+            rgba(212,175,55,.15);
+    }
+
+
+    .nav-links.active {
+
+        display: flex;
+    }
+
+
+    .nav-links a {
+
+        padding: 10px;
+    }
+
+
+    .menu-btn {
+
+        display: block;
+    }
+
+
+    .car-grid {
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+
+    .why-grid {
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+}
+
+
+@media(max-width:600px) {
+
+    .navbar {
+
+        height: 68px;
+
+        padding:
+            0 18px;
+    }
+
+
+    .logo-icon {
+
+        width: 36px;
+        height: 36px;
+    }
+
+
+    .logo-name {
+
+        font-size: 20px;
+
+        letter-spacing: 3px;
+    }
+
+
+    .nav-links {
+
+        top: 68px;
+    }
+
+
+    .hero {
+
+        min-height:
+            calc(100vh - 68px);
+
+        background-position:
+            62% center;
+    }
+
+
+    .hero-content {
+
+        margin-left: 20px;
+
+        margin-right: 20px;
+    }
+
+
+    .hero h1 {
+
+        font-size: 48px;
+    }
+
+
+    .hero p {
+
+        font-size: 13px;
+    }
+
+
+    .stats {
+
+        left: 20px;
+
+        bottom: 25px;
+
+        gap: 20px;
+    }
+
+
+    .stat strong {
+
+        font-size: 16px;
+    }
+
+
+    .section {
+
+        padding:
+            70px 18px;
+    }
+
+
+    .section-title h2 {
+
+        font-size: 33px;
+    }
+
+
+    .car-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .why-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .footer {
+
+        flex-direction: column;
+
+        gap: 12px;
+
+        text-align: center;
+    }
+
+}
+
+
+/* =====================================================
+   INTRO MOBILE
+===================================================== */
+
+@media(max-width:500px) {
+
+    .intro-logo {
+
+        font-size: 48px;
+
+        letter-spacing: 7px;
+
+        margin-left: 7px;
+    }
+
+
+    .intro-crown {
+
+        width: 75px;
+        height: 75px;
+
+        border-radius: 21px;
+    }
+
+
+    .intro-crown i {
+
+        font-size: 31px;
+    }
+
+
+    .intro-tagline {
+
+        font-size: 8px;
+
+        letter-spacing: 3px;
+    }
+
+
+    .intro-loader {
+
+        width: 190px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     LUXORA OPENING ANIMATION
+===================================================== -->
+
+<div id="luxoraIntro">
+
+    <div class="intro-content">
+
+
+        <div class="intro-crown">
+
+            <i class="fa-solid fa-crown"></i>
+
+        </div>
+
+
+        <div class="intro-logo">
+
+            LUXORA
+
+        </div>
+
+
+        <div class="intro-tagline">
+
+            Luxury. Freedom. Drive.
+
+        </div>
+
+
+        <div class="intro-loader">
+
+            <span></span>
+
+        </div>
+
+
+        <div class="intro-loading">
+
+            Preparing your journey...
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="navbar">
+
+    <a href="index.html"
+       class="logo">
+
+        <div class="logo-icon">
+
+            <i class="fa-solid fa-crown"></i>
+
+        </div>
+
+        <div class="logo-name">
+
+            LUXORA
+
+        </div>
+
+    </a>
+
+
+    <nav class="nav-links"
+         id="navLinks">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="cars.html">
+            Cars
+        </a>
+
+        <a href="my-bookings.html">
+            My Bookings
+        </a>
+
+        <a href="profile.html">
+            Profile
+        </a>
+
+        <a href="login.html"
+           class="login-btn">
+
+            Login
+
+        </a>
+
+    </nav>
+
+
+    <button
+        class="menu-btn"
+        id="menuBtn">
+
+        <i class="fa-solid fa-bars"></i>
+
+    </button>
+
+</header>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+
+    <div class="hero-content">
+
+        <div class="hero-label">
+
+            Premium Car Rental
+
+        </div>
+
+
+        <h1>
+
+            Drive Your
+
+            <br>
+
+            <span>Dream.</span>
+
+        </h1>
+
+
+        <p>
+
+            Experience the world's finest luxury cars.
+            Choose your car, select your journey and
+            enjoy the road with LUXORA.
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <a
+                href="cars.html"
+                class="btn btn-gold">
+
+                Explore Cars
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+
+            <a
+                href="#featured"
+                class="btn btn-outline">
+
+                View Collection
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- STATS -->
+
+    <div class="stats">
+
+        <div class="stat">
+
+            <strong>50+</strong>
+
+            <span>
+                Luxury Cars
+            </span>
+
+        </div>
+
+
+        <div class="stat">
+
+            <strong>20+</strong>
+
+            <span>
+                Locations
+            </span>
+
+        </div>
+
+
+        <div class="stat">
+
+            <strong>24/7</strong>
+
+            <span>
+                Support
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FEATURED CARS
+===================================================== -->
+
+<section
+    class="section"
+    id="featured">
+
+
+    <div class="section-title">
+
+        <small>
+            Our Collection
+        </small>
+
+        <h2>
+            Featured Cars
+        </h2>
+
+        <p>
+            Select from our premium collection.
+        </p>
+
+    </div>
+
+
+    <div class="car-grid">
+
+
+        <!-- BMW -->
+
+        <article class="car-card">
+
+            <div class="car-img">
+
+                <img
+                    src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1000&q=85"
+                    alt="BMW 7 Series">
+
+            </div>
+
+
+            <div class="car-info">
+
+                <small>
+                    BMW
+                </small>
+
+                <h3>
+                    7 Series
+                </h3>
+
+
+                <div class="car-bottom">
+
+                    <div class="car-price">
+
+                        ₹15,000
+
+                        <span>
+                            / day
+                        </span>
+
+                    </div>
+
+
+                    <a
+                        href="car-details.html"
+                        class="details-link">
+
+                        Details →
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- Mercedes -->
+
+        <article class="car-card">
+
+            <div class="car-img">
+
+                <img
+                    src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1000&q=85"
+                    alt="Mercedes S Class">
+
+            </div>
+
+
+            <div class="car-info">
+
+                <small>
+                    MERCEDES-BENZ
+                </small>
+
+                <h3>
+                    S-Class
+                </h3>
+
+
+                <div class="car-bottom">
+
+                    <div class="car-price">
+
+                        ₹18,000
+
+                        <span>
+                            / day
+                        </span>
+
+                    </div>
+
+
+                    <a
+                        href="car-details.html"
+                        class="details-link">
+
+                        Details →
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- Porsche -->
+
+        <article class="car-card">
+
+            <div class="car-img">
+
+                <img
+                    src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1000&q=85"
+                    alt="Porsche 911">
+
+            </div>
+
+
+            <div class="car-info">
+
+                <small>
+                    PORSCHE
+                </small>
+
+                <h3>
+                    911 Carrera
+                </h3>
+
+
+                <div class="car-bottom">
+
+                    <div class="car-price">
+
+                        ₹20,000
+
+                        <span>
+                            / day
+                        </span>
+
+                    </div>
+
+
+                    <a
+                        href="car-details.html"
+                        class="details-link">
+
+                        Details →
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     WHY LUXORA
+===================================================== -->
+
+<section class="section why">
+
+
+    <div class="section-title">
+
+        <small>
+            The LUXORA Experience
+        </small>
+
+        <h2>
+            Why Choose Us
+        </h2>
+
+    </div>
+
+
+    <div class="why-grid">
+
+
+        <div class="why-card">
+
+            <i class="fa-solid fa-car"></i>
+
+            <h3>
+                Premium Fleet
+            </h3>
+
+            <p>
+                Carefully selected luxury and
+                performance vehicles.
+            </p>
+
+        </div>
+
+
+        <div class="why-card">
+
+            <i class="fa-solid fa-location-dot"></i>
+
+            <h3>
+                Multiple Locations
+            </h3>
+
+            <p>
+                Convenient pickup locations
+                for your journey.
+            </p>
+
+        </div>
+
+
+        <div class="why-card">
+
+            <i class="fa-solid fa-clock"></i>
+
+            <h3>
+                Flexible Booking
+            </h3>
+
+            <p>
+                Choose your pickup and return
+                dates with ease.
+            </p>
+
+        </div>
+
+
+        <div class="why-card">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            <h3>
+                Secure Experience
+            </h3>
+
+            <p>
+                A smooth and protected booking
+                experience from start to finish.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div>
+
+        © 2026 LUXORA.
+        All rights reserved.
+
+    </div>
+
+
+    <strong>
+        LUXURY. FREEDOM. DRIVE.
+    </strong>
+
+</footer>
+
+
+<script>
+
+/* =====================================================
+   LUXORA INTRO ANIMATION
+===================================================== */
+
+const intro =
+    document.getElementById(
+        "luxoraIntro"
+    );
+
+
+/*
+    Intro stays for 3.2 seconds.
+    Then homepage smoothly appears.
+*/
+
+window.addEventListener(
+    "load",
+    function() {
+
+        setTimeout(() => {
+
+            intro.classList.add(
+                "hide"
+            );
+
+            document.body.style.overflow =
+                "auto";
+
+        }, 3200);
+
+    }
+);
+
+
+/* Prevent scrolling while intro is visible */
+
+document.body.style.overflow =
+    "hidden";
+
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+const menuBtn =
+    document.getElementById(
+        "menuBtn"
+    );
+
+const navLinks =
+    document.getElementById(
+        "navLinks"
+    );
+
+
+menuBtn.addEventListener(
+    "click",
+    function() {
+
+        navLinks.classList.toggle(
+            "active"
+        );
+
+
+        const icon =
+            menuBtn.querySelector("i");
+
+
+        if (
+            navLinks.classList.contains(
+                "active"
+            )
+        ) {
+
+            icon.className =
+                "fa-solid fa-xmark";
+
+        }
+
+        else {
+
+            icon.className =
+                "fa-solid fa-bars";
+
+        }
+
+    }
+);
+
+
+/* Close mobile menu */
+
+document.querySelectorAll(
+    ".nav-links a"
+).forEach(link => {
+
+    link.addEventListener(
+        "click",
+        () => {
+
+            navLinks.classList.remove(
+                "active"
+            );
+
+            menuBtn.querySelector("i")
+                .className =
+                "fa-solid fa-bars";
+
+        }
+    );
+
+});
+
+
+/* =====================================================
+   SERVICE WORKER
+===================================================== */
+
+if (
+    "serviceWorker" in navigator
+) {
+
+    window.addEventListener(
+        "load",
+        () => {
+
+            navigator.serviceWorker
+                .register(
+                    "service-worker.js"
+                )
+                .then(() => {
+
+                    console.log(
+                        "LUXORA Service Worker registered."
+                    );
+
+                })
+                .catch(error => {
+
+                    console.log(
+                        "Service Worker error:",
+                        error
+                    );
+
+                });
+
+        }
+    );
+
+}
+
+</script>
+
+
+</body>
+
+</html>

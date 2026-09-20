@@ -1,0 +1,232 @@
+[
+  {
+    "id": "LX-10248",
+    "customer": {
+      "name": "Meet Raj",
+      "email": "meet@example.com",
+      "phone": "+91 98765 43210"
+    },
+    "car": {
+      "id": 1,
+      "name": "BMW 7 Series",
+      "brand": "BMW",
+      "pricePerDay": 15000,
+      "image": "https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1200&q=80"
+    },
+    "booking": {
+      "pickupLocation": "Rajkot Airport",
+      "returnLocation": "Rajkot Airport",
+      "pickupDate": "2026-09-22",
+      "pickupTime": "10:00",
+      "returnDate": "2026-09-25",
+      "returnTime": "10:00",
+      "days": 3
+    },
+    "services": {
+      "insurance": true,
+      "driver": false,
+      "childSeat": false,
+      "delivery": false
+    },
+    "pricing": {
+      "carRental": 45000,
+      "insurance": 4500,
+      "driver": 0,
+      "childSeat": 0,
+      "delivery": 0,
+      "serviceFee": 500,
+      "total": 50000
+    },
+    "payment": {
+      "method": "Card",
+      "status": "Paid",
+      "transactionId": "TXN-LX10248"
+    },
+    "status": "Confirmed",
+    "createdAt": "2026-09-18T14:30:00"
+  },
+  {
+    "id": "LX-10247",
+    "customer": {
+      "name": "Arjun Kumar",
+      "email": "arjun@example.com",
+      "phone": "+91 98254 12345"
+    },
+    "car": {
+      "id": 2,
+      "name": "Mercedes S-Class",
+      "brand": "Mercedes-Benz",
+      "pricePerDay": 18000,
+      "image": "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1200&q=80"
+    },
+    "booking": {
+      "pickupLocation": "Ahmedabad Airport",
+      "returnLocation": "Ahmedabad Airport",
+      "pickupDate": "2026-09-24",
+      "pickupTime": "09:00",
+      "returnDate": "2026-09-27",
+      "returnTime": "09:00",
+      "days": 3
+    },
+    "services": {
+      "insurance": true,
+      "driver": true,
+      "childSeat": false,
+      "delivery": false
+    },
+    "pricing": {
+      "carRental": 54000,
+      "insurance": 4500,
+      "driver": 9000,
+      "childSeat": 0,
+      "delivery": 0,
+      "serviceFee": 500,
+      "total": 68000
+    },
+    "payment": {
+      "method": "UPI",
+      "status": "Paid",
+      "transactionId": "TXN-LX10247"
+    },
+    "status": "Confirmed",
+    "createdAt": "2026-09-17T11:15:00"
+  },
+  {
+    "id": "LX-10246",
+    "customer": {
+      "name": "Rahul Shah",
+      "email": "rahul@example.com",
+      "phone": "+91 99090 45678"
+    },
+    "car": {
+      "id": 3,
+      "name": "Porsche 911",
+      "brand": "Porsche",
+      "pricePerDay": 22000,
+      "image": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80"
+    },
+    "booking": {
+      "pickupLocation": "Rajkot City",
+      "returnLocation": "Rajkot City",
+      "pickupDate": "2026-09-28",
+      "pickupTime": "11:00",
+      "returnDate": "2026-09-30",
+      "returnTime": "11:00",
+      "days": 2
+    },
+    "services": {
+      "insurance": true,
+      "driver": false,
+      "childSeat": false,
+      "delivery": false
+    },
+    "pricing": {
+      "carRental": 44000,
+      "insurance": 3000,
+      "driver": 0,
+      "childSeat": 0,
+      "delivery": 0,
+      "serviceFee": 500,
+      "total": 47500
+    },
+    "payment": {
+      "method": "Card",
+      "status": "Pending",
+      "transactionId": null
+    },
+    "status": "Pending",
+    "createdAt": "2026-09-19T09:45:00"
+  },
+  {
+    "id": "LX-10245",
+    "customer": {
+      "name": "Neel Patel",
+      "email": "neel@example.com",
+      "phone": "+91 98790 76543"
+    },
+    "car": {
+      "id": 5,
+      "name": "Range Rover Autobiography",
+      "brand": "Range Rover",
+      "pricePerDay": 25000,
+      "image": "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1200&q=80"
+    },
+    "booking": {
+      "pickupLocation": "Vadodara Airport",
+      "returnLocation": "Vadodara Airport",
+      "pickupDate": "2026-09-15",
+      "pickupTime": "08:00",
+      "returnDate": "2026-09-17",
+      "returnTime": "08:00",
+      "days": 2
+    },
+    "services": {
+      "insurance": true,
+      "driver": true,
+      "childSeat": false,
+      "delivery": true
+    },
+    "pricing": {
+      "carRental": 50000,
+      "insurance": 3000,
+      "driver": 6000,
+      "childSeat": 0,
+      "delivery": 1000,
+      "serviceFee": 500,
+      "total": 60500
+    },
+    "payment": {
+      "method": "Net Banking",
+      "status": "Paid",
+      "transactionId": "TXN-LX10245"
+    },
+    "status": "Completed",
+    "createdAt": "2026-09-12T16:20:00"
+  },
+  {
+    "id": "LX-10244",
+    "customer": {
+      "name": "Vikram Patel",
+      "email": "vikram@example.com",
+      "phone": "+91 98123 65432"
+    },
+    "car": {
+      "id": 4,
+      "name": "Audi A8",
+      "brand": "Audi",
+      "pricePerDay": 14000,
+      "image": "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1200&q=80"
+    },
+    "booking": {
+      "pickupLocation": "Ahmedabad City",
+      "returnLocation": "Ahmedabad City",
+      "pickupDate": "2026-09-12",
+      "pickupTime": "10:30",
+      "returnDate": "2026-09-14",
+      "returnTime": "10:30",
+      "days": 2
+    },
+    "services": {
+      "insurance": true,
+      "driver": false,
+      "childSeat": false,
+      "delivery": false
+    },
+    "pricing": {
+      "carRental": 28000,
+      "insurance": 3000,
+      "driver": 0,
+      "childSeat": 0,
+      "delivery": 0,
+      "serviceFee": 500,
+      "total": 31500
+    },
+    "payment": {
+      "method": "Card",
+      "status": "Refunded",
+      "transactionId": "TXN-LX10244"
+    },
+    "status": "Cancelled",
+    "createdAt": "2026-09-10T13:10:00"
+  }
+]

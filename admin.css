@@ -1,0 +1,1669 @@
+/* =========================================================
+   LUXORA ADMIN CSS
+   Premium Black + Gold Admin Panel
+   ========================================================= */
+
+:root{
+    --bg:#070707;
+    --sidebar:#0d0d0d;
+    --card:#111111;
+    --card-hover:#151515;
+    --border:#262626;
+
+    --gold:#d4af37;
+    --gold-light:#f3d56b;
+    --gold-dark:#9d7c18;
+
+    --white:#ffffff;
+    --text:#dddddd;
+    --muted:#858585;
+    --dark-muted:#555555;
+
+    --green:#5fca89;
+    --red:#e56b6b;
+    --orange:#e5a83d;
+
+    --radius:14px;
+    --transition:.3s ease;
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    background:var(--bg);
+    color:var(--white);
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+    line-height:1.5;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button,
+input,
+select,
+textarea{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar{
+    width:7px;
+}
+
+::-webkit-scrollbar-track{
+    background:#090909;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#333;
+    border-radius:10px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:var(--gold-dark);
+}
+
+
+/* =========================================================
+   ADMIN LAYOUT
+   ========================================================= */
+
+.admin-layout{
+    min-height:100vh;
+}
+
+.admin-main{
+    margin-left:250px;
+    min-height:100vh;
+    background:var(--bg);
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.admin-sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:250px;
+    height:100vh;
+
+    background:linear-gradient(
+        180deg,
+        #0d0d0d 0%,
+        #090909 100%
+    );
+
+    border-right:1px solid var(--border);
+
+    padding:24px 16px;
+
+    overflow-y:auto;
+
+    z-index:1000;
+}
+
+
+/* LOGO */
+
+.admin-logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:0 10px 25px;
+
+    border-bottom:1px solid #222;
+}
+
+.admin-logo-icon{
+    width:43px;
+    height:43px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold),
+            var(--gold-light)
+        );
+
+    color:#080808;
+
+    border-radius:12px;
+
+    font-size:19px;
+}
+
+.admin-logo h2{
+    font-size:21px;
+    letter-spacing:3px;
+    line-height:1;
+}
+
+.admin-logo span{
+    display:block;
+
+    margin-top:5px;
+
+    color:#777;
+
+    font-size:9px;
+    letter-spacing:2px;
+}
+
+
+/* MENU TITLE */
+
+.admin-menu-title{
+    margin:28px 12px 10px;
+
+    color:#5f5f5f;
+
+    font-size:10px;
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+}
+
+
+/* NAV */
+
+.admin-nav{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+}
+
+.admin-nav a{
+    position:relative;
+
+    display:flex;
+    align-items:center;
+
+    gap:13px;
+
+    padding:13px 14px;
+
+    border-radius:10px;
+
+    color:#929292;
+
+    font-size:13px;
+
+    transition:var(--transition);
+}
+
+.admin-nav a i{
+    width:20px;
+    text-align:center;
+
+    font-size:14px;
+}
+
+.admin-nav a:hover{
+    background:#15130d;
+    color:var(--gold-light);
+}
+
+.admin-nav a.active{
+    background:
+        linear-gradient(
+            90deg,
+            #1b170b,
+            #131109
+        );
+
+    color:var(--gold-light);
+}
+
+.admin-nav a.active::before{
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    top:9px;
+
+    width:3px;
+    height:28px;
+
+    background:var(--gold);
+
+    border-radius:0 4px 4px 0;
+}
+
+
+/* SIDEBAR ADMIN USER */
+
+.admin-user{
+    position:absolute;
+
+    left:16px;
+    right:16px;
+    bottom:20px;
+
+    display:flex;
+    align-items:center;
+
+    gap:10px;
+
+    padding:13px;
+
+    background:#141414;
+
+    border:1px solid #252525;
+
+    border-radius:12px;
+}
+
+.admin-user-avatar{
+    width:38px;
+    height:38px;
+
+    flex-shrink:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold),
+            var(--gold-light)
+        );
+
+    color:#111;
+
+    font-weight:bold;
+    font-size:12px;
+}
+
+.admin-user-info strong{
+    display:block;
+
+    color:#eee;
+
+    font-size:12px;
+}
+
+.admin-user-info small{
+    display:block;
+
+    color:#666;
+
+    margin-top:2px;
+
+    font-size:10px;
+}
+
+
+/* =========================================================
+   TOPBAR
+   ========================================================= */
+
+.admin-topbar{
+    height:75px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 32px;
+
+    background:#0b0b0b;
+
+    border-bottom:1px solid var(--border);
+
+    position:sticky;
+    top:0;
+
+    z-index:900;
+}
+
+.admin-top-title h3{
+    font-size:19px;
+    font-weight:600;
+}
+
+.admin-top-title p{
+    margin-top:3px;
+
+    color:#666;
+
+    font-size:11px;
+}
+
+
+/* TOP ACTIONS */
+
+.admin-top-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.admin-icon-btn{
+    width:40px;
+    height:40px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#121212;
+
+    color:#999;
+
+    border:1px solid #292929;
+
+    border-radius:10px;
+
+    transition:var(--transition);
+}
+
+.admin-icon-btn:hover{
+    color:var(--gold);
+    border-color:#66551e;
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.admin-content{
+    padding:32px;
+    max-width:1600px;
+    margin:auto;
+}
+
+
+/* PAGE HEADER */
+
+.admin-page-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    gap:20px;
+
+    margin-bottom:28px;
+}
+
+.admin-page-header h1{
+    font-size:28px;
+    font-weight:600;
+}
+
+.admin-page-header p{
+    margin-top:6px;
+
+    color:var(--muted);
+
+    font-size:12px;
+}
+
+
+/* =========================================================
+   GOLD BUTTON
+   ========================================================= */
+
+.btn-gold{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:8px;
+
+    min-height:43px;
+
+    padding:0 18px;
+
+    border:0;
+
+    border-radius:9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold),
+            var(--gold-light)
+        );
+
+    color:#101010;
+
+    font-size:12px;
+    font-weight:bold;
+
+    transition:var(--transition);
+}
+
+.btn-gold:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 8px 25px rgba(212,175,55,.18);
+}
+
+
+/* SECONDARY BUTTON */
+
+.btn-dark{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:8px;
+
+    min-height:43px;
+
+    padding:0 18px;
+
+    background:#151515;
+
+    color:#bbb;
+
+    border:1px solid #2a2a2a;
+
+    border-radius:9px;
+
+    font-size:12px;
+
+    transition:var(--transition);
+}
+
+.btn-dark:hover{
+    color:#fff;
+    border-color:#444;
+}
+
+
+/* DANGER */
+
+.btn-danger{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:7px;
+
+    padding:9px 13px;
+
+    background:#241010;
+
+    color:var(--red);
+
+    border:1px solid #482020;
+
+    border-radius:8px;
+
+    font-size:11px;
+}
+
+
+/* =========================================================
+   STAT GRID
+   ========================================================= */
+
+.admin-stats{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:18px;
+
+    margin-bottom:24px;
+}
+
+.admin-stat-card{
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius);
+
+    padding:20px;
+
+    transition:var(--transition);
+}
+
+.admin-stat-card:hover{
+    background:var(--card-hover);
+
+    border-color:#393939;
+}
+
+.admin-stat-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.admin-stat-icon{
+    width:43px;
+    height:43px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:11px;
+
+    background:#1b180e;
+
+    color:var(--gold);
+
+    font-size:17px;
+}
+
+.admin-stat-label{
+    color:#777;
+
+    font-size:11px;
+}
+
+.admin-stat-value{
+    margin-top:8px;
+
+    font-size:25px;
+
+    font-weight:600;
+}
+
+.admin-stat-change{
+    margin-top:10px;
+
+    font-size:10px;
+}
+
+.admin-stat-change.up{
+    color:var(--green);
+}
+
+.admin-stat-change.down{
+    color:var(--red);
+}
+
+
+/* =========================================================
+   COMMON PANEL
+   ========================================================= */
+
+.admin-panel{
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius);
+
+    padding:23px;
+}
+
+.admin-panel-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:15px;
+
+    margin-bottom:22px;
+}
+
+.admin-panel-header h3{
+    font-size:16px;
+    font-weight:600;
+}
+
+.admin-panel-header span{
+    color:#666;
+    font-size:11px;
+}
+
+
+/* =========================================================
+   GRID
+   ========================================================= */
+
+.admin-grid-2{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:20px;
+}
+
+.admin-grid-3{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:20px;
+}
+
+.admin-grid-4{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:18px;
+}
+
+
+/* =========================================================
+   SEARCH + FILTER BAR
+   ========================================================= */
+
+.admin-toolbar{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    padding:16px;
+
+    margin-bottom:20px;
+
+    background:#101010;
+
+    border:1px solid var(--border);
+
+    border-radius:12px;
+}
+
+.admin-search{
+    position:relative;
+
+    flex:1;
+
+    min-width:220px;
+}
+
+.admin-search i{
+    position:absolute;
+
+    left:13px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:#666;
+
+    font-size:13px;
+}
+
+.admin-search input{
+    width:100%;
+
+    height:42px;
+
+    padding:0 14px 0 38px;
+
+    background:#080808;
+
+    color:#ddd;
+
+    border:1px solid #292929;
+
+    border-radius:8px;
+
+    outline:none;
+}
+
+.admin-search input:focus{
+    border-color:#6d5b22;
+}
+
+.admin-filter{
+    height:42px;
+
+    min-width:150px;
+
+    padding:0 12px;
+
+    background:#080808;
+
+    color:#aaa;
+
+    border:1px solid #292929;
+
+    border-radius:8px;
+
+    outline:none;
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.admin-form{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.form-group label{
+    color:#aaa;
+
+    font-size:11px;
+
+    font-weight:500;
+}
+
+.form-group label span{
+    color:var(--gold);
+}
+
+.form-control{
+    width:100%;
+
+    min-height:44px;
+
+    padding:0 13px;
+
+    background:#090909;
+
+    color:#ddd;
+
+    border:1px solid #292929;
+
+    border-radius:9px;
+
+    outline:none;
+
+    transition:var(--transition);
+}
+
+textarea.form-control{
+    padding:12px 13px;
+
+    min-height:120px;
+
+    resize:vertical;
+}
+
+.form-control:focus{
+    border-color:#796522;
+
+    box-shadow:
+        0 0 0 2px rgba(212,175,55,.06);
+}
+
+.form-row{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:16px;
+}
+
+.form-row-3{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:16px;
+}
+
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.table-container{
+    width:100%;
+
+    overflow-x:auto;
+}
+
+.admin-table{
+    width:100%;
+
+    min-width:750px;
+
+    border-collapse:collapse;
+}
+
+.admin-table th{
+    padding:14px;
+
+    text-align:left;
+
+    color:#666;
+
+    font-size:9px;
+
+    font-weight:500;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+    border-bottom:1px solid #292929;
+}
+
+.admin-table td{
+    padding:15px 14px;
+
+    color:#aaa;
+
+    font-size:12px;
+
+    border-bottom:1px solid #1e1e1e;
+}
+
+.admin-table tbody tr{
+    transition:var(--transition);
+}
+
+.admin-table tbody tr:hover{
+    background:#141414;
+}
+
+.admin-table td strong{
+    color:#eee;
+}
+
+
+/* TABLE IMAGE */
+
+.table-car{
+    width:55px;
+    height:38px;
+
+    object-fit:cover;
+
+    border-radius:7px;
+
+    border:1px solid #292929;
+}
+
+
+/* =========================================================
+   STATUS BADGES
+   ========================================================= */
+
+.status{
+    display:inline-flex;
+
+    align-items:center;
+
+    padding:5px 9px;
+
+    border-radius:20px;
+
+    font-size:9px;
+
+    font-weight:600;
+}
+
+.status::before{
+    content:"";
+
+    width:5px;
+    height:5px;
+
+    margin-right:5px;
+
+    border-radius:50%;
+
+    background:currentColor;
+}
+
+.status.available,
+.status.confirmed,
+.status.completed,
+.status.active{
+    background:#102218;
+    color:var(--green);
+}
+
+.status.pending{
+    background:#28210c;
+    color:var(--gold);
+}
+
+.status.cancelled,
+.status.inactive{
+    background:#281010;
+    color:var(--red);
+}
+
+
+/* =========================================================
+   ACTION BUTTONS
+   ========================================================= */
+
+.action-buttons{
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.action-btn{
+    width:32px;
+    height:32px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#151515;
+
+    color:#888;
+
+    border:1px solid #292929;
+
+    border-radius:7px;
+
+    transition:var(--transition);
+}
+
+.action-btn:hover{
+    color:var(--gold);
+    border-color:#66551e;
+}
+
+.action-btn.delete:hover{
+    color:var(--red);
+    border-color:#552222;
+}
+
+
+/* =========================================================
+   CAR GRID
+   ========================================================= */
+
+.admin-car-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:20px;
+}
+
+.admin-car-card{
+    overflow:hidden;
+
+    background:#101010;
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    transition:var(--transition);
+}
+
+.admin-car-card:hover{
+    border-color:#4a401f;
+
+    transform:translateY(-3px);
+}
+
+.admin-car-image{
+    position:relative;
+
+    height:190px;
+
+    overflow:hidden;
+
+    background:#151515;
+}
+
+.admin-car-image img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+}
+
+.admin-car-status{
+    position:absolute;
+
+    top:12px;
+    right:12px;
+
+    padding:5px 9px;
+
+    border-radius:20px;
+
+    background:#101810;
+
+    color:var(--green);
+
+    font-size:9px;
+
+    border:1px solid #27452f;
+}
+
+.admin-car-content{
+    padding:17px;
+}
+
+.admin-car-brand{
+    color:var(--gold);
+
+    font-size:9px;
+
+    letter-spacing:1px;
+
+    text-transform:uppercase;
+}
+
+.admin-car-name{
+    margin-top:5px;
+
+    font-size:17px;
+}
+
+.admin-car-info{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:8px;
+
+    margin:14px 0;
+
+    color:#777;
+
+    font-size:10px;
+}
+
+.admin-car-info span{
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+}
+
+.admin-car-info i{
+    color:#8f7625;
+}
+
+.admin-car-footer{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding-top:13px;
+
+    border-top:1px solid #242424;
+}
+
+.admin-car-price{
+    color:#fff;
+
+    font-size:17px;
+
+    font-weight:bold;
+}
+
+.admin-car-price small{
+    color:#666;
+
+    font-size:9px;
+
+    font-weight:normal;
+}
+
+
+/* =========================================================
+   PAGINATION
+   ========================================================= */
+
+.admin-pagination{
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:6px;
+
+    margin-top:22px;
+}
+
+.admin-pagination a{
+    width:34px;
+    height:34px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#121212;
+
+    color:#777;
+
+    border:1px solid #282828;
+
+    border-radius:7px;
+
+    font-size:11px;
+
+    transition:var(--transition);
+}
+
+.admin-pagination a:hover,
+.admin-pagination a.active{
+    background:#1b180d;
+
+    color:var(--gold);
+
+    border-color:#66551e;
+}
+
+
+/* =========================================================
+   CHECKBOX
+   ========================================================= */
+
+.checkbox-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:12px;
+}
+
+.checkbox-item{
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:10px;
+
+    background:#0b0b0b;
+
+    border:1px solid #242424;
+
+    border-radius:8px;
+
+    color:#aaa;
+
+    font-size:11px;
+}
+
+.checkbox-item input{
+    accent-color:var(--gold);
+}
+
+
+/* =========================================================
+   RADIO
+   ========================================================= */
+
+.radio-group{
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+}
+
+.radio-item{
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    padding:10px 13px;
+
+    background:#0b0b0b;
+
+    border:1px solid #292929;
+
+    border-radius:8px;
+
+    color:#aaa;
+
+    font-size:11px;
+}
+
+.radio-item input{
+    accent-color:var(--gold);
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.empty-state{
+    padding:60px 20px;
+
+    text-align:center;
+
+    color:#666;
+}
+
+.empty-state i{
+    color:#393939;
+
+    font-size:42px;
+
+    margin-bottom:15px;
+}
+
+.empty-state h3{
+    color:#aaa;
+
+    font-size:16px;
+
+    margin-bottom:6px;
+}
+
+.empty-state p{
+    font-size:11px;
+}
+
+
+/* =========================================================
+   REPORT / CHART AREA
+   ========================================================= */
+
+.chart-panel{
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius);
+
+    padding:22px;
+}
+
+.chart-bars{
+    height:250px;
+
+    display:flex;
+
+    align-items:flex-end;
+
+    justify-content:space-around;
+
+    gap:15px;
+
+    border-bottom:1px solid #292929;
+}
+
+.chart-bar-item{
+    height:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:flex-end;
+
+    align-items:center;
+
+    flex:1;
+
+    gap:8px;
+}
+
+.chart-bar{
+    width:38px;
+
+    min-height:20px;
+
+    border-radius:6px 6px 0 0;
+
+    background:
+        linear-gradient(
+            to top,
+            var(--gold-dark),
+            var(--gold-light)
+        );
+}
+
+.chart-bar-label{
+    color:#666;
+
+    font-size:10px;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.admin-footer{
+    padding:25px 32px;
+
+    margin-top:20px;
+
+    border-top:1px solid #1d1d1d;
+
+    color:#555;
+
+    font-size:10px;
+
+    text-align:center;
+}
+
+
+/* =========================================================
+   MOBILE MENU BUTTON
+   ========================================================= */
+
+.admin-menu-toggle{
+    display:none;
+
+    width:40px;
+    height:40px;
+
+    align-items:center;
+    justify-content:center;
+
+    background:#141414;
+
+    color:#aaa;
+
+    border:1px solid #292929;
+
+    border-radius:9px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media(max-width:1200px){
+
+    .admin-stats{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .admin-car-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .admin-grid-4{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+}
+
+
+@media(max-width:900px){
+
+    .admin-sidebar{
+        width:75px;
+
+        padding:20px 10px;
+    }
+
+    .admin-main{
+        margin-left:75px;
+    }
+
+    .admin-logo{
+        justify-content:center;
+
+        padding-left:0;
+        padding-right:0;
+    }
+
+    .admin-logo h2,
+    .admin-logo span,
+    .admin-menu-title,
+    .admin-nav a span,
+    .admin-user-info{
+        display:none;
+    }
+
+    .admin-nav a{
+        justify-content:center;
+
+        padding:14px 10px;
+    }
+
+    .admin-nav a.active::before{
+        display:none;
+    }
+
+    .admin-user{
+        left:10px;
+        right:10px;
+
+        justify-content:center;
+
+        padding:8px;
+    }
+
+    .admin-content{
+        padding:25px 20px;
+    }
+
+    .admin-topbar{
+        padding:0 20px;
+    }
+
+    .admin-grid-3{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+}
+
+
+@media(max-width:700px){
+
+    .admin-page-header{
+        align-items:flex-start;
+
+        flex-direction:column;
+    }
+
+    .admin-page-header .btn-gold{
+        width:100%;
+    }
+
+    .admin-stats{
+        grid-template-columns:1fr;
+    }
+
+    .admin-grid-2,
+    .admin-grid-3,
+    .admin-grid-4{
+        grid-template-columns:1fr;
+    }
+
+    .admin-car-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-row,
+    .form-row-3{
+        grid-template-columns:1fr;
+    }
+
+    .checkbox-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .admin-toolbar{
+        align-items:stretch;
+
+        flex-direction:column;
+    }
+
+    .admin-search{
+        width:100%;
+    }
+
+    .admin-filter{
+        width:100%;
+    }
+
+}
+
+
+@media(max-width:500px){
+
+    .admin-content{
+        padding:20px 14px;
+    }
+
+    .admin-topbar{
+        height:65px;
+        padding:0 14px;
+    }
+
+    .admin-top-title h3{
+        font-size:16px;
+    }
+
+    .admin-top-title p{
+        display:none;
+    }
+
+    .admin-top-actions{
+        display:none;
+    }
+
+    .admin-page-header h1{
+        font-size:23px;
+    }
+
+    .admin-panel{
+        padding:17px;
+    }
+
+    .admin-stat-card{
+        padding:17px;
+    }
+
+    .checkbox-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+
+/* =========================================================
+   UTILITY CLASSES
+   ========================================================= */
+
+.text-gold{
+    color:var(--gold);
+}
+
+.text-muted{
+    color:var(--muted);
+}
+
+.text-green{
+    color:var(--green);
+}
+
+.text-red{
+    color:var(--red);
+}
+
+.text-center{
+    text-align:center;
+}
+
+.mt-10{
+    margin-top:10px;
+}
+
+.mt-20{
+    margin-top:20px;
+}
+
+.mt-30{
+    margin-top:30px;
+}
+
+.mb-10{
+    margin-bottom:10px;
+}
+
+.mb-20{
+    margin-bottom:20px;
+}
+
+.mb-30{
+    margin-bottom:30px;
+}
+
+.w-100{
+    width:100%;
+}
+
+.hidden{
+    display:none;
+}

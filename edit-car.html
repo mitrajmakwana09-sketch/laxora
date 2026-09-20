@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Car | LUXORA Admin</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: #090909;
+            color: #fff;
+        }
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100vh;
+            background: #0d0d0d;
+            border-right: 1px solid #252525;
+            padding: 28px 18px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0 12px 35px;
+            border-bottom: 1px solid #252525;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            border: 1px solid #d8b54c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #d8b54c;
+            font-size: 19px;
+        }
+
+        .logo h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 21px;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            display: block;
+            color: #a98b32;
+            font-size: 8px;
+            letter-spacing: 3px;
+            margin-top: 2px;
+        }
+
+        .menu-title {
+            color: #666;
+            font-size: 10px;
+            letter-spacing: 2px;
+            margin: 28px 12px 12px;
+            text-transform: uppercase;
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-bottom: 5px;
+        }
+
+        .nav-menu a {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 13px 14px;
+            color: #999;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 13px;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu .active a {
+            color: #d8b54c;
+            background: #19160d;
+            border-left: 3px solid #d8b54c;
+        }
+
+        .nav-icon {
+            width: 20px;
+            text-align: center;
+        }
+
+        /* ADMIN */
+
+        .admin-profile {
+            position: absolute;
+            bottom: 25px;
+            left: 18px;
+            right: 18px;
+            padding: 15px;
+            background: #141414;
+            border: 1px solid #292929;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .admin-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #d8b54c, #765c17);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-weight: 800;
+            font-size: 12px;
+        }
+
+        .admin-profile h4 {
+            font-size: 12px;
+        }
+
+        .admin-profile p {
+            color: #777;
+            font-size: 10px;
+            margin-top: 3px;
+        }
+
+        /* ================= MAIN ================= */
+
+        .main {
+            margin-left: 250px;
+            min-height: 100vh;
+        }
+
+        /* ================= TOPBAR ================= */
+
+        .topbar {
+            height: 78px;
+            padding: 0 35px;
+            border-bottom: 1px solid #222;
+            background: #0b0b0b;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .page-title h1 {
+            font-size: 21px;
+        }
+
+        .page-title p {
+            color: #666;
+            font-size: 11px;
+            margin-top: 5px;
+        }
+
+        .top-right {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .notification {
+            width: 38px;
+            height: 38px;
+            border: 1px solid #292929;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+        }
+
+        /* ================= CONTENT ================= */
+
+        .content {
+            padding: 32px 35px;
+        }
+
+        .breadcrumb {
+            color: #666;
+            font-size: 10px;
+            margin-bottom: 25px;
+        }
+
+        .breadcrumb span {
+            color: #d8b54c;
+        }
+
+        /* ================= EDIT GRID ================= */
+
+        .edit-grid {
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            gap: 22px;
+            align-items: start;
+        }
+
+        .panel {
+            background: #111;
+            border: 1px solid #252525;
+            border-radius: 13px;
+            overflow: hidden;
+        }
+
+        .panel-header {
+            padding: 20px 22px;
+            border-bottom: 1px solid #252525;
+        }
+
+        .panel-header h2 {
+            font-size: 15px;
+        }
+
+        .panel-header p {
+            color: #666;
+            font-size: 10px;
+            margin-top: 5px;
+        }
+
+        /* ================= CAR PREVIEW ================= */
+
+        .car-preview {
+            padding: 18px;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 235px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid #2b2b2b;
+            display: block;
+        }
+
+        .image-label {
+            margin-top: 15px;
+            color: #777;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .image-url {
+            margin-top: 8px;
+            width: 100%;
+            padding: 11px;
+            background: #090909;
+            border: 1px solid #292929;
+            color: #777;
+            border-radius: 7px;
+            font-size: 9px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 65px;
+            object-fit: cover;
+            border-radius: 7px;
+            border: 1px solid #292929;
+        }
+
+        .car-name-preview {
+            padding: 18px 2px 5px;
+        }
+
+        .car-name-preview h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 22px;
+        }
+
+        .car-name-preview p {
+            color: #777;
+            font-size: 10px;
+            margin-top: 5px;
+        }
+
+        .preview-price {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #252525;
+        }
+
+        .preview-price span {
+            color: #666;
+            font-size: 9px;
+        }
+
+        .preview-price strong {
+            display: block;
+            color: #d8b54c;
+            font-size: 23px;
+            margin-top: 4px;
+        }
+
+        /* ================= FORM ================= */
+
+        .form-panel {
+            padding-bottom: 22px;
+        }
+
+        .form-body {
+            padding: 25px;
+        }
+
+        .section-title {
+            color: #d8b54c;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 17px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #252525;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 17px;
+            margin-bottom: 27px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .field.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            color: #999;
+            font-size: 10px;
+            letter-spacing: .3px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            background: #090909;
+            border: 1px solid #2a2a2a;
+            color: #fff;
+            outline: none;
+            border-radius: 7px;
+            padding: 12px 13px;
+            font-family: inherit;
+            font-size: 11px;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #9d812b;
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        textarea {
+            min-height: 95px;
+            resize: vertical;
+        }
+
+        .price-input {
+            position: relative;
+        }
+
+        .price-symbol {
+            position: absolute;
+            left: 13px;
+            top: 12px;
+            color: #d8b54c;
+            font-size: 12px;
+        }
+
+        .price-input input {
+            padding-left: 30px;
+        }
+
+        /* ================= STATUS ================= */
+
+        .status-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 5px;
+        }
+
+        .status-option {
+            background: #0b0b0b;
+            border: 1px solid #292929;
+            padding: 14px;
+            border-radius: 8px;
+        }
+
+        .status-option strong {
+            display: block;
+            font-size: 11px;
+        }
+
+        .status-option p {
+            color: #666;
+            font-size: 9px;
+            margin-top: 4px;
+        }
+
+        .radio-row {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin-top: 10px;
+        }
+
+        .radio-row input {
+            width: auto;
+            accent-color: #d8b54c;
+        }
+
+        .radio-row label {
+            color: #aaa;
+            font-size: 9px;
+        }
+
+        /* ================= FEATURES ================= */
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .feature {
+            border: 1px solid #292929;
+            background: #0b0b0b;
+            border-radius: 7px;
+            padding: 11px;
+        }
+
+        .feature input {
+            width: auto;
+            accent-color: #d8b54c;
+            margin-right: 7px;
+        }
+
+        .feature label {
+            color: #aaa;
+            font-size: 9px;
+        }
+
+        /* ================= BUTTONS ================= */
+
+        .form-actions {
+            padding: 20px 25px 0;
+            border-top: 1px solid #252525;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 12px 22px;
+            border-radius: 7px;
+            font-size: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            border: 1px solid #333;
+        }
+
+        .cancel-btn {
+            background: #151515;
+            color: #aaa;
+        }
+
+        .save-btn {
+            background: #d8b54c;
+            border-color: #d8b54c;
+            color: #090909;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width:1100px) {
+
+            .edit-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .car-preview {
+                display: grid;
+                grid-template-columns: 300px 1fr;
+                gap: 20px;
+            }
+
+            .main-image {
+                height: 200px;
+            }
+
+            .car-name-preview {
+                padding-top: 0;
+            }
+
+        }
+
+        @media(max-width:800px) {
+
+            .sidebar {
+                width: 75px;
+                padding: 20px 10px;
+            }
+
+            .logo {
+                justify-content: center;
+                padding: 0 0 25px;
+            }
+
+            .logo h2,
+            .logo span,
+            .menu-title,
+            .nav-menu a span,
+            .admin-profile > div {
+                display: none;
+            }
+
+            .nav-menu a {
+                justify-content: center;
+                padding: 14px 5px;
+            }
+
+            .admin-profile {
+                left: 10px;
+                right: 10px;
+                justify-content: center;
+                padding: 8px;
+            }
+
+            .main {
+                margin-left: 75px;
+            }
+
+            .topbar {
+                padding: 0 20px;
+            }
+
+            .content {
+                padding: 25px 18px;
+            }
+
+        }
+
+        @media(max-width:600px) {
+
+            .page-title h1 {
+                font-size: 17px;
+            }
+
+            .page-title p {
+                display: none;
+            }
+
+            .car-preview {
+                display: block;
+            }
+
+            .main-image {
+                height: 210px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .field.full {
+                grid-column: auto;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .status-box {
+                grid-template-columns: 1fr;
+            }
+
+            .form-actions {
+                flex-direction: column-reverse;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">♛</div>
+
+            <div>
+                <h2>LUXORA</h2>
+                <span>ADMIN PANEL</span>
+            </div>
+
+        </div>
+
+        <div class="menu-title">Main Menu</div>
+
+        <ul class="nav-menu">
+
+            <li>
+                <a href="dashboard.html">
+                    <div class="nav-icon">▦</div>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="cars.html">
+                    <div class="nav-icon">▰</div>
+                    <span>Cars</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="bookings.html">
+                    <div class="nav-icon">▤</div>
+                    <span>Bookings</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="customers.html">
+                    <div class="nav-icon">♙</div>
+                    <span>Customers</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="reports.html">
+                    <div class="nav-icon">▥</div>
+                    <span>Reports</span>
+                </a>
+            </li>
+
+        </ul>
+
+        <div class="menu-title">Settings</div>
+
+        <ul class="nav-menu">
+
+            <li>
+                <a href="#">
+                    <div class="nav-icon">⚙</div>
+                    <span>Settings</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="../index.html">
+                    <div class="nav-icon">↩</div>
+                    <span>Back to Website</span>
+                </a>
+            </li>
+
+        </ul>
+
+        <div class="admin-profile">
+
+            <div class="admin-avatar">MR</div>
+
+            <div>
+                <h4>Meet Raj</h4>
+                <p>Administrator</p>
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div class="page-title">
+
+                <h1>Edit Car</h1>
+
+                <p>
+                    Update luxury vehicle information
+                </p>
+
+            </div>
+
+            <div class="top-right">
+
+                <div class="notification">
+                    ♢
+                </div>
+
+                <div class="admin-avatar">
+                    MR
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= CONTENT ================= -->
+
+        <section class="content">
+
+            <div class="breadcrumb">
+
+                Cars &nbsp; / &nbsp;
+                <span>Edit BMW 7 Series</span>
+
+            </div>
+
+
+            <div class="edit-grid">
+
+
+                <!-- ================= CAR PREVIEW ================= -->
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <h2>Vehicle Preview</h2>
+
+                        <p>
+                            Current car information
+                        </p>
+
+                    </div>
+
+
+                    <div class="car-preview">
+
+                        <div>
+
+                            <img
+                                class="main-image"
+                                src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1000&q=85"
+                                alt="BMW 7 Series"
+                            >
+
+                            <div class="image-label">
+                                Car Image URL
+                            </div>
+
+                            <div class="image-url">
+                                https://images.unsplash.com/photo-bmw-7-series
+                            </div>
+
+
+                            <div class="gallery">
+
+                                <img
+                                    src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=400&q=80"
+                                    alt="BMW"
+                                >
+
+                                <img
+                                    src="https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&w=400&q=80"
+                                    alt="BMW interior"
+                                >
+
+                                <img
+                                    src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=400&q=80"
+                                    alt="Luxury car"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="car-name-preview">
+
+                            <h2>BMW 7 Series</h2>
+
+                            <p>
+                                BMW • Luxury Sedan • 2026
+                            </p>
+
+                            <div class="preview-price">
+
+                                <span>
+                                    CURRENT RENTAL PRICE
+                                </span>
+
+                                <strong>
+                                    ₹15,000
+                                </strong>
+
+                                <span>
+                                    PER DAY
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= EDIT FORM ================= -->
+
+                <div class="panel form-panel">
+
+                    <div class="panel-header">
+
+                        <h2>Vehicle Details</h2>
+
+                        <p>
+                            Modify car details and rental settings
+                        </p>
+
+                    </div>
+
+
+                    <div class="form-body">
+
+
+                        <!-- BASIC INFORMATION -->
+
+                        <div class="section-title">
+                            Basic Information
+                        </div>
+
+
+                        <div class="form-grid">
+
+                            <div class="field">
+
+                                <label>Car Name</label>
+
+                                <input
+                                    type="text"
+                                    value="BMW 7 Series"
+                                >
+
+                            </div>
+
+
+                            <div class="field">
+
+                                <label>Brand</label>
+
+                                <select>
+
+                                    <option selected>BMW</option>
+                                    <option>Mercedes-Benz</option>
+                                    <option>Audi</option>
+                                    <option>Porsche</option>
+                                    <option>Range Rover</option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="field">
+
+                                <label>Model</label>
+
+                                <input
+                                    type="text"
+                                    value="740i"
+                                >
+
+                            </div>
+
+
+                            <div class="field">
+
+                                <label>Year</label>
+
+                                <select>
+
+                                    <option selected>2026</option>
+                                    <option>2025</option>
+                                    <option>2024</option>
+                                    <option>2023</option>
+                                    <option>2022</option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="field full">
+
+                                <label>Car Image URL</label>
+
+                                <input
+                                    type="url"
+                                    value="https://images.unsplash.com/photo-1555215695-3004980ad54e"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- PRICING -->
+
+                        <div class="section-title">
+                            Pricing
+                        </div>
+
+
+                        <div class="form-grid">
+
+                            <div class="field">
+
+                                <label>Rental Price / Day</label>
+
+                                <div class="price-input">
+
+                                    <span class="price-symbol">
+                                        ₹
+                                    </span>
+
+                                    <input
+                                        type="number"
+                                        value="15000"
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="field">
+
+                                <label>Security Deposit</label>
+
+                                <div class="price-input">
+
+                                    <span class="price-symbol">
+                                        ₹
+                                    </span>
+
+                                    <input
+                                        type="number"
+                                        value="25000"
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="field">
+
+                                <label>Weekly Discount (%)</label>
+
+                                <input
+                                    type="number"
+                                    value="5"
+                                >
+
+                            </div>
+
+
+                            <div class="field">
+
+                                <label>Monthly Discount (%)</label>
+
+                                <input
+                                    type="number"
+                                    value="10"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- SPECIFICATIONS -->
+
+                        <div class="section-title">
+                            Specifications
+                        </div>
+
+
+                        <div class="form-grid">
+
+                            <div class="field">
+
+                                <label>Seats</label>
+
+                                <select>
+
+                                    <option>2</option>
+                                    <option>4</option>
+                                    <option selected>5</option>
+                                    <option>7</option>
+                                    <option>8</option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="field">
+
+                                <label>Transmission</label>
+
+                                <select>
+
+                                    <option selected>Automatic</option>
+                                    <option>Manual</option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="field">
+
+                                <label>Fuel Type</label>
+
+                                <select>
+
+                                    <option selected>Petrol</option>
+                                    <option>Diesel</option>
+                                    <option>Hybrid</option>
+                                    <option>Electric</option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="field">
+
+                                <label>Engine</label>
+
+                                <input
+                                    type="text"
+                                    value="3.0L Turbo"
+                                >
+
+                            </div>
+
+
+                            <div class="field">
+
+                                <label>Drive Type</label>
+
+                                <select>
+
+                                    <option selected>AWD</option>
+                                    <option>FWD</option>
+                                    <option>RWD</option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="field">
+
+                                <label>Color</label>
+
+                                <input
+                                    type="text"
+                                    value="Black"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- FEATURES -->
+
+                        <div class="section-title">
+                            Car Features
+                        </div>
+
+
+                        <div class="feature-grid">
+
+                            <div class="feature">
+
+                                <input
+                                    type="checkbox"
+                                    id="leather"
+                                    checked
+                                >
+
+                                <label for="leather">
+                                    Leather Seats
+                                </label>
+
+                            </div>
+
+
+                            <div class="feature">
+
+                                <input
+                                    type="checkbox"
+                                    id="sunroof"
+                                    checked
+                                >
+
+                                <label for="sunroof">
+                                    Panoramic Sunroof
+                                </label>
+
+                            </div>
+
+
+                            <div class="feature">
+
+                                <input
+                                    type="checkbox"
+                                    id="carplay"
+                                    checked
+                                >
+
+                                <label for="carplay">
+                                    Apple CarPlay
+                                </label>
+
+                            </div>
+
+
+                            <div class="feature">
+
+                                <input
+                                    type="checkbox"
+                                    id="navigation"
+                                    checked
+                                >
+
+                                <label for="navigation">
+                                    Navigation
+                                </label>
+
+                            </div>
+
+
+                            <div class="feature">
+
+                                <input
+                                    type="checkbox"
+                                    id="parking"
+                                    checked
+                                >
+
+                                <label for="parking">
+                                    Parking Assist
+                                </label>
+
+                            </div>
+
+
+                            <div class="feature">
+
+                                <input
+                                    type="checkbox"
+                                    id="sound"
+                                    checked
+                                >
+
+                                <label for="sound">
+                                    Premium Sound
+                                </label>
+
+                            </div>
+
+
+                            <div class="feature">
+
+                                <input
+                                    type="checkbox"
+                                    id="climate"
+                                    checked
+                                >
+
+                                <label for="climate">
+                                    Climate Control
+                                </label>
+
+                            </div>
+
+
+                            <div class="feature">
+
+                                <input
+                                    type="checkbox"
+                                    id="bluetooth"
+                                    checked
+                                >
+
+                                <label for="bluetooth">
+                                    Bluetooth
+                                </label>
+
+                            </div>
+
+
+                            <div class="feature">
+
+                                <input
+                                    type="checkbox"
+                                    id="usb"
+                                    checked
+                                >
+
+                                <label for="usb">
+                                    USB Charging
+                                </label>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- AVAILABILITY -->
+
+                        <div class="section-title" style="margin-top:28px;">
+                            Availability
+                        </div>
+
+
+                        <div class="status-box">
+
+
+                            <div class="status-option">
+
+                                <strong>
+                                    Vehicle Status
+                                </strong>
+
+                                <p>
+                                    Set current availability
+                                </p>
+
+                                <div class="radio-row">
+
+                                    <input
+                                        type="radio"
+                                        name="status"
+                                        id="available"
+                                        checked
+                                    >
+
+                                    <label for="available">
+                                        Available
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="status-option">
+
+                                <strong>
+                                    Maintenance
+                                </strong>
+
+                                <p>
+                                    Vehicle service status
+                                </p>
+
+                                <div class="radio-row">
+
+                                    <input
+                                        type="radio"
+                                        name="maintenance"
+                                        id="normal"
+                                        checked
+                                    >
+
+                                    <label for="normal">
+                                        No Maintenance
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- DESCRIPTION -->
+
+                        <div class="section-title" style="margin-top:28px;">
+                            Description
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                Vehicle Description
+                            </label>
+
+                            <textarea>Experience the ultimate luxury with the BMW 7 Series. Premium leather interior, advanced technology, powerful performance and exceptional comfort for every journey.</textarea>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ACTIONS -->
+
+                    <div class="form-actions">
+
+                        <button class="btn cancel-btn">
+                            Cancel
+                        </button>
+
+                        <button class="btn save-btn">
+                            ✓ Save Changes
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

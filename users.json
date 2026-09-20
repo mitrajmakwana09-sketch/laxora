@@ -1,0 +1,252 @@
+[
+  {
+    "id": 1,
+    "userId": "USR-10001",
+    "name": "Meet Raj",
+    "email": "meet@example.com",
+    "phone": "+91 98765 43210",
+    "profileImage": "https://i.pravatar.cc/300?img=12",
+    "role": "customer",
+    "membership": "Premium",
+    "totalBookings": 8,
+    "totalSpent": 186500,
+    "status": "Active",
+    "address": {
+      "city": "Rajkot",
+      "state": "Gujarat",
+      "country": "India"
+    },
+    "preferences": {
+      "preferredCarType": "Luxury Sedan",
+      "preferredFuel": "Petrol",
+      "preferredTransmission": "Automatic"
+    },
+    "createdAt": "2026-01-15",
+    "lastLogin": "2026-09-20"
+  },
+  {
+    "id": 2,
+    "userId": "USR-10002",
+    "name": "Arjun Kumar",
+    "email": "arjun@example.com",
+    "phone": "+91 98254 12345",
+    "profileImage": "https://i.pravatar.cc/300?img=11",
+    "role": "customer",
+    "membership": "Premium",
+    "totalBookings": 12,
+    "totalSpent": 328000,
+    "status": "Active",
+    "address": {
+      "city": "Ahmedabad",
+      "state": "Gujarat",
+      "country": "India"
+    },
+    "preferences": {
+      "preferredCarType": "Luxury Sedan",
+      "preferredFuel": "Petrol",
+      "preferredTransmission": "Automatic"
+    },
+    "createdAt": "2025-11-20",
+    "lastLogin": "2026-09-19"
+  },
+  {
+    "id": 3,
+    "userId": "USR-10003",
+    "name": "Rahul Shah",
+    "email": "rahul@example.com",
+    "phone": "+91 99090 45678",
+    "profileImage": "https://i.pravatar.cc/300?img=13",
+    "role": "customer",
+    "membership": "Gold",
+    "totalBookings": 6,
+    "totalSpent": 142500,
+    "status": "Active",
+    "address": {
+      "city": "Rajkot",
+      "state": "Gujarat",
+      "country": "India"
+    },
+    "preferences": {
+      "preferredCarType": "Sports Car",
+      "preferredFuel": "Petrol",
+      "preferredTransmission": "Automatic"
+    },
+    "createdAt": "2026-02-08",
+    "lastLogin": "2026-09-18"
+  },
+  {
+    "id": 4,
+    "userId": "USR-10004",
+    "name": "Neel Patel",
+    "email": "neel@example.com",
+    "phone": "+91 98790 76543",
+    "profileImage": "https://i.pravatar.cc/300?img=14",
+    "role": "customer",
+    "membership": "Premium",
+    "totalBookings": 15,
+    "totalSpent": 412500,
+    "status": "Active",
+    "address": {
+      "city": "Vadodara",
+      "state": "Gujarat",
+      "country": "India"
+    },
+    "preferences": {
+      "preferredCarType": "Luxury SUV",
+      "preferredFuel": "Petrol",
+      "preferredTransmission": "Automatic"
+    },
+    "createdAt": "2025-10-12",
+    "lastLogin": "2026-09-17"
+  },
+  {
+    "id": 5,
+    "userId": "USR-10005",
+    "name": "Vikram Patel",
+    "email": "vikram@example.com",
+    "phone": "+91 98123 65432",
+    "profileImage": "https://i.pravatar.cc/300?img=15",
+    "role": "customer",
+    "membership": "Gold",
+    "totalBookings": 5,
+    "totalSpent": 98500,
+    "status": "Inactive",
+    "address": {
+      "city": "Ahmedabad",
+      "state": "Gujarat",
+      "country": "India"
+    },
+    "preferences": {
+      "preferredCarType": "Luxury Sedan",
+      "preferredFuel": "Petrol",
+      "preferredTransmission": "Automatic"
+    },
+    "createdAt": "2026-03-22",
+    "lastLogin": "2026-08-28"
+  },
+  {
+    "id": 6,
+    "userId": "USR-10006",
+    "name": "Jay Shah",
+    "email": "jay@example.com",
+    "phone": "+91 97245 67890",
+    "profileImage": "https://i.pravatar.cc/300?img=16",
+    "role": "customer",
+    "membership": "Silver",
+    "totalBookings": 3,
+    "totalSpent": 48500,
+    "status": "Active",
+    "address": {
+      "city": "Surat",
+      "state": "Gujarat",
+      "country": "India"
+    },
+    "preferences": {
+      "preferredCarType": "Luxury Sedan",
+      "preferredFuel": "Petrol",
+      "preferredTransmission": "Automatic"
+    },
+    "createdAt": "2026-05-10",
+    "lastLogin": "2026-09-15"
+  },
+  {
+    "id": 7,
+    "userId": "USR-10007",
+    "name": "Aditya Mehta",
+    "email": "aditya@example.com",
+    "phone": "+91 98980 11223",
+    "profileImage": "https://i.pravatar.cc/300?img=17",
+    "role": "customer",
+    "membership": "Premium",
+    "totalBookings": 10,
+    "totalSpent": 275000,
+    "status": "Active",
+    "address": {
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India"
+    },
+    "preferences": {
+      "preferredCarType": "Sports Car",
+      "preferredFuel": "Petrol",
+      "preferredTransmission": "Automatic"
+    },
+    "createdAt": "2025-12-05",
+    "lastLogin": "2026-09-20"
+  },
+  {
+    "id": 8,
+    "userId": "USR-10008",
+    "name": "Karan Patel",
+    "email": "karan@example.com",
+    "phone": "+91 96385 44556",
+    "profileImage": "https://i.pravatar.cc/300?img=18",
+    "role": "customer",
+    "membership": "Silver",
+    "totalBookings": 2,
+    "totalSpent": 36000,
+    "status": "Active",
+    "address": {
+      "city": "Pune",
+      "state": "Maharashtra",
+      "country": "India"
+    },
+    "preferences": {
+      "preferredCarType": "Luxury SUV",
+      "preferredFuel": "Petrol",
+      "preferredTransmission": "Automatic"
+    },
+    "createdAt": "2026-06-18",
+    "lastLogin": "2026-09-16"
+  },
+  {
+    "id": 9,
+    "userId": "USR-10009",
+    "name": "Rohan Desai",
+    "email": "rohan@example.com",
+    "phone": "+91 98250 77889",
+    "profileImage": "https://i.pravatar.cc/300?img=19",
+    "role": "customer",
+    "membership": "Gold",
+    "totalBookings": 7,
+    "totalSpent": 164000,
+    "status": "Active",
+    "address": {
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "country": "India"
+    },
+    "preferences": {
+      "preferredCarType": "Luxury SUV",
+      "preferredFuel": "Petrol",
+      "preferredTransmission": "Automatic"
+    },
+    "createdAt": "2026-01-28",
+    "lastLogin": "2026-09-14"
+  },
+  {
+    "id": 10,
+    "userId": "USR-10010",
+    "name": "Dev Mehta",
+    "email": "dev@example.com",
+    "phone": "+91 97654 33445",
+    "profileImage": "https://i.pravatar.cc/300?img=20",
+    "role": "customer",
+    "membership": "Silver",
+    "totalBookings": 1,
+    "totalSpent": 15500,
+    "status": "Active",
+    "address": {
+      "city": "New Delhi",
+      "state": "Delhi",
+      "country": "India"
+    },
+    "preferences": {
+      "preferredCarType": "Luxury Sedan",
+      "preferredFuel": "Petrol",
+      "preferredTransmission": "Automatic"
+    },
+    "createdAt": "2026-08-25",
+    "lastLogin": "2026-09-12"
+  }
+]

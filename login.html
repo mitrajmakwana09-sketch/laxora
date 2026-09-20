@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Login | LUXORA</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+
+    font-family: "Inter", sans-serif;
+
+    min-height: 100vh;
+
+    color: #fff;
+
+    background: #050505;
+
+    overflow-x: hidden;
+}
+
+
+/* =====================================================
+   BACKGROUND
+===================================================== */
+
+.background {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -5;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,0.95) 0%,
+            rgba(0,0,0,0.72) 45%,
+            rgba(0,0,0,0.35) 100%
+        ),
+
+        url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2000&q=90")
+        center/cover no-repeat;
+
+    animation:
+        backgroundZoom 14s ease-in-out infinite alternate;
+}
+
+
+@keyframes backgroundZoom {
+
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.07);
+    }
+}
+
+
+/* Gold glow */
+
+.background::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 75% 50%,
+            rgba(212,175,55,0.16),
+            transparent 30%
+        );
+}
+
+
+/* =====================================================
+   FLOATING PARTICLES
+===================================================== */
+
+.particles {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: -1;
+
+    overflow: hidden;
+}
+
+
+.particle {
+
+    position: absolute;
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: #d4af37;
+
+    box-shadow:
+        0 0 12px #d4af37;
+
+    opacity: 0;
+
+    animation:
+        particleFloat linear infinite;
+}
+
+
+@keyframes particleFloat {
+
+    0% {
+
+        transform:
+            translateY(100vh)
+            scale(0);
+
+        opacity: 0;
+    }
+
+    15% {
+
+        opacity: .7;
+    }
+
+    80% {
+
+        opacity: .4;
+    }
+
+    100% {
+
+        transform:
+            translateY(-10vh)
+            scale(1);
+
+        opacity: 0;
+    }
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar {
+
+    height: 78px;
+
+    padding: 0 7%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    position: relative;
+
+    z-index: 5;
+
+    background:
+        rgba(5,5,5,0.45);
+
+    backdrop-filter: blur(15px);
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,0.08);
+}
+
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    text-decoration: none;
+}
+
+
+.logo-icon {
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #050505;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff1a5,
+            #d4af37,
+            #8c6714
+        );
+
+    box-shadow:
+        0 0 25px
+        rgba(212,175,55,0.3);
+}
+
+
+.logo-text {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 25px;
+
+    letter-spacing: 4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #d4af37,
+            #fff
+        );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+
+
+.home-link {
+
+    color: #aaa;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    transition: .3s;
+}
+
+
+.home-link:hover {
+
+    color: #d4af37;
+
+    transform:
+        translateX(-4px);
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.main {
+
+    min-height:
+        calc(100vh - 78px);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 50px 20px;
+}
+
+
+.login-card {
+
+    width: 100%;
+
+    max-width: 460px;
+
+    padding: 42px;
+
+    border-radius: 28px;
+
+    background:
+        rgba(10,10,10,0.67);
+
+    border:
+        1px solid
+        rgba(212,175,55,0.28);
+
+    backdrop-filter:
+        blur(25px);
+
+    box-shadow:
+        0 40px 100px
+        rgba(0,0,0,0.7),
+
+        inset
+        0 1px
+        rgba(255,255,255,0.08);
+
+    animation:
+        cardEntrance .9s
+        cubic-bezier(.2,.8,.2,1)
+        forwards;
+}
+
+
+@keyframes cardEntrance {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(45px)
+            scale(.94);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =====================================================
+   LOGIN HEADER
+===================================================== */
+
+.login-header {
+
+    text-align: center;
+
+    margin-bottom: 32px;
+}
+
+
+.login-icon {
+
+    width: 70px;
+    height: 70px;
+
+    margin: 0 auto 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 20px;
+
+    color: #d4af37;
+
+    background:
+        rgba(212,175,55,0.08);
+
+    border:
+        1px solid
+        rgba(212,175,55,0.3);
+
+    box-shadow:
+        0 0 30px
+        rgba(212,175,55,0.1);
+
+    animation:
+        iconFloat 3s ease-in-out infinite;
+}
+
+
+.login-icon i {
+
+    font-size: 28px;
+}
+
+
+@keyframes iconFloat {
+
+    0%,100% {
+
+        transform:
+            translateY(0);
+    }
+
+    50% {
+
+        transform:
+            translateY(-7px);
+    }
+}
+
+
+.login-header h1 {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 36px;
+
+    margin-bottom: 8px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #d4af37,
+            #fff
+        );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    background-size: 200% auto;
+
+    animation:
+        goldMove 4s linear infinite;
+}
+
+
+@keyframes goldMove {
+
+    to {
+
+        background-position:
+            200% center;
+    }
+}
+
+
+.login-header p {
+
+    color: #888;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.form-group {
+
+    margin-bottom: 20px;
+
+    position: relative;
+}
+
+
+.form-group label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #aaa;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+.input-wrapper {
+
+    position: relative;
+}
+
+
+.input-wrapper > i {
+
+    position: absolute;
+
+    left: 15px;
+
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    color: #777;
+
+    transition: .3s;
+
+    z-index: 2;
+}
+
+
+.input-wrapper input {
+
+    width: 100%;
+
+    height: 52px;
+
+    padding:
+        0 45px;
+
+    border-radius: 13px;
+
+    outline: none;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.10);
+
+    background:
+        rgba(255,255,255,0.045);
+
+    color: #fff;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    transition:
+        .3s;
+}
+
+
+.input-wrapper input::placeholder {
+
+    color: #555;
+}
+
+
+.input-wrapper input:focus {
+
+    border-color:
+        rgba(212,175,55,0.65);
+
+    background:
+        rgba(212,175,55,0.035);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(212,175,55,0.07);
+}
+
+
+.input-wrapper:focus-within > i {
+
+    color: #d4af37;
+
+    transform:
+        translateY(-50%)
+        scale(1.1);
+}
+
+
+/* Password eye */
+
+.password-toggle {
+
+    position: absolute;
+
+    right: 15px;
+
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    border: none;
+
+    background: none;
+
+    color: #777;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    transition: .3s;
+}
+
+
+.password-toggle:hover {
+
+    color: #d4af37;
+}
+
+
+/* =====================================================
+   OPTIONS
+===================================================== */
+
+.options {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin:
+        5px 0 25px;
+
+    font-size: 11px;
+}
+
+
+.remember {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    color: #888;
+
+    cursor: pointer;
+}
+
+
+.remember input {
+
+    accent-color: #d4af37;
+}
+
+
+.forgot {
+
+    color: #d4af37;
+
+    text-decoration: none;
+
+    transition: .3s;
+}
+
+
+.forgot:hover {
+
+    color: #fff;
+}
+
+
+/* =====================================================
+   LOGIN BUTTON
+===================================================== */
+
+.login-btn {
+
+    width: 100%;
+
+    height: 54px;
+
+    border: none;
+
+    border-radius: 13px;
+
+    cursor: pointer;
+
+    position: relative;
+
+    overflow: hidden;
+
+    color: #080808;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: .5px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff0a0,
+            #d4af37,
+            #a47712
+        );
+
+    box-shadow:
+        0 15px 35px
+        rgba(212,175,55,0.16);
+
+    transition:
+        .35s;
+}
+
+
+.login-btn:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 18px 45px
+        rgba(212,175,55,0.3);
+}
+
+
+.login-btn:active {
+
+    transform:
+        scale(.98);
+}
+
+
+/* Button shine */
+
+.login-btn::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: -100%;
+
+    width: 60%;
+
+    height: 100%;
+
+    transform:
+        skewX(-20deg);
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.55),
+            transparent
+        );
+
+    animation:
+        buttonShine 3s infinite;
+}
+
+
+@keyframes buttonShine {
+
+    0% {
+        left: -100%;
+    }
+
+    45%,100% {
+        left: 150%;
+    }
+}
+
+
+/* Loading */
+
+.login-btn.loading {
+
+    pointer-events: none;
+
+    opacity: .8;
+}
+
+
+.spinner {
+
+    width: 18px;
+    height: 18px;
+
+    border-radius: 50%;
+
+    border:
+        2px solid
+        rgba(0,0,0,.25);
+
+    border-top-color:
+        #050505;
+
+    animation:
+        spin .7s linear infinite;
+
+    display: inline-block;
+}
+
+
+@keyframes spin {
+
+    to {
+
+        transform:
+            rotate(360deg);
+    }
+}
+
+
+/* =====================================================
+   DIVIDER
+===================================================== */
+
+.divider {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin: 25px 0;
+
+    color: #555;
+
+    font-size: 11px;
+}
+
+
+.divider::before,
+.divider::after {
+
+    content: "";
+
+    flex: 1;
+
+    height: 1px;
+
+    background:
+        rgba(255,255,255,0.08);
+}
+
+
+/* =====================================================
+   REGISTER
+===================================================== */
+
+.register-text {
+
+    text-align: center;
+
+    color: #777;
+
+    font-size: 12px;
+}
+
+
+.register-text a {
+
+    color: #d4af37;
+
+    text-decoration: none;
+
+    font-weight: 700;
+
+    margin-left: 4px;
+
+    transition: .3s;
+}
+
+
+.register-text a:hover {
+
+    color: #fff;
+}
+
+
+/* =====================================================
+   SECURITY
+===================================================== */
+
+.security {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-top: 25px;
+
+    color: #555;
+
+    font-size: 10px;
+}
+
+
+.security i {
+
+    color: #d4af37;
+}
+
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+.error-message {
+
+    display: none;
+
+    padding: 11px;
+
+    margin-bottom: 18px;
+
+    border-radius: 10px;
+
+    color: #ff9b9b;
+
+    background:
+        rgba(255,70,70,0.08);
+
+    border:
+        1px solid
+        rgba(255,70,70,0.20);
+
+    font-size: 11px;
+
+    animation:
+        errorShake .4s ease;
+}
+
+
+@keyframes errorShake {
+
+    0%,100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-6px);
+    }
+
+    75% {
+        transform: translateX(6px);
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:600px) {
+
+    .navbar {
+
+        height: 68px;
+
+        padding: 0 18px;
+    }
+
+
+    .logo-icon {
+
+        width: 36px;
+        height: 36px;
+    }
+
+
+    .logo-text {
+
+        font-size: 20px;
+
+        letter-spacing: 3px;
+    }
+
+
+    .home-link span {
+
+        display: none;
+    }
+
+
+    .main {
+
+        padding:
+            35px 15px;
+    }
+
+
+    .login-card {
+
+        padding:
+            32px 20px;
+
+        border-radius: 22px;
+    }
+
+
+    .login-header h1 {
+
+        font-size: 31px;
+    }
+
+
+    .login-icon {
+
+        width: 62px;
+        height: 62px;
+    }
+
+}
+
+
+@media(max-width:380px) {
+
+    .login-card {
+
+        padding:
+            28px 16px;
+    }
+
+
+    .options {
+
+        font-size: 10px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- BACKGROUND -->
+
+<div class="background"></div>
+
+
+<!-- PARTICLES -->
+
+<div class="particles">
+
+    <span class="particle"
+          style="left:8%;animation-duration:8s;animation-delay:1s;"></span>
+
+    <span class="particle"
+          style="left:20%;animation-duration:11s;animation-delay:3s;"></span>
+
+    <span class="particle"
+          style="left:35%;animation-duration:9s;animation-delay:2s;"></span>
+
+    <span class="particle"
+          style="left:52%;animation-duration:13s;animation-delay:0s;"></span>
+
+    <span class="particle"
+          style="left:68%;animation-duration:10s;animation-delay:4s;"></span>
+
+    <span class="particle"
+          style="left:82%;animation-duration:12s;animation-delay:2s;"></span>
+
+    <span class="particle"
+          style="left:94%;animation-duration:9s;animation-delay:5s;"></span>
+
+</div>
+
+
+<!-- NAVBAR -->
+
+<header class="navbar">
+
+    <a href="index.html"
+       class="logo">
+
+        <div class="logo-icon">
+
+            <i class="fa-solid fa-crown"></i>
+
+        </div>
+
+        <div class="logo-text">
+            LUXORA
+        </div>
+
+    </a>
+
+
+    <a href="index.html"
+       class="home-link">
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+        <span>
+            Back to Home
+        </span>
+
+    </a>
+
+</header>
+
+
+<!-- MAIN -->
+
+<main class="main">
+
+
+    <section class="login-card">
+
+
+        <!-- HEADER -->
+
+        <div class="login-header">
+
+            <div class="login-icon">
+
+                <i class="fa-solid fa-user-lock"></i>
+
+            </div>
+
+
+            <h1>
+                Welcome Back
+            </h1>
+
+
+            <p>
+                Sign in to continue your luxury journey
+                with LUXORA.
+            </p>
+
+        </div>
+
+
+        <!-- ERROR -->
+
+        <div
+            class="error-message"
+            id="errorMessage">
+
+            <i class="fa-solid fa-circle-exclamation"></i>
+
+            &nbsp;
+
+            Please enter your email and password.
+
+        </div>
+
+
+        <!-- FORM -->
+
+        <form id="loginForm">
+
+
+            <!-- EMAIL -->
+
+            <div class="form-group">
+
+                <label>
+                    Email Address
+                </label>
+
+
+                <div class="input-wrapper">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        autocomplete="email"
+                        required>
+
+                </div>
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="form-group">
+
+                <label>
+                    Password
+                </label>
+
+
+                <div class="input-wrapper">
+
+                    <i class="fa-solid fa-lock"></i>
+
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required>
+
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        id="passwordToggle">
+
+                        <i class="fa-solid fa-eye"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- OPTIONS -->
+
+            <div class="options">
+
+                <label class="remember">
+
+                    <input
+                        type="checkbox"
+                        id="remember">
+
+                    Remember me
+
+                </label>
+
+
+                <a
+                    href="#"
+                    class="forgot"
+                    onclick="forgotPassword(event)">
+
+                    Forgot Password?
+
+                </a>
+
+            </div>
+
+
+            <!-- LOGIN BUTTON -->
+
+            <button
+                type="submit"
+                class="login-btn"
+                id="loginButton">
+
+                <span id="buttonText">
+
+                    Sign In
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </span>
+
+            </button>
+
+
+        </form>
+
+
+        <!-- DIVIDER -->
+
+        <div class="divider">
+            OR
+        </div>
+
+
+        <!-- REGISTER -->
+
+        <div class="register-text">
+
+            Don't have a LUXORA account?
+
+            <a href="register.html">
+                Create Account
+            </a>
+
+        </div>
+
+
+        <!-- SECURITY -->
+
+        <div class="security">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            Secure & encrypted login
+
+        </div>
+
+
+    </section>
+
+</main>
+
+
+<script>
+
+/* =====================================================
+   PASSWORD SHOW / HIDE
+===================================================== */
+
+const password =
+    document.getElementById("password");
+
+const passwordToggle =
+    document.getElementById(
+        "passwordToggle"
+    );
+
+
+passwordToggle.addEventListener(
+    "click",
+    function() {
+
+        if (
+            password.type === "password"
+        ) {
+
+            password.type = "text";
+
+            this.innerHTML =
+                '<i class="fa-solid fa-eye-slash"></i>';
+
+        }
+
+        else {
+
+            password.type = "password";
+
+            this.innerHTML =
+                '<i class="fa-solid fa-eye"></i>';
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+const loginForm =
+    document.getElementById("loginForm");
+
+const loginButton =
+    document.getElementById("loginButton");
+
+const buttonText =
+    document.getElementById("buttonText");
+
+const errorMessage =
+    document.getElementById(
+        "errorMessage"
+    );
+
+
+loginForm.addEventListener(
+    "submit",
+    function(event) {
+
+        event.preventDefault();
+
+
+        const email =
+            document.getElementById(
+                "email"
+            ).value.trim();
+
+
+        const pass =
+            document.getElementById(
+                "password"
+            ).value.trim();
+
+
+        /* Validation */
+
+        if (!email || !pass) {
+
+            errorMessage.style.display =
+                "block";
+
+            return;
+        }
+
+
+        errorMessage.style.display =
+            "none";
+
+
+        /* Loading */
+
+        loginButton.classList.add(
+            "loading"
+        );
+
+
+        buttonText.innerHTML =
+            `
+                <span class="spinner"></span>
+                &nbsp; Signing In...
+            `;
+
+
+        /*
+          Demo login delay
+        */
+
+        setTimeout(() => {
+
+
+            /* Save login state */
+
+            localStorage.setItem(
+                "luxoraLoggedIn",
+                "true"
+            );
+
+
+            localStorage.setItem(
+                "luxoraUserEmail",
+                email
+            );
+
+
+            /* Redirect */
+
+            window.location.href =
+                "index.html";
+
+
+        }, 1300);
+
+    }
+);
+
+
+/* =====================================================
+   FORGOT PASSWORD
+===================================================== */
+
+function forgotPassword(event) {
+
+    event.preventDefault();
+
+
+    alert(
+        "Password reset demo: please contact LUXORA support."
+    );
+
+}
+
+
+/* =====================================================
+   INPUT ANIMATION
+===================================================== */
+
+document.querySelectorAll(
+    ".input-wrapper input"
+).forEach(input => {
+
+    input.addEventListener(
+        "input",
+        function() {
+
+            if (this.value.length > 0) {
+
+                this.parentElement
+                    .querySelector("i")
+                    .style.color =
+                    "#d4af37";
+
+            }
+
+            else {
+
+                this.parentElement
+                    .querySelector("i")
+                    .style.color =
+                    "";
+
+            }
+
+        }
+    );
+
+});
+
+</script>
+
+
+</body>
+
+</html>

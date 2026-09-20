@@ -1,0 +1,2289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>LUXORA | Book Your Car</title>
+
+    <link rel="manifest" href="manifest.json">
+
+    <meta name="theme-color" content="#050505">
+
+    <link rel="icon"
+          href="images/logo/luxora-logo.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+<style>
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:"Inter",sans-serif;
+
+    background:#070707;
+
+    color:#fff;
+
+    line-height:1.5;
+}
+
+:root{
+
+    --gold:#d4af37;
+
+    --gold-light:#f1d875;
+
+    --black:#070707;
+
+    --dark:#101010;
+
+    --border:#292929;
+
+    --muted:#999;
+
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar{
+
+    height:78px;
+
+    padding:0 6%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    background:#050505;
+
+    border-bottom:1px solid rgba(212,175,55,.2);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:100;
+}
+
+
+/* LOGO */
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    color:white;
+
+    text-decoration:none;
+
+    font-family:"Playfair Display",serif;
+
+    font-size:27px;
+
+    font-weight:700;
+
+    letter-spacing:3px;
+}
+
+.logo i{
+
+    color:var(--gold);
+
+    font-size:22px;
+}
+
+
+/* NAV */
+
+.nav-links{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:35px;
+}
+
+.nav-links a{
+
+    color:#aaa;
+
+    text-decoration:none;
+
+    font-size:14px;
+
+    transition:.25s;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+
+    color:var(--gold-light);
+}
+
+
+/* MOBILE BUTTON */
+
+.menu-btn{
+
+    display:none;
+
+    font-size:23px;
+
+    cursor:pointer;
+}
+
+
+/* =====================================================
+   PAGE HEADER
+===================================================== */
+
+.page-header{
+
+    width:90%;
+
+    max-width:1250px;
+
+    margin:45px auto 35px;
+}
+
+.page-header span{
+
+    color:var(--gold);
+
+    text-transform:uppercase;
+
+    letter-spacing:4px;
+
+    font-size:11px;
+
+    font-weight:600;
+}
+
+.page-header h1{
+
+    font-family:"Playfair Display",serif;
+
+    font-size:46px;
+
+    margin-top:8px;
+}
+
+.page-header p{
+
+    color:#888;
+
+    margin-top:8px;
+
+    font-size:14px;
+}
+
+
+/* =====================================================
+   MAIN LAYOUT
+===================================================== */
+
+.booking-container{
+
+    width:90%;
+
+    max-width:1250px;
+
+    margin:0 auto 90px;
+
+    display:grid;
+
+    grid-template-columns:1.5fr .75fr;
+
+    gap:30px;
+
+    align-items:start;
+}
+
+
+/* =====================================================
+   FORM CARD
+===================================================== */
+
+.form-card{
+
+    background:#101010;
+
+    border:1px solid var(--border);
+
+    border-radius:16px;
+
+    padding:30px;
+}
+
+
+/* SECTION */
+
+.form-section{
+
+    padding-bottom:28px;
+
+    margin-bottom:28px;
+
+    border-bottom:1px solid #242424;
+}
+
+.form-section:last-child{
+
+    border-bottom:none;
+
+    margin-bottom:0;
+
+    padding-bottom:0;
+}
+
+
+.section-heading{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:22px;
+}
+
+.section-number{
+
+    width:32px;
+
+    height:32px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:rgba(212,175,55,.1);
+
+    border:1px solid rgba(212,175,55,.35);
+
+    color:var(--gold);
+
+    font-size:13px;
+
+    font-weight:700;
+}
+
+.section-heading h2{
+
+    font-family:"Playfair Display",serif;
+
+    font-size:23px;
+}
+
+
+/* =====================================================
+   SELECTED CAR
+===================================================== */
+
+.selected-car{
+
+    display:flex;
+
+    gap:18px;
+
+    padding:15px;
+
+    border:1px solid #292929;
+
+    border-radius:12px;
+
+    background:#0b0b0b;
+}
+
+.selected-car img{
+
+    width:150px;
+
+    height:100px;
+
+    object-fit:cover;
+
+    border-radius:8px;
+}
+
+.car-info{
+
+    flex:1;
+}
+
+.car-info .brand{
+
+    color:var(--gold);
+
+    font-size:10px;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+}
+
+.car-info h3{
+
+    font-family:"Playfair Display",serif;
+
+    font-size:23px;
+
+    margin:4px 0 7px;
+}
+
+.car-info p{
+
+    color:#888;
+
+    font-size:12px;
+}
+
+.change-car{
+
+    display:inline-block;
+
+    margin-top:10px;
+
+    color:var(--gold-light);
+
+    font-size:11px;
+
+    text-decoration:none;
+}
+
+
+/* =====================================================
+   FORM GRID
+===================================================== */
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:18px;
+}
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:7px;
+}
+
+.form-group.full{
+
+    grid-column:1 / -1;
+}
+
+.form-group label{
+
+    color:#aaa;
+
+    font-size:12px;
+
+    font-weight:500;
+}
+
+.form-group label i{
+
+    color:var(--gold);
+
+    margin-right:5px;
+}
+
+.form-group input,
+.form-group select{
+
+    width:100%;
+
+    height:48px;
+
+    padding:0 14px;
+
+    background:#080808;
+
+    border:1px solid #303030;
+
+    border-radius:8px;
+
+    outline:none;
+
+    color:#fff;
+
+    font-family:inherit;
+
+    font-size:13px;
+}
+
+.form-group input:focus,
+.form-group select:focus{
+
+    border-color:var(--gold);
+}
+
+.form-group select option{
+
+    background:#111;
+
+    color:white;
+}
+
+
+/* =====================================================
+   DRIVER DETAILS
+===================================================== */
+
+.input-icon{
+
+    position:relative;
+}
+
+.input-icon i{
+
+    position:absolute;
+
+    left:15px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:var(--gold);
+
+    font-size:13px;
+}
+
+.input-icon input{
+
+    padding-left:42px;
+}
+
+
+/* =====================================================
+   CHECKBOX
+===================================================== */
+
+.checkbox-list{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:12px;
+}
+
+.checkbox{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:14px;
+
+    background:#0b0b0b;
+
+    border:1px solid #282828;
+
+    border-radius:9px;
+
+    cursor:pointer;
+}
+
+.checkbox input{
+
+    accent-color:var(--gold);
+
+    width:16px;
+
+    height:16px;
+}
+
+.checkbox span{
+
+    color:#aaa;
+
+    font-size:12px;
+}
+
+.checkbox strong{
+
+    display:block;
+
+    color:white;
+
+    font-size:12px;
+
+    margin-bottom:2px;
+}
+
+
+/* =====================================================
+   TERMS
+===================================================== */
+
+.terms{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:10px;
+
+    margin-top:22px;
+}
+
+.terms input{
+
+    margin-top:3px;
+
+    accent-color:var(--gold);
+}
+
+.terms label{
+
+    color:#777;
+
+    font-size:11px;
+}
+
+.terms a{
+
+    color:var(--gold-light);
+
+    text-decoration:none;
+}
+
+
+/* =====================================================
+   SUMMARY CARD
+===================================================== */
+
+.summary-card{
+
+    background:#101010;
+
+    border:1px solid rgba(212,175,55,.3);
+
+    border-radius:16px;
+
+    padding:25px;
+
+    position:sticky;
+
+    top:105px;
+}
+
+.summary-title{
+
+    font-family:"Playfair Display",serif;
+
+    font-size:25px;
+
+    margin-bottom:22px;
+}
+
+
+/* SUMMARY IMAGE */
+
+.summary-image{
+
+    width:100%;
+
+    height:170px;
+
+    object-fit:cover;
+
+    border-radius:10px;
+
+    margin-bottom:18px;
+}
+
+.summary-car-name{
+
+    font-family:"Playfair Display",serif;
+
+    font-size:22px;
+}
+
+.summary-car-type{
+
+    color:var(--gold);
+
+    font-size:10px;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+
+    margin-top:4px;
+}
+
+
+/* SUMMARY DETAILS */
+
+.summary-details{
+
+    margin-top:22px;
+
+    border-top:1px solid #292929;
+
+    border-bottom:1px solid #292929;
+}
+
+.summary-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    padding:12px 0;
+
+    font-size:12px;
+}
+
+.summary-row span:first-child{
+
+    color:#777;
+}
+
+.summary-row span:last-child{
+
+    color:#ddd;
+
+    text-align:right;
+}
+
+
+/* PRICE */
+
+.price-details{
+
+    margin-top:18px;
+}
+
+.price-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    padding:8px 0;
+
+    font-size:12px;
+}
+
+.price-row span:first-child{
+
+    color:#777;
+}
+
+.price-row span:last-child{
+
+    color:#ddd;
+}
+
+.total-row{
+
+    border-top:1px solid #303030;
+
+    margin-top:8px;
+
+    padding-top:17px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+}
+
+.total-row span:first-child{
+
+    color:#aaa;
+
+    font-size:13px;
+}
+
+.total-price{
+
+    color:var(--gold-light);
+
+    font-size:25px;
+
+    font-weight:700;
+}
+
+
+/* =====================================================
+   CONTINUE BUTTON
+===================================================== */
+
+.continue-btn{
+
+    width:100%;
+
+    height:52px;
+
+    margin-top:22px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:linear-gradient(
+        135deg,
+        var(--gold-light),
+        var(--gold)
+    );
+
+    color:#050505;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+}
+
+.continue-btn:hover{
+
+    background:var(--gold);
+
+}
+
+
+/* =====================================================
+   SECURITY NOTE
+===================================================== */
+
+.secure-note{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    color:#666;
+
+    font-size:10px;
+
+    margin-top:15px;
+}
+
+.secure-note i{
+
+    color:var(--gold);
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+
+    background:#030303;
+
+    border-top:1px solid #202020;
+
+    text-align:center;
+
+    padding:40px 6%;
+}
+
+.footer-logo{
+
+    font-family:"Playfair Display",serif;
+
+    color:var(--gold);
+
+    font-size:26px;
+
+    letter-spacing:4px;
+}
+
+footer p{
+
+    color:#666;
+
+    font-size:11px;
+
+    margin-top:8px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:1000px){
+
+    .booking-container{
+
+        grid-template-columns:1fr;
+    }
+
+    .summary-card{
+
+        position:static;
+    }
+
+}
+
+
+@media(max-width:750px){
+
+    .navbar{
+
+        height:70px;
+
+        padding:0 5%;
+    }
+
+    .menu-btn{
+
+        display:block;
+    }
+
+    .nav-links{
+
+        position:absolute;
+
+        top:70px;
+
+        left:0;
+
+        width:100%;
+
+        background:#080808;
+
+        border-bottom:1px solid #222;
+
+        display:flex;
+
+        flex-direction:column;
+
+        gap:0;
+
+        max-height:0;
+
+        overflow:hidden;
+
+        transition:.3s;
+    }
+
+    .nav-links.show{
+
+        max-height:350px;
+
+        padding:8px 0;
+    }
+
+    .nav-links a{
+
+        width:100%;
+
+        text-align:center;
+
+        padding:15px;
+    }
+
+    .page-header{
+
+        width:92%;
+
+        margin-top:35px;
+    }
+
+    .page-header h1{
+
+        font-size:38px;
+    }
+
+    .booking-container{
+
+        width:92%;
+    }
+
+    .form-card{
+
+        padding:22px;
+    }
+
+    .form-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+
+        grid-column:auto;
+    }
+
+    .checkbox-list{
+
+        grid-template-columns:1fr;
+    }
+
+}
+
+
+@media(max-width:500px){
+
+    .logo{
+
+        font-size:22px;
+
+        letter-spacing:2px;
+    }
+
+    .selected-car{
+
+        flex-direction:column;
+    }
+
+    .selected-car img{
+
+        width:100%;
+
+        height:180px;
+    }
+
+    .summary-card{
+
+        padding:20px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar">
+
+    <a href="index.html" class="logo">
+
+        <i class="fa-solid fa-crown"></i>
+
+        LUXORA
+
+    </a>
+
+
+    <div class="nav-links" id="navLinks">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="cars.html">
+            Cars
+        </a>
+
+        <a href="my-bookings.html">
+            My Bookings
+        </a>
+
+        <a href="profile.html">
+            Profile
+        </a>
+
+        <a href="login.html">
+            Login
+        </a>
+
+    </div>
+
+
+    <div class="menu-btn" id="menuBtn">
+
+        <i class="fa-solid fa-bars"></i>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<section class="page-header">
+
+    <span>
+        LUXORA RESERVATION
+    </span>
+
+    <h1>
+        Book Your Journey
+    </h1>
+
+    <p>
+        Complete your booking details and reserve your
+        luxury vehicle.
+    </p>
+
+</section>
+
+
+
+<!-- =====================================================
+     BOOKING CONTAINER
+===================================================== -->
+
+<main class="booking-container">
+
+
+    <!-- =================================================
+         LEFT FORM
+    ================================================== -->
+
+    <div class="form-card">
+
+
+        <!-- SELECTED CAR -->
+
+        <section class="form-section">
+
+            <div class="section-heading">
+
+                <div class="section-number">
+                    1
+                </div>
+
+                <h2>
+                    Selected Vehicle
+                </h2>
+
+            </div>
+
+
+            <div class="selected-car">
+
+                <img
+                    src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=900&q=85"
+                    alt="BMW 7 Series"
+                >
+
+
+                <div class="car-info">
+
+                    <span class="brand">
+                        BMW
+                    </span>
+
+                    <h3>
+                        7 Series
+                    </h3>
+
+                    <p>
+                        Automatic · Petrol · 5 Seats
+                    </p>
+
+                    <a href="cars.html"
+                       class="change-car">
+
+                        <i class="fa-solid fa-arrow-left"></i>
+
+                        Change Vehicle
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- RENTAL DETAILS -->
+
+        <section class="form-section">
+
+            <div class="section-heading">
+
+                <div class="section-number">
+                    2
+                </div>
+
+                <h2>
+                    Rental Details
+                </h2>
+
+            </div>
+
+
+            <div class="form-grid">
+
+
+                <div class="form-group">
+
+                    <label>
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        Pickup Location
+
+                    </label>
+
+                    <select id="pickupLocation">
+
+                        <option value="">
+                            Select pickup location
+                        </option>
+
+                        <option>
+                            LUXORA Rajkot
+                        </option>
+
+                        <option>
+                            LUXORA Ahmedabad
+                        </option>
+
+                        <option>
+                            LUXORA Surat
+                        </option>
+
+                        <option>
+                            LUXORA Vadodara
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        Return Location
+
+                    </label>
+
+                    <select id="returnLocation">
+
+                        <option value="">
+                            Select return location
+                        </option>
+
+                        <option>
+                            LUXORA Rajkot
+                        </option>
+
+                        <option>
+                            LUXORA Ahmedabad
+                        </option>
+
+                        <option>
+                            LUXORA Surat
+                        </option>
+
+                        <option>
+                            LUXORA Vadodara
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+
+                        <i class="fa-regular fa-calendar"></i>
+
+                        Pickup Date
+
+                    </label>
+
+                    <input
+                        type="date"
+                        id="pickupDate"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+
+                        <i class="fa-regular fa-clock"></i>
+
+                        Pickup Time
+
+                    </label>
+
+                    <input
+                        type="time"
+                        id="pickupTime"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+
+                        <i class="fa-regular fa-calendar"></i>
+
+                        Return Date
+
+                    </label>
+
+                    <input
+                        type="date"
+                        id="returnDate"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+
+                        <i class="fa-regular fa-clock"></i>
+
+                        Return Time
+
+                    </label>
+
+                    <input
+                        type="time"
+                        id="returnTime"
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- DRIVER DETAILS -->
+
+        <section class="form-section">
+
+            <div class="section-heading">
+
+                <div class="section-number">
+                    3
+                </div>
+
+                <h2>
+                    Driver Information
+                </h2>
+
+            </div>
+
+
+            <div class="form-grid">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Full Name
+                    </label>
+
+                    <div class="input-icon">
+
+                        <i class="fa-regular fa-user"></i>
+
+                        <input
+                            type="text"
+                            id="fullName"
+                            placeholder="Enter full name"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Phone Number
+                    </label>
+
+                    <div class="input-icon">
+
+                        <i class="fa-solid fa-phone"></i>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="Enter phone number"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Email Address
+                    </label>
+
+                    <div class="input-icon">
+
+                        <i class="fa-regular fa-envelope"></i>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Enter email address"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Driving License Number
+                    </label>
+
+                    <div class="input-icon">
+
+                        <i class="fa-regular fa-id-card"></i>
+
+                        <input
+                            type="text"
+                            id="license"
+                            placeholder="Enter license number"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label>
+                        Special Request
+                    </label>
+
+                    <input
+                        type="text"
+                        id="request"
+                        placeholder="Any special request? (Optional)"
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ADDONS -->
+
+        <section class="form-section">
+
+            <div class="section-heading">
+
+                <div class="section-number">
+                    4
+                </div>
+
+                <h2>
+                    Additional Services
+                </h2>
+
+            </div>
+
+
+            <div class="checkbox-list">
+
+
+                <label class="checkbox">
+
+                    <input
+                        type="checkbox"
+                        id="insurance"
+                        checked
+                    >
+
+                    <span>
+
+                        <strong>
+                            Premium Insurance
+                        </strong>
+
+                        ₹1,500 / day
+
+                    </span>
+
+                </label>
+
+
+                <label class="checkbox">
+
+                    <input
+                        type="checkbox"
+                        id="driverService"
+                    >
+
+                    <span>
+
+                        <strong>
+                            Professional Driver
+                        </strong>
+
+                        ₹3,000 / day
+
+                    </span>
+
+                </label>
+
+
+                <label class="checkbox">
+
+                    <input
+                        type="checkbox"
+                        id="childSeat"
+                    >
+
+                    <span>
+
+                        <strong>
+                            Child Seat
+                        </strong>
+
+                        ₹500 / booking
+
+                    </span>
+
+                </label>
+
+
+                <label class="checkbox">
+
+                    <input
+                        type="checkbox"
+                        id="delivery"
+                    >
+
+                    <span>
+
+                        <strong>
+                            Doorstep Delivery
+                        </strong>
+
+                        ₹1,000 / booking
+
+                    </span>
+
+                </label>
+
+
+            </div>
+
+
+            <div class="terms">
+
+                <input
+                    type="checkbox"
+                    id="terms"
+                >
+
+                <label for="terms">
+
+                    I agree to the
+                    <a href="#">
+                        rental terms
+                    </a>
+                    and
+                    <a href="#">
+                        privacy policy
+                    </a>.
+
+                </label>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+
+    <!-- =================================================
+         RIGHT SUMMARY
+    ================================================== -->
+
+    <aside class="summary-card">
+
+        <h2 class="summary-title">
+            Booking Summary
+        </h2>
+
+
+        <img
+            class="summary-image"
+            src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=900&q=85"
+            alt="BMW 7 Series"
+        >
+
+
+        <div class="summary-car-type">
+            BMW LUXURY
+        </div>
+
+        <div class="summary-car-name">
+            BMW 7 Series
+        </div>
+
+
+        <div class="summary-details">
+
+
+            <div class="summary-row">
+
+                <span>
+                    Pickup
+                </span>
+
+                <span id="summaryPickup">
+                    Not selected
+                </span>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Return
+                </span>
+
+                <span id="summaryReturn">
+                    Not selected
+                </span>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Rental Duration
+                </span>
+
+                <span id="duration">
+                    1 Day
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- PRICE -->
+
+        <div class="price-details">
+
+
+            <div class="price-row">
+
+                <span>
+                    Car Rental
+                </span>
+
+                <span id="carPrice">
+                    ₹15,000
+                </span>
+
+            </div>
+
+
+            <div class="price-row">
+
+                <span>
+                    Insurance
+                </span>
+
+                <span id="insurancePrice">
+                    ₹1,500
+                </span>
+
+            </div>
+
+
+            <div class="price-row">
+
+                <span>
+                    Service Fee
+                </span>
+
+                <span>
+                    ₹500
+                </span>
+
+            </div>
+
+
+            <div class="total-row">
+
+                <span>
+                    Total Amount
+                </span>
+
+                <span
+                    class="total-price"
+                    id="totalPrice">
+                    ₹17,000
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="continue-btn"
+            id="continueBtn">
+
+            Continue to Payment
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </button>
+
+
+        <div class="secure-note">
+
+            <i class="fa-solid fa-lock"></i>
+
+            Secure booking & payment
+
+        </div>
+
+    </aside>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="footer-logo">
+        LUXORA
+    </div>
+
+    <p>
+        Luxury. Freedom. Drive.
+    </p>
+
+    <p style="margin-top:20px;">
+        © 2026 LUXORA. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+
+<script>
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+const menuBtn =
+document.getElementById("menuBtn");
+
+const navLinks =
+document.getElementById("navLinks");
+
+menuBtn.addEventListener("click",()=>{
+
+    navLinks.classList.toggle("show");
+
+    const icon =
+    menuBtn.querySelector("i");
+
+    if(navLinks.classList.contains("show")){
+
+        icon.classList.remove("fa-bars");
+
+        icon.classList.add("fa-xmark");
+
+    }else{
+
+        icon.classList.remove("fa-xmark");
+
+        icon.classList.add("fa-bars");
+
+    }
+
+});
+
+
+/* =====================================================
+   BOOKING CALCULATION
+===================================================== */
+
+const pickupDate =
+document.getElementById("pickupDate");
+
+const returnDate =
+document.getElementById("returnDate");
+
+const pickupLocation =
+document.getElementById("pickupLocation");
+
+const returnLocation =
+document.getElementById("returnLocation");
+
+const insurance =
+document.getElementById("insurance");
+
+const driverService =
+document.getElementById("driverService");
+
+const childSeat =
+document.getElementById("childSeat");
+
+const delivery =
+document.getElementById("delivery");
+
+
+const duration =
+document.getElementById("duration");
+
+const carPrice =
+document.getElementById("carPrice");
+
+const insurancePrice =
+document.getElementById("insurancePrice");
+
+const totalPrice =
+document.getElementById("totalPrice");
+
+const summaryPickup =
+document.getElementById("summaryPickup");
+
+const summaryReturn =
+document.getElementById("summaryReturn");
+
+
+const CAR_PRICE = 15000;
+
+const INSURANCE_PRICE = 1500;
+
+const DRIVER_PRICE = 3000;
+
+const CHILD_SEAT_PRICE = 500;
+
+const DELIVERY_PRICE = 1000;
+
+const SERVICE_FEE = 500;
+
+
+/* DATE CALCULATION */
+
+function calculateBooking(){
+
+    let days = 1;
+
+
+    if(
+        pickupDate.value &&
+        returnDate.value
+    ){
+
+        const start =
+        new Date(pickupDate.value);
+
+        const end =
+        new Date(returnDate.value);
+
+        const difference =
+        end - start;
+
+        days =
+        Math.ceil(
+            difference /
+            (1000 * 60 * 60 * 24)
+        );
+
+        if(days < 1){
+            days = 1;
+        }
+
+    }
+
+
+    let rental =
+    CAR_PRICE * days;
+
+
+    let insuranceTotal = 0;
+
+    if(insurance.checked){
+
+        insuranceTotal =
+        INSURANCE_PRICE * days;
+
+    }
+
+
+    let driverTotal = 0;
+
+    if(driverService.checked){
+
+        driverTotal =
+        DRIVER_PRICE * days;
+
+    }
+
+
+    let extraTotal = 0;
+
+
+    if(childSeat.checked){
+
+        extraTotal +=
+        CHILD_SEAT_PRICE;
+
+    }
+
+
+    if(delivery.checked){
+
+        extraTotal +=
+        DELIVERY_PRICE;
+
+    }
+
+
+    const total =
+
+        rental +
+        insuranceTotal +
+        driverTotal +
+        extraTotal +
+        SERVICE_FEE;
+
+
+    duration.textContent =
+    days + (days === 1 ? " Day" : " Days");
+
+
+    carPrice.textContent =
+    "₹" + rental.toLocaleString("en-IN");
+
+
+    insurancePrice.textContent =
+    "₹" + insuranceTotal.toLocaleString("en-IN");
+
+
+    totalPrice.textContent =
+    "₹" + total.toLocaleString("en-IN");
+
+
+    summaryPickup.textContent =
+
+        pickupLocation.value ||
+        "Not selected";
+
+
+    summaryReturn.textContent =
+
+        returnLocation.value ||
+        "Not selected";
+
+
+    return total;
+
+}
+
+
+/* EVENTS */
+
+pickupDate.addEventListener(
+    "change",
+    calculateBooking
+);
+
+returnDate.addEventListener(
+    "change",
+    calculateBooking
+);
+
+pickupLocation.addEventListener(
+    "change",
+    calculateBooking
+);
+
+returnLocation.addEventListener(
+    "change",
+    calculateBooking
+);
+
+insurance.addEventListener(
+    "change",
+    calculateBooking
+);
+
+driverService.addEventListener(
+    "change",
+    calculateBooking
+);
+
+childSeat.addEventListener(
+    "change",
+    calculateBooking
+);
+
+delivery.addEventListener(
+    "change",
+    calculateBooking
+);
+
+
+/* =====================================================
+   MINIMUM DATE
+===================================================== */
+
+const today =
+new Date().toISOString().split("T")[0];
+
+pickupDate.min = today;
+
+returnDate.min = today;
+
+
+pickupDate.addEventListener(
+    "change",
+    ()=>{
+
+        returnDate.min =
+        pickupDate.value;
+
+        if(
+            returnDate.value &&
+            returnDate.value <
+            pickupDate.value
+        ){
+
+            returnDate.value =
+            pickupDate.value;
+
+        }
+
+        calculateBooking();
+
+    }
+);
+
+
+/* =====================================================
+   CONTINUE PAYMENT
+===================================================== */
+
+document
+.getElementById("continueBtn")
+.addEventListener("click",()=>{
+
+
+    const name =
+    document.getElementById("fullName").value.trim();
+
+    const phone =
+    document.getElementById("phone").value.trim();
+
+    const email =
+    document.getElementById("email").value.trim();
+
+    const license =
+    document.getElementById("license").value.trim();
+
+
+    if(!pickupLocation.value){
+
+        alert(
+            "Please select pickup location."
+        );
+
+        return;
+
+    }
+
+
+    if(!returnLocation.value){
+
+        alert(
+            "Please select return location."
+        );
+
+        return;
+
+    }
+
+
+    if(!pickupDate.value){
+
+        alert(
+            "Please select pickup date."
+        );
+
+        return;
+
+    }
+
+
+    if(!returnDate.value){
+
+        alert(
+            "Please select return date."
+        );
+
+        return;
+
+    }
+
+
+    if(!name){
+
+        alert(
+            "Please enter your full name."
+        );
+
+        return;
+
+    }
+
+
+    if(!phone){
+
+        alert(
+            "Please enter your phone number."
+        );
+
+        return;
+
+    }
+
+
+    if(!email){
+
+        alert(
+            "Please enter your email."
+        );
+
+        return;
+
+    }
+
+
+    if(!license){
+
+        alert(
+            "Please enter your driving license number."
+        );
+
+        return;
+
+    }
+
+
+    if(!document.getElementById("terms").checked){
+
+        alert(
+            "Please accept the rental terms."
+        );
+
+        return;
+
+    }
+
+
+    const total =
+    calculateBooking();
+
+
+    const bookingData = {
+
+        carName:
+        "BMW 7 Series",
+
+        brand:
+        "BMW",
+
+        pricePerDay:
+        CAR_PRICE,
+
+        pickupLocation:
+        pickupLocation.value,
+
+        returnLocation:
+        returnLocation.value,
+
+        pickupDate:
+        pickupDate.value,
+
+        pickupTime:
+        document.getElementById("pickupTime").value,
+
+        returnDate:
+        returnDate.value,
+
+        returnTime:
+        document.getElementById("returnTime").value,
+
+        name:
+        name,
+
+        phone:
+        phone,
+
+        email:
+        email,
+
+        license:
+        license,
+
+        specialRequest:
+        document.getElementById("request").value,
+
+        insurance:
+        insurance.checked,
+
+        driver:
+        driverService.checked,
+
+        childSeat:
+        childSeat.checked,
+
+        delivery:
+        delivery.checked,
+
+        total:
+        total
+
+    };
+
+
+    /* SAVE BOOKING */
+
+    localStorage.setItem(
+        "luxoraBooking",
+        JSON.stringify(bookingData)
+    );
+
+
+    /* OPEN PAYMENT */
+
+    window.location.href =
+    "payment.html";
+
+});
+
+
+/* INITIAL */
+
+calculateBooking();
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reports | LUXORA Admin</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            background:#080808;
+            color:#fff;
+        }
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar{
+            position:fixed;
+            left:0;
+            top:0;
+            width:250px;
+            height:100vh;
+            background:#0d0d0d;
+            border-right:1px solid #242424;
+            padding:25px 18px;
+        }
+
+        .logo{
+            display:flex;
+            align-items:center;
+            gap:12px;
+            padding:0 10px 30px;
+            border-bottom:1px solid #222;
+        }
+
+        .logo-icon{
+            width:42px;
+            height:42px;
+            border-radius:12px;
+            background:linear-gradient(135deg,#d4af37,#f5d76e);
+            color:#080808;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            font-size:20px;
+        }
+
+        .logo h2{
+            font-size:22px;
+            letter-spacing:3px;
+        }
+
+        .logo span{
+            display:block;
+            color:#aaa;
+            font-size:9px;
+            letter-spacing:2px;
+            margin-top:3px;
+        }
+
+        .menu-title{
+            color:#666;
+            font-size:10px;
+            letter-spacing:2px;
+            margin:30px 12px 12px;
+            text-transform:uppercase;
+        }
+
+        .nav a{
+            display:flex;
+            align-items:center;
+            gap:14px;
+            padding:13px 14px;
+            margin:5px 0;
+            border-radius:10px;
+            text-decoration:none;
+            color:#aaa;
+            font-size:14px;
+        }
+
+        .nav a i{
+            width:20px;
+            text-align:center;
+        }
+
+        .nav a:hover,
+        .nav a.active{
+            background:#18150b;
+            color:#d4af37;
+        }
+
+        .admin-box{
+            position:absolute;
+            bottom:25px;
+            left:18px;
+            right:18px;
+            padding:14px;
+            background:#141414;
+            border:1px solid #292929;
+            border-radius:12px;
+            display:flex;
+            align-items:center;
+            gap:10px;
+        }
+
+        .admin-avatar{
+            width:38px;
+            height:38px;
+            border-radius:50%;
+            background:#d4af37;
+            color:#111;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-weight:bold;
+        }
+
+        .admin-box strong{
+            font-size:13px;
+        }
+
+        .admin-box small{
+            display:block;
+            color:#777;
+            margin-top:3px;
+        }
+
+        /* ================= MAIN ================= */
+
+        .main{
+            margin-left:250px;
+            min-height:100vh;
+        }
+
+        /* ================= TOPBAR ================= */
+
+        .topbar{
+            height:75px;
+            border-bottom:1px solid #222;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding:0 35px;
+            background:#0b0b0b;
+        }
+
+        .topbar h3{
+            font-size:20px;
+        }
+
+        .topbar p{
+            color:#777;
+            font-size:12px;
+            margin-top:4px;
+        }
+
+        .top-actions{
+            display:flex;
+            gap:12px;
+        }
+
+        .top-btn{
+            width:40px;
+            height:40px;
+            border:1px solid #292929;
+            background:#121212;
+            color:#aaa;
+            border-radius:10px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+        }
+
+        /* ================= CONTENT ================= */
+
+        .content{
+            padding:35px;
+        }
+
+        .page-heading{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:30px;
+        }
+
+        .page-heading h1{
+            font-size:30px;
+            letter-spacing:.5px;
+        }
+
+        .page-heading p{
+            color:#777;
+            margin-top:7px;
+            font-size:13px;
+        }
+
+        .export-btn{
+            background:linear-gradient(135deg,#d4af37,#f3d56b);
+            color:#111;
+            border:none;
+            padding:13px 20px;
+            border-radius:9px;
+            font-weight:bold;
+            cursor:pointer;
+        }
+
+        .export-btn i{
+            margin-right:8px;
+        }
+
+        /* ================= FILTER ================= */
+
+        .filter-box{
+            background:#101010;
+            border:1px solid #242424;
+            border-radius:15px;
+            padding:20px;
+            margin-bottom:25px;
+        }
+
+        .filter-grid{
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+            gap:15px;
+        }
+
+        .filter-item label{
+            display:block;
+            color:#777;
+            font-size:11px;
+            margin-bottom:8px;
+            text-transform:uppercase;
+            letter-spacing:1px;
+        }
+
+        .filter-item select{
+            width:100%;
+            padding:12px;
+            background:#080808;
+            color:#ddd;
+            border:1px solid #292929;
+            border-radius:8px;
+            outline:none;
+        }
+
+        /* ================= STAT CARDS ================= */
+
+        .stats{
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+            gap:18px;
+            margin-bottom:25px;
+        }
+
+        .stat-card{
+            background:#101010;
+            border:1px solid #242424;
+            border-radius:15px;
+            padding:22px;
+        }
+
+        .stat-top{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        .stat-icon{
+            width:45px;
+            height:45px;
+            border-radius:12px;
+            background:#1b180e;
+            color:#d4af37;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            font-size:18px;
+        }
+
+        .stat-card h2{
+            font-size:26px;
+            margin-top:18px;
+        }
+
+        .stat-card p{
+            color:#777;
+            font-size:12px;
+            margin-top:5px;
+        }
+
+        .positive{
+            color:#64c58a;
+            font-size:11px;
+            margin-top:12px;
+        }
+
+        /* ================= REPORT GRID ================= */
+
+        .report-grid{
+            display:grid;
+            grid-template-columns:2fr 1fr;
+            gap:22px;
+        }
+
+        .panel{
+            background:#101010;
+            border:1px solid #242424;
+            border-radius:15px;
+            padding:25px;
+        }
+
+        .panel-header{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:25px;
+        }
+
+        .panel-header h3{
+            font-size:17px;
+        }
+
+        .panel-header span{
+            color:#777;
+            font-size:12px;
+        }
+
+        /* ================= BAR CHART ================= */
+
+        .chart{
+            height:270px;
+            display:flex;
+            align-items:flex-end;
+            justify-content:space-around;
+            gap:18px;
+            border-bottom:1px solid #292929;
+            padding:0 10px;
+        }
+
+        .bar-item{
+            height:100%;
+            display:flex;
+            flex-direction:column;
+            justify-content:flex-end;
+            align-items:center;
+            gap:10px;
+            flex:1;
+        }
+
+        .bar{
+            width:45px;
+            background:linear-gradient(to top,#a98820,#e3c14d);
+            border-radius:7px 7px 0 0;
+            min-height:25px;
+        }
+
+        .bar-item span{
+            color:#777;
+            font-size:11px;
+        }
+
+        .bar-value{
+            color:#ddd !important;
+            font-size:10px !important;
+        }
+
+        /* ================= DONUT ================= */
+
+        .donut-wrapper{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:10px 0 25px;
+        }
+
+        .donut{
+            width:190px;
+            height:190px;
+            border-radius:50%;
+            background:
+                conic-gradient(
+                    #d4af37 0deg 126deg,
+                    #8d7427 126deg 230deg,
+                    #555 230deg 300deg,
+                    #292929 300deg 360deg
+                );
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+
+        .donut-inner{
+            width:125px;
+            height:125px;
+            border-radius:50%;
+            background:#101010;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+        }
+
+        .donut-inner strong{
+            font-size:24px;
+        }
+
+        .donut-inner span{
+            color:#777;
+            font-size:11px;
+            margin-top:4px;
+        }
+
+        .legend{
+            display:grid;
+            gap:12px;
+        }
+
+        .legend-item{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            color:#aaa;
+            font-size:12px;
+        }
+
+        .legend-left{
+            display:flex;
+            align-items:center;
+            gap:8px;
+        }
+
+        .dot{
+            width:9px;
+            height:9px;
+            border-radius:50%;
+            background:#d4af37;
+        }
+
+        .dot.two{background:#8d7427;}
+        .dot.three{background:#555;}
+        .dot.four{background:#292929;}
+
+        /* ================= TABLE ================= */
+
+        .table-panel{
+            margin-top:22px;
+        }
+
+        .table-wrapper{
+            overflow-x:auto;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            min-width:700px;
+        }
+
+        th{
+            text-align:left;
+            padding:14px;
+            color:#666;
+            font-size:10px;
+            text-transform:uppercase;
+            letter-spacing:1px;
+            border-bottom:1px solid #292929;
+        }
+
+        td{
+            padding:16px 14px;
+            border-bottom:1px solid #1f1f1f;
+            font-size:13px;
+            color:#bbb;
+        }
+
+        td strong{
+            color:#fff;
+        }
+
+        .status{
+            display:inline-block;
+            padding:5px 9px;
+            border-radius:20px;
+            font-size:10px;
+        }
+
+        .status.completed{
+            background:#102519;
+            color:#65ca8d;
+        }
+
+        .status.pending{
+            background:#29220d;
+            color:#d4af37;
+        }
+
+        /* ================= QUICK REPORT ================= */
+
+        .quick-grid{
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:18px;
+            margin-top:22px;
+        }
+
+        .quick-card{
+            background:#101010;
+            border:1px solid #242424;
+            border-radius:15px;
+            padding:22px;
+        }
+
+        .quick-card i{
+            color:#d4af37;
+            font-size:20px;
+            margin-bottom:18px;
+        }
+
+        .quick-card h3{
+            font-size:15px;
+        }
+
+        .quick-card p{
+            color:#777;
+            font-size:12px;
+            line-height:1.6;
+            margin:8px 0 15px;
+        }
+
+        .quick-card a{
+            color:#d4af37;
+            text-decoration:none;
+            font-size:12px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width:1100px){
+
+            .stats{
+                grid-template-columns:repeat(2,1fr);
+            }
+
+            .filter-grid{
+                grid-template-columns:repeat(2,1fr);
+            }
+
+            .report-grid{
+                grid-template-columns:1fr;
+            }
+
+        }
+
+        @media(max-width:800px){
+
+            .sidebar{
+                width:75px;
+                padding:20px 10px;
+            }
+
+            .logo{
+                justify-content:center;
+                padding:0 0 25px;
+            }
+
+            .logo h2,
+            .logo span,
+            .menu-title,
+            .nav a span,
+            .admin-box div{
+                display:none;
+            }
+
+            .nav a{
+                justify-content:center;
+                padding:14px;
+            }
+
+            .admin-box{
+                justify-content:center;
+                padding:8px;
+                left:10px;
+                right:10px;
+            }
+
+            .main{
+                margin-left:75px;
+            }
+
+            .topbar{
+                padding:0 20px;
+            }
+
+            .content{
+                padding:25px 18px;
+            }
+
+            .quick-grid{
+                grid-template-columns:1fr;
+            }
+
+        }
+
+        @media(max-width:600px){
+
+            .page-heading{
+                flex-direction:column;
+                align-items:flex-start;
+                gap:18px;
+            }
+
+            .page-heading h1{
+                font-size:25px;
+            }
+
+            .export-btn{
+                width:100%;
+            }
+
+            .filter-grid{
+                grid-template-columns:1fr;
+            }
+
+            .stats{
+                grid-template-columns:1fr;
+            }
+
+            .chart{
+                gap:8px;
+            }
+
+            .bar{
+                width:28px;
+            }
+
+            .topbar h3{
+                font-size:16px;
+            }
+
+            .top-actions{
+                display:none;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            <i class="fa-solid fa-crown"></i>
+        </div>
+
+        <div>
+            <h2>LUXORA</h2>
+            <span>ADMIN PANEL</span>
+        </div>
+
+    </div>
+
+
+    <div class="menu-title">Main Menu</div>
+
+    <nav class="nav">
+
+        <a href="dashboard.html">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Dashboard</span>
+        </a>
+
+        <a href="cars.html">
+            <i class="fa-solid fa-car"></i>
+            <span>Cars</span>
+        </a>
+
+        <a href="bookings.html">
+            <i class="fa-solid fa-calendar-check"></i>
+            <span>Bookings</span>
+        </a>
+
+        <a href="customers.html">
+            <i class="fa-solid fa-users"></i>
+            <span>Customers</span>
+        </a>
+
+        <a href="reports.html" class="active">
+            <i class="fa-solid fa-file-chart-column"></i>
+            <span>Reports</span>
+        </a>
+
+    </nav>
+
+
+    <div class="menu-title">Management</div>
+
+    <nav class="nav">
+
+        <a href="add-car.html">
+            <i class="fa-solid fa-plus"></i>
+            <span>Add Car</span>
+        </a>
+
+        <a href="edit-car.html">
+            <i class="fa-solid fa-pen"></i>
+            <span>Edit Cars</span>
+        </a>
+
+    </nav>
+
+
+    <div class="admin-box">
+
+        <div class="admin-avatar">
+            MR
+        </div>
+
+        <div>
+            <strong>Meet Raj</strong>
+            <small>Administrator</small>
+        </div>
+
+    </div>
+
+</aside>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <div>
+            <h3>Reports & Analytics</h3>
+            <p>LUXORA business performance overview</p>
+        </div>
+
+        <div class="top-actions">
+
+            <div class="top-btn">
+                <i class="fa-regular fa-bell"></i>
+            </div>
+
+            <div class="top-btn">
+                <i class="fa-solid fa-gear"></i>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <section class="content">
+
+        <!-- PAGE HEADING -->
+
+        <div class="page-heading">
+
+            <div>
+                <h1>Business Reports</h1>
+                <p>Track revenue, bookings, customers and fleet performance.</p>
+            </div>
+
+            <button class="export-btn">
+                <i class="fa-solid fa-download"></i>
+                Export Report
+            </button>
+
+        </div>
+
+
+        <!-- FILTER -->
+
+        <div class="filter-box">
+
+            <div class="filter-grid">
+
+                <div class="filter-item">
+
+                    <label>Report Period</label>
+
+                    <select>
+                        <option>Last 30 Days</option>
+                        <option>Last 7 Days</option>
+                        <option>Last 3 Months</option>
+                        <option>Last 6 Months</option>
+                        <option>This Year</option>
+                    </select>
+
+                </div>
+
+
+                <div class="filter-item">
+
+                    <label>Report Type</label>
+
+                    <select>
+                        <option>All Reports</option>
+                        <option>Revenue Report</option>
+                        <option>Booking Report</option>
+                        <option>Customer Report</option>
+                        <option>Fleet Report</option>
+                    </select>
+
+                </div>
+
+
+                <div class="filter-item">
+
+                    <label>Vehicle Category</label>
+
+                    <select>
+                        <option>All Vehicles</option>
+                        <option>Luxury Sedan</option>
+                        <option>Sports Car</option>
+                        <option>SUV</option>
+                    </select>
+
+                </div>
+
+
+                <div class="filter-item">
+
+                    <label>Booking Status</label>
+
+                    <select>
+                        <option>All Status</option>
+                        <option>Completed</option>
+                        <option>Confirmed</option>
+                        <option>Pending</option>
+                        <option>Cancelled</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- STAT CARDS -->
+
+        <div class="stats">
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div>
+                        <p>Total Revenue</p>
+                        <h2>₹38.4L</h2>
+                    </div>
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-indian-rupee-sign"></i>
+                    </div>
+
+                </div>
+
+                <div class="positive">
+                    <i class="fa-solid fa-arrow-up"></i>
+                    18.6% from last month
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div>
+                        <p>Total Bookings</p>
+                        <h2>248</h2>
+                    </div>
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+
+                </div>
+
+                <div class="positive">
+                    <i class="fa-solid fa-arrow-up"></i>
+                    12.4% from last month
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div>
+                        <p>Customers</p>
+                        <h2>1,284</h2>
+                    </div>
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+
+                </div>
+
+                <div class="positive">
+                    <i class="fa-solid fa-arrow-up"></i>
+                    9.8% growth
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div>
+                        <p>Avg. Booking Value</p>
+                        <h2>₹15.5K</h2>
+                    </div>
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-chart-simple"></i>
+                    </div>
+
+                </div>
+
+                <div class="positive">
+                    <i class="fa-solid fa-arrow-up"></i>
+                    6.2% increase
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- REPORT GRID -->
+
+        <div class="report-grid">
+
+
+            <!-- REVENUE CHART -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h3>Revenue Overview</h3>
+
+                    <span>Monthly Revenue</span>
+
+                </div>
+
+
+                <div class="chart">
+
+                    <div class="bar-item">
+                        <strong class="bar-value">₹4.2L</strong>
+                        <div class="bar" style="height:45%;"></div>
+                        <span>Jan</span>
+                    </div>
+
+                    <div class="bar-item">
+                        <strong class="bar-value">₹5.1L</strong>
+                        <div class="bar" style="height:55%;"></div>
+                        <span>Feb</span>
+                    </div>
+
+                    <div class="bar-item">
+                        <strong class="bar-value">₹4.8L</strong>
+                        <div class="bar" style="height:51%;"></div>
+                        <span>Mar</span>
+                    </div>
+
+                    <div class="bar-item">
+                        <strong class="bar-value">₹6.3L</strong>
+                        <div class="bar" style="height:68%;"></div>
+                        <span>Apr</span>
+                    </div>
+
+                    <div class="bar-item">
+                        <strong class="bar-value">₹7.1L</strong>
+                        <div class="bar" style="height:77%;"></div>
+                        <span>May</span>
+                    </div>
+
+                    <div class="bar-item">
+                        <strong class="bar-value">₹8.4L</strong>
+                        <div class="bar" style="height:91%;"></div>
+                        <span>Jun</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BOOKING DISTRIBUTION -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h3>Booking Distribution</h3>
+
+                    <span>By vehicle type</span>
+
+                </div>
+
+
+                <div class="donut-wrapper">
+
+                    <div class="donut">
+
+                        <div class="donut-inner">
+                            <strong>248</strong>
+                            <span>Bookings</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="legend">
+
+                    <div class="legend-item">
+
+                        <div class="legend-left">
+                            <span class="dot"></span>
+                            Luxury Sedan
+                        </div>
+
+                        <strong>35%</strong>
+
+                    </div>
+
+
+                    <div class="legend-item">
+
+                        <div class="legend-left">
+                            <span class="dot two"></span>
+                            SUV
+                        </div>
+
+                        <strong>29%</strong>
+
+                    </div>
+
+
+                    <div class="legend-item">
+
+                        <div class="legend-left">
+                            <span class="dot three"></span>
+                            Sports Car
+                        </div>
+
+                        <strong>20%</strong>
+
+                    </div>
+
+
+                    <div class="legend-item">
+
+                        <div class="legend-left">
+                            <span class="dot four"></span>
+                            Others
+                        </div>
+
+                        <strong>16%</strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RECENT REPORT -->
+
+        <div class="panel table-panel">
+
+            <div class="panel-header">
+
+                <h3>Recent Booking Performance</h3>
+
+                <span>Latest transactions</span>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Customer</th>
+                            <th>Vehicle</th>
+                            <th>Duration</th>
+                            <th>Revenue</th>
+                            <th>Status</th>
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        <tr>
+
+                            <td><strong>#LX-10248</strong></td>
+
+                            <td>Meet Raj</td>
+
+                            <td>BMW 7 Series</td>
+
+                            <td>3 Days</td>
+
+                            <td><strong>₹45,500</strong></td>
+
+                            <td>
+                                <span class="status completed">
+                                    Completed
+                                </span>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td><strong>#LX-10247</strong></td>
+
+                            <td>Arjun Kumar</td>
+
+                            <td>Mercedes S-Class</td>
+
+                            <td>3 Days</td>
+
+                            <td><strong>₹54,000</strong></td>
+
+                            <td>
+                                <span class="status completed">
+                                    Completed
+                                </span>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td><strong>#LX-10246</strong></td>
+
+                            <td>Rahul Shah</td>
+
+                            <td>Porsche 911</td>
+
+                            <td>2 Days</td>
+
+                            <td><strong>₹44,000</strong></td>
+
+                            <td>
+                                <span class="status pending">
+                                    Pending
+                                </span>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td><strong>#LX-10245</strong></td>
+
+                            <td>Neel Patel</td>
+
+                            <td>Range Rover</td>
+
+                            <td>2 Days</td>
+
+                            <td><strong>₹50,000</strong></td>
+
+                            <td>
+                                <span class="status completed">
+                                    Completed
+                                </span>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td><strong>#LX-10244</strong></td>
+
+                            <td>Vikram Patel</td>
+
+                            <td>Audi A8</td>
+
+                            <td>2 Days</td>
+
+                            <td><strong>₹28,000</strong></td>
+
+                            <td>
+                                <span class="status completed">
+                                    Completed
+                                </span>
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <!-- QUICK REPORTS -->
+
+        <div class="quick-grid">
+
+            <div class="quick-card">
+
+                <i class="fa-solid fa-car"></i>
+
+                <h3>Fleet Performance</h3>
+
+                <p>
+                    View vehicle utilization, availability,
+                    rental income and most booked cars.
+                </p>
+
+                <a href="cars.html">
+                    View Fleet Report →
+                </a>
+
+            </div>
+
+
+            <div class="quick-card">
+
+                <i class="fa-solid fa-users"></i>
+
+                <h3>Customer Analytics</h3>
+
+                <p>
+                    Analyze customer registrations,
+                    bookings and premium customers.
+                </p>
+
+                <a href="customers.html">
+                    View Customer Report →
+                </a>
+
+            </div>
+
+
+            <div class="quick-card">
+
+                <i class="fa-solid fa-calendar-check"></i>
+
+                <h3>Booking Analytics</h3>
+
+                <p>
+                    Check booking trends, completed
+                    reservations and cancellation data.
+                </p>
+
+                <a href="bookings.html">
+                    View Booking Report →
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+</body>
+</html>
